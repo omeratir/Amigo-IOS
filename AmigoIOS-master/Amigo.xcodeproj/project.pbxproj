@@ -3,19 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05718E5B7231EF94BA008569 /* Pods_AmigoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E643A97B52F8EF3CA4F035DD /* Pods_AmigoTests.framework */; };
-		25DBDF368E982331F6CAC6FD /* Pods_Amigo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3765FF859605726AD13CB0 /* Pods_Amigo.framework */; };
-		5BCBC95423C3992300F2D46E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBC95323C3992300F2D46E /* LoginViewController.swift */; };
-		5BCBC95623C39A1500F2D46E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBC95523C39A1500F2D46E /* RegisterViewController.swift */; };
-		5BCBC95823C3A8D200F2D46E /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBC95723C3A8D200F2D46E /* MyProfileViewController.swift */; };
-		5BCBC95A23C3A90E00F2D46E /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBC95923C3A90E00F2D46E /* FeedViewController.swift */; };
-		61D0452F87C82C9C1F03B443 /* Pods_Amigo_AmigoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4F62623AA96C75D73B0A88 /* Pods_Amigo_AmigoUITests.framework */; };
-		B226F74123C2550C0064A4DD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B226F74023C2550C0064A4DD /* MapViewController.swift */; };
-		B226F74323C25D120064A4DD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B226F74223C25D120064A4DD /* CoreLocation.framework */; };
 		D0355B8023BA62AF00AD790F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0355B7F23BA62AF00AD790F /* AppDelegate.swift */; };
 		D0355B8223BA62AF00AD790F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0355B8123BA62AF00AD790F /* SceneDelegate.swift */; };
 		D0355B8423BA62AF00AD790F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0355B8323BA62AF00AD790F /* ViewController.swift */; };
@@ -45,19 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1DE7E0116F15A35BA0E4979A /* Pods-Amigo-AmigoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amigo-AmigoUITests.release.xcconfig"; path = "Target Support Files/Pods-Amigo-AmigoUITests/Pods-Amigo-AmigoUITests.release.xcconfig"; sourceTree = "<group>"; };
-		5BCBC95323C3992300F2D46E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		5BCBC95523C39A1500F2D46E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		5BCBC95723C3A8D200F2D46E /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
-		5BCBC95923C3A90E00F2D46E /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		7541BB1F1136A6BA0DC7CF77 /* Pods-Amigo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amigo.release.xcconfig"; path = "Target Support Files/Pods-Amigo/Pods-Amigo.release.xcconfig"; sourceTree = "<group>"; };
-		7F9CD0FDE73D5A184283E611 /* Pods-AmigoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmigoTests.release.xcconfig"; path = "Target Support Files/Pods-AmigoTests/Pods-AmigoTests.release.xcconfig"; sourceTree = "<group>"; };
-		88BF872FD795FA03E7E95A50 /* Pods-Amigo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amigo.debug.xcconfig"; path = "Target Support Files/Pods-Amigo/Pods-Amigo.debug.xcconfig"; sourceTree = "<group>"; };
-		980D6864BA59842D9C79BFDC /* Pods-Amigo-AmigoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amigo-AmigoUITests.debug.xcconfig"; path = "Target Support Files/Pods-Amigo-AmigoUITests/Pods-Amigo-AmigoUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		AC3765FF859605726AD13CB0 /* Pods_Amigo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Amigo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD82AFCEBCD74B153272E4A3 /* Pods-AmigoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmigoTests.debug.xcconfig"; path = "Target Support Files/Pods-AmigoTests/Pods-AmigoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B226F74023C2550C0064A4DD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		B226F74223C25D120064A4DD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D0355B7C23BA62AF00AD790F /* Amigo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amigo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0355B7F23BA62AF00AD790F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0355B8123BA62AF00AD790F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,8 +51,6 @@
 		D0355BA123BA62B200AD790F /* AmigoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmigoUITests.swift; sourceTree = "<group>"; };
 		D0355BA323BA62B200AD790F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0355BB123BA722D00AD790F /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
-		E643A97B52F8EF3CA4F035DD /* Pods_AmigoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmigoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB4F62623AA96C75D73B0A88 /* Pods_Amigo_AmigoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Amigo_AmigoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +58,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B226F74323C25D120064A4DD /* CoreLocation.framework in Frameworks */,
-				25DBDF368E982331F6CAC6FD /* Pods_Amigo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +65,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05718E5B7231EF94BA008569 /* Pods_AmigoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,37 +72,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61D0452F87C82C9C1F03B443 /* Pods_Amigo_AmigoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		34BF50AF0E10755000375C01 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				88BF872FD795FA03E7E95A50 /* Pods-Amigo.debug.xcconfig */,
-				7541BB1F1136A6BA0DC7CF77 /* Pods-Amigo.release.xcconfig */,
-				980D6864BA59842D9C79BFDC /* Pods-Amigo-AmigoUITests.debug.xcconfig */,
-				1DE7E0116F15A35BA0E4979A /* Pods-Amigo-AmigoUITests.release.xcconfig */,
-				AD82AFCEBCD74B153272E4A3 /* Pods-AmigoTests.debug.xcconfig */,
-				7F9CD0FDE73D5A184283E611 /* Pods-AmigoTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		7CD5546BFDF8360B05EC97FB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B226F74223C25D120064A4DD /* CoreLocation.framework */,
-				AC3765FF859605726AD13CB0 /* Pods_Amigo.framework */,
-				EB4F62623AA96C75D73B0A88 /* Pods_Amigo_AmigoUITests.framework */,
-				E643A97B52F8EF3CA4F035DD /* Pods_AmigoTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		D0355B7323BA62AF00AD790F = {
 			isa = PBXGroup;
 			children = (
@@ -137,8 +85,6 @@
 				D0355B9523BA62B200AD790F /* AmigoTests */,
 				D0355BA023BA62B200AD790F /* AmigoUITests */,
 				D0355B7D23BA62AF00AD790F /* Products */,
-				34BF50AF0E10755000375C01 /* Pods */,
-				7CD5546BFDF8360B05EC97FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,11 +109,6 @@
 				D0355B8A23BA62B100AD790F /* LaunchScreen.storyboard */,
 				D0355B8D23BA62B100AD790F /* Info.plist */,
 				D0355BB123BA722D00AD790F /* TabController.swift */,
-				B226F74023C2550C0064A4DD /* MapViewController.swift */,
-				5BCBC95323C3992300F2D46E /* LoginViewController.swift */,
-				5BCBC95523C39A1500F2D46E /* RegisterViewController.swift */,
-				5BCBC95723C3A8D200F2D46E /* MyProfileViewController.swift */,
-				5BCBC95923C3A90E00F2D46E /* FeedViewController.swift */,
 			);
 			path = Amigo;
 			sourceTree = "<group>";
@@ -197,11 +138,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0355BA623BA62B200AD790F /* Build configuration list for PBXNativeTarget "Amigo" */;
 			buildPhases = (
-				E3C528B193577D55179BD491 /* [CP] Check Pods Manifest.lock */,
 				D0355B7823BA62AF00AD790F /* Sources */,
 				D0355B7923BA62AF00AD790F /* Frameworks */,
 				D0355B7A23BA62AF00AD790F /* Resources */,
-				20F5BBD4D3C4C02E31308296 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -216,7 +155,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0355BA923BA62B200AD790F /* Build configuration list for PBXNativeTarget "AmigoTests" */;
 			buildPhases = (
-				E1CDBCD00E43CAD8CEA28BC5 /* [CP] Check Pods Manifest.lock */,
 				D0355B8E23BA62B200AD790F /* Sources */,
 				D0355B8F23BA62B200AD790F /* Frameworks */,
 				D0355B9023BA62B200AD790F /* Resources */,
@@ -235,11 +173,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0355BAC23BA62B200AD790F /* Build configuration list for PBXNativeTarget "AmigoUITests" */;
 			buildPhases = (
-				1550D20B5CDC4273962B59CF /* [CP] Check Pods Manifest.lock */,
 				D0355B9923BA62B200AD790F /* Sources */,
 				D0355B9A23BA62B200AD790F /* Frameworks */,
 				D0355B9B23BA62B200AD790F /* Resources */,
-				7EB8625A56BCFF326209C530 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -321,123 +257,15 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		1550D20B5CDC4273962B59CF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Amigo-AmigoUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		20F5BBD4D3C4C02E31308296 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Amigo/Pods-Amigo-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Amigo/Pods-Amigo-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Amigo/Pods-Amigo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7EB8625A56BCFF326209C530 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Amigo-AmigoUITests/Pods-Amigo-AmigoUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Amigo-AmigoUITests/Pods-Amigo-AmigoUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Amigo-AmigoUITests/Pods-Amigo-AmigoUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E1CDBCD00E43CAD8CEA28BC5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AmigoTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E3C528B193577D55179BD491 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Amigo-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		D0355B7823BA62AF00AD790F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D0355B8423BA62AF00AD790F /* ViewController.swift in Sources */,
-				5BCBC95A23C3A90E00F2D46E /* FeedViewController.swift in Sources */,
 				D0355BB223BA722D00AD790F /* TabController.swift in Sources */,
 				D0355B8023BA62AF00AD790F /* AppDelegate.swift in Sources */,
-				5BCBC95623C39A1500F2D46E /* RegisterViewController.swift in Sources */,
-				5BCBC95423C3992300F2D46E /* LoginViewController.swift in Sources */,
 				D0355B8223BA62AF00AD790F /* SceneDelegate.swift in Sources */,
-				5BCBC95823C3A8D200F2D46E /* MyProfileViewController.swift in Sources */,
-				B226F74123C2550C0064A4DD /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,7 +436,6 @@
 		};
 		D0355BA723BA62B200AD790F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88BF872FD795FA03E7E95A50 /* Pods-Amigo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -626,7 +453,6 @@
 		};
 		D0355BA823BA62B200AD790F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7541BB1F1136A6BA0DC7CF77 /* Pods-Amigo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -644,7 +470,6 @@
 		};
 		D0355BAA23BA62B200AD790F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AD82AFCEBCD74B153272E4A3 /* Pods-AmigoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -666,7 +491,6 @@
 		};
 		D0355BAB23BA62B200AD790F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F9CD0FDE73D5A184283E611 /* Pods-AmigoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -688,7 +512,6 @@
 		};
 		D0355BAD23BA62B200AD790F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 980D6864BA59842D9C79BFDC /* Pods-Amigo-AmigoUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -708,7 +531,6 @@
 		};
 		D0355BAE23BA62B200AD790F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1DE7E0116F15A35BA0E4979A /* Pods-Amigo-AmigoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
