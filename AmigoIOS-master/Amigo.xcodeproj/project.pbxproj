@@ -16,9 +16,6 @@
 		61D0452F87C82C9C1F03B443 /* Pods_Amigo_AmigoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4F62623AA96C75D73B0A88 /* Pods_Amigo_AmigoUITests.framework */; };
 		B226F74123C2550C0064A4DD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B226F74023C2550C0064A4DD /* MapViewController.swift */; };
 		B226F74323C25D120064A4DD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B226F74223C25D120064A4DD /* CoreLocation.framework */; };
-		B22BE08C23C9ECB80031672C /* ModelFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22BE08B23C9ECB80031672C /* ModelFirebase.swift */; };
-		B22BE09023C9EE550031672C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22BE08F23C9EE550031672C /* Model.swift */; };
-		B22BE09223C9EE8F0031672C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22BE09123C9EE8F0031672C /* User.swift */; };
 		B22BE09423C9F42E0031672C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B22BE09323C9F42E0031672C /* GoogleService-Info.plist */; };
 		B28A49A123C6168A00DBAADD /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28A49A023C6168A00DBAADD /* Artwork.swift */; };
 		B2BA16E523C51544005647FB /* InfoMarkerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BA16E423C51544005647FB /* InfoMarkerViewController.swift */; };
@@ -65,9 +62,6 @@
 		AD82AFCEBCD74B153272E4A3 /* Pods-AmigoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmigoTests.debug.xcconfig"; path = "Target Support Files/Pods-AmigoTests/Pods-AmigoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B226F74023C2550C0064A4DD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B226F74223C25D120064A4DD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		B22BE08B23C9ECB80031672C /* ModelFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFirebase.swift; sourceTree = "<group>"; };
-		B22BE08F23C9EE550031672C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		B22BE09123C9EE8F0031672C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B22BE09323C9F42E0031672C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B28A49A023C6168A00DBAADD /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		B2BA16E423C51544005647FB /* InfoMarkerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMarkerViewController.swift; sourceTree = "<group>"; };
@@ -144,16 +138,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B22BE08E23C9EE240031672C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B22BE08B23C9ECB80031672C /* ModelFirebase.swift */,
-				B22BE08F23C9EE550031672C /* Model.swift */,
-				B22BE09123C9EE8F0031672C /* User.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		D0355B7323BA62AF00AD790F = {
 			isa = PBXGroup;
 			children = (
@@ -182,7 +166,6 @@
 				B22BE09323C9F42E0031672C /* GoogleService-Info.plist */,
 				D0355B7F23BA62AF00AD790F /* AppDelegate.swift */,
 				D0355B8123BA62AF00AD790F /* SceneDelegate.swift */,
-				B22BE08E23C9EE240031672C /* Model */,
 				D0355B8323BA62AF00AD790F /* ViewController.swift */,
 				D0355B8523BA62AF00AD790F /* Main.storyboard */,
 				D0355B8823BA62B100AD790F /* Assets.xcassets */,
@@ -502,13 +485,10 @@
 				D0355B8023BA62AF00AD790F /* AppDelegate.swift in Sources */,
 				B2BA16E523C51544005647FB /* InfoMarkerViewController.swift in Sources */,
 				5BCBC95623C39A1500F2D46E /* RegisterViewController.swift in Sources */,
-				B22BE09023C9EE550031672C /* Model.swift in Sources */,
-				B22BE09223C9EE8F0031672C /* User.swift in Sources */,
 				5BCBC95423C3992300F2D46E /* LoginViewController.swift in Sources */,
 				D0355B8223BA62AF00AD790F /* SceneDelegate.swift in Sources */,
 				5BCBC95823C3A8D200F2D46E /* MyProfileViewController.swift in Sources */,
 				B226F74123C2550C0064A4DD /* MapViewController.swift in Sources */,
-				B22BE08C23C9ECB80031672C /* ModelFirebase.swift in Sources */,
 				B2D3219323C8B95F008ECC3A /* SecondVcViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -16,6 +18,33 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerV
     
     @IBOutlet weak var pickerCity: UIPickerView!
     
+    @IBOutlet weak var fullName: UITextField!
+    @IBOutlet weak var gender: UISegmentedControl!
+    @IBOutlet weak var emailUser: UITextField!
+    @IBOutlet weak var passwordUser: UITextField!
+    
+    @IBAction func finishRegister(_ sender: Any) {
+        Auth.auth().createUser(withEmail: self.emailUser.text! , password: self.passwordUser.text!) { (user,error) in
+            if user != nil {
+            print("aviad")
+            }
+            if error != nil {
+                print(":(")
+            }
+            
+        }
+    }
+    
+    @IBAction func loginConnect(_ sender: Any) {
+        Auth.auth().signIn(withEmail: self.emailUser.text! , password: self.passwordUser.text!) { (user,error) in
+                   if user != nil {
+                   print("aviad")
+                   }
+                   if error != nil {
+                       print(":(")
+                   }
+        }
+    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -80,6 +109,15 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerV
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.black
+        let layer = CAGradientLayer()
+        let color1 = UIColor(red:0.99, green: 0.48, blue: 0.48, alpha: 1.0)
+        let color2 = UIColor(red:0.65, green: 0.76, blue: 1.00, alpha: 1.0)
+
+        layer.colors = [ color1.cgColor ,color2.cgColor]
+        layer.frame = view.frame
+        view.layer.insertSublayer(layer, at: 0)
         
         //Image Picker
         
