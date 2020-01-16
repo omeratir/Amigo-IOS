@@ -34,6 +34,17 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerV
             
         }
     }
+    @IBAction func genderSelected(_ sender: Any)
+    {
+        if(gender.selectedSegmentIndex == 0)
+        {
+            print("Male")
+        }
+        if(gender.selectedSegmentIndex == 1)
+        {
+            print("Female")
+        }
+    }
     
     @IBAction func loginConnect(_ sender: Any) {
         Auth.auth().signIn(withEmail: self.emailUser.text! , password: self.passwordUser.text!) { (user,error) in
