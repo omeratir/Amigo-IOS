@@ -76,16 +76,42 @@ class MapViewController: UIViewController {
       mapView.setRegion(coordinateRegion, animated: true)
         
         // show artwork on map - where marker in the map
-        let artwork = Artwork(title: "Rishon-Lezion",
-          locationName: "aviad",
-          discipline: "rishon",
+        let rishonLezion = Artwork(title: "Rishon-Lezion",
+          locationName: "Rishon-Lezion",
+          discipline: "Rishon-Lezion",
           coordinate: CLLocationCoordinate2D(latitude: 31.961020, longitude: 34.801620))
-        let artwork2 = Artwork(title: "Haifa",
-                 locationName: "aviad",
-                 discipline: "haifa",
+        
+        let haifa = Artwork(title: "Haifa",
+                 locationName: "Haifa",
+                 discipline: "Haifa",
                  coordinate: CLLocationCoordinate2D(latitude: 32.794044, longitude: 34.989571))
-        mapView.addAnnotation(artwork)
-         mapView.addAnnotation(artwork2)
+        
+        let superland = Artwork(title: "Superland",
+                 locationName: "Rishon Lezion",
+                 discipline: "haifa",
+                 coordinate: CLLocationCoordinate2D(latitude: 31.97860, longitude: 34.744534))
+        
+        let portOfTelAviv = Artwork(title: "Port of Tel-Aviv",
+                 locationName: "Tel Aviv",
+                 discipline: "Tel Aviv",
+                 coordinate: CLLocationCoordinate2D(latitude: 32.101421, longitude: 34.775711))
+        
+        let lunaPark = Artwork(title: "Luna Park",
+                 locationName: "Tel Aviv",
+                 discipline: "Tel Aviv",
+                 coordinate: CLLocationCoordinate2D(latitude: 32.083910, longitude: 34.798939))
+        
+        
+        
+        
+        mapView.addAnnotation(rishonLezion)
+        mapView.addAnnotation(haifa)
+        mapView.addAnnotation(superland)
+        mapView.addAnnotation(portOfTelAviv)
+        mapView.addAnnotation(lunaPark)
+
+
+
         mapView.delegate = self
         
         
