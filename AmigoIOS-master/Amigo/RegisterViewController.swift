@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseStorage
 
 class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -24,6 +25,10 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerV
     @IBOutlet weak var passwordUser: UITextField!
     
     @IBAction func finishRegister(_ sender: Any) {
+        
+        let fullname = fullName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let password = passwordUser.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let emailuser = emailUser.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         Auth.auth().createUser(withEmail: self.emailUser.text! , password: self.passwordUser.text!) { (user,error) in
             if user != nil {
             print("aviad")
@@ -31,9 +36,11 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerV
             if error != nil {
                 print(":(")
             }
-            
+            let db = Firestore.firestore()
+            db.collection("users").addDocument(data: ["name":fullname,"email":emailuser,"password":password])
         }
     }
+ 
     @IBAction func genderSelected(_ sender: Any)
     {
         if(gender.selectedSegmentIndex == 0)

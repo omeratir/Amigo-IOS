@@ -7,9 +7,23 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var email: UITextField!
+    
+    @IBOutlet weak var password: UITextField!
+    @IBAction func Connect(_ sender: Any) {
+        Auth.auth().signIn(withEmail: self.email.text!, password: self.password.text!) { (user,error) in
+                   if user != nil {
+                   print("aviad")
+                   }
+                   if error != nil {
+                       print(":(")
+                   }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

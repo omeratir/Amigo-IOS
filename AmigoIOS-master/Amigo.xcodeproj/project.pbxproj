@@ -14,6 +14,7 @@
 		5BCBC95823C3A8D200F2D46E /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBC95723C3A8D200F2D46E /* MyProfileViewController.swift */; };
 		5BCBC95A23C3A90E00F2D46E /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBC95923C3A90E00F2D46E /* FeedViewController.swift */; };
 		61D0452F87C82C9C1F03B443 /* Pods_Amigo_AmigoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4F62623AA96C75D73B0A88 /* Pods_Amigo_AmigoUITests.framework */; };
+		B2108EDB23D250B9005F3B0D /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2108EDA23D250B9005F3B0D /* AddPostViewController.swift */; };
 		B226F74123C2550C0064A4DD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B226F74023C2550C0064A4DD /* MapViewController.swift */; };
 		B226F74323C25D120064A4DD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B226F74223C25D120064A4DD /* CoreLocation.framework */; };
 		B22BE09423C9F42E0031672C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B22BE09323C9F42E0031672C /* GoogleService-Info.plist */; };
@@ -60,6 +61,7 @@
 		980D6864BA59842D9C79BFDC /* Pods-Amigo-AmigoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amigo-AmigoUITests.debug.xcconfig"; path = "Target Support Files/Pods-Amigo-AmigoUITests/Pods-Amigo-AmigoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AC3765FF859605726AD13CB0 /* Pods_Amigo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Amigo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD82AFCEBCD74B153272E4A3 /* Pods-AmigoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmigoTests.debug.xcconfig"; path = "Target Support Files/Pods-AmigoTests/Pods-AmigoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B2108EDA23D250B9005F3B0D /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		B226F74023C2550C0064A4DD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B226F74223C25D120064A4DD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B22BE09323C9F42E0031672C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				B2BA16E423C51544005647FB /* InfoMarkerViewController.swift */,
 				B28A49A023C6168A00DBAADD /* Artwork.swift */,
 				B2D3219223C8B95F008ECC3A /* SecondVcViewController.swift */,
+				B2108EDA23D250B9005F3B0D /* AddPostViewController.swift */,
 			);
 			path = Amigo;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				B28A49A123C6168A00DBAADD /* Artwork.swift in Sources */,
 				5BCBC95A23C3A90E00F2D46E /* FeedViewController.swift in Sources */,
 				D0355BB223BA722D00AD790F /* TabController.swift in Sources */,
+				B2108EDB23D250B9005F3B0D /* AddPostViewController.swift in Sources */,
 				D0355B8023BA62AF00AD790F /* AppDelegate.swift in Sources */,
 				B2BA16E523C51544005647FB /* InfoMarkerViewController.swift in Sources */,
 				5BCBC95623C39A1500F2D46E /* RegisterViewController.swift in Sources */,
