@@ -158,12 +158,27 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - AppAuth (1.3.0):
+    - AppAuth/Core (= 1.3.0)
+    - AppAuth/ExternalUserAgent (= 1.3.0)
+  - AppAuth/Core (1.3.0)
+  - AppAuth/ExternalUserAgent (1.3.0)
   - BoringSSL-GRPC (0.0.3):
     - BoringSSL-GRPC/Implementation (= 0.0.3)
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Implementation (0.0.3):
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Interface (0.0.3)
+  - FBSDKCoreKit (5.14.0):
+    - FBSDKCoreKit/Basics (= 5.14.0)
+    - FBSDKCoreKit/Core (= 5.14.0)
+  - FBSDKCoreKit/Basics (5.14.0)
+  - FBSDKCoreKit/Core (5.14.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.14.0):
+    - FBSDKLoginKit/Login (= 5.14.0)
+  - FBSDKLoginKit/Login (5.14.0):
+    - FBSDKCoreKit (~> 5.0)
   - Firebase/Analytics (6.14.0):
     - Firebase/Core
   - Firebase/Auth (6.14.0):
@@ -236,6 +251,41 @@ PODS:
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseUI (8.4.0):
+    - FirebaseUI/Anonymous (= 8.4.0)
+    - FirebaseUI/Auth (= 8.4.0)
+    - FirebaseUI/Database (= 8.4.0)
+    - FirebaseUI/Email (= 8.4.0)
+    - FirebaseUI/Facebook (= 8.4.0)
+    - FirebaseUI/Firestore (= 8.4.0)
+    - FirebaseUI/Google (= 8.4.0)
+    - FirebaseUI/OAuth (= 8.4.0)
+    - FirebaseUI/Phone (= 8.4.0)
+    - FirebaseUI/Storage (= 8.4.0)
+  - FirebaseUI/Anonymous (8.4.0):
+    - FirebaseUI/Auth
+  - FirebaseUI/Auth (8.4.0):
+    - Firebase/Auth (~> 6.0)
+    - GoogleUtilities/UserDefaults
+  - FirebaseUI/Database (8.4.0):
+    - Firebase/Database (~> 6.0)
+  - FirebaseUI/Email (8.4.0):
+    - FirebaseUI/Auth
+  - FirebaseUI/Facebook (8.4.0):
+    - FBSDKLoginKit (~> 5.0)
+    - FirebaseUI/Auth
+  - FirebaseUI/Firestore (8.4.0):
+    - Firebase/Firestore
+  - FirebaseUI/Google (8.4.0):
+    - FirebaseUI/Auth
+    - GoogleSignIn (~> 5.0)
+  - FirebaseUI/OAuth (8.4.0):
+    - FirebaseUI/Auth
+  - FirebaseUI/Phone (8.4.0):
+    - FirebaseUI/Auth
+  - FirebaseUI/Storage (8.4.0):
+    - Firebase/Storage (~> 6.0)
+    - SDWebImage (~> 5.0)
   - GoogleAppMeasurement (6.1.7):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -251,6 +301,10 @@ PODS:
   - GoogleMaps/Base (3.7.0)
   - GoogleMaps/Maps (3.7.0):
     - GoogleMaps/Base
+  - GoogleSignIn (5.0.2):
+    - AppAuth (~> 1.2)
+    - GTMAppAuth (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
   - GoogleUtilities/AppDelegateSwizzler (6.4.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -285,13 +339,24 @@ PODS:
     - gRPC-Core/Interface (= 1.21.0)
     - nanopb (~> 0.3)
   - gRPC-Core/Interface (1.21.0)
+  - GTMAppAuth (1.0.0):
+    - AppAuth/Core (~> 1.0)
+    - GTMSessionFetcher (~> 1.1)
+  - GTMSessionFetcher (1.3.1):
+    - GTMSessionFetcher/Full (= 1.3.1)
   - GTMSessionFetcher/Core (1.3.1)
+  - GTMSessionFetcher/Full (1.3.1):
+    - GTMSessionFetcher/Core (= 1.3.1)
   - leveldb-library (1.22)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - ProgressHUD (2.70)
+  - SDWebImage (5.5.1):
+    - SDWebImage/Core (= 5.5.1)
+  - SDWebImage/Core (5.5.1)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -300,12 +365,18 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Firestore
   - Firebase/Storage
+  - FirebaseUI
   - GoogleMaps
+  - ProgressHUD
+  - SDWebImage
 
 SPEC REPOS:
   trunk:
     - abseil
+    - AppAuth
     - BoringSSL-GRPC
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -317,20 +388,28 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseInstanceID
     - FirebaseStorage
+    - FirebaseUI
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleMaps
+    - GoogleSignIn
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
+    - GTMAppAuth
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - ProgressHUD
+    - SDWebImage
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
+  AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
+  FBSDKCoreKit: a72c8d2c42aa4c4d5eaa5f160be9580750f70d2e
+  FBSDKLoginKit: 89f3c2f8be892ec8a5359619a8ff657578d47604
   Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
   FirebaseAnalytics: f68b9f3f1241385129ae0a83b63627fc420c05e5
   FirebaseAuth: 831577b184ecaba38bc886768c1c22a450cc44e3
@@ -342,17 +421,22 @@ SPEC CHECKSUMS:
   FirebaseFirestore: 52120e2833f804a874ba1a9f59aab864a8ae2286
   FirebaseInstanceID: ce993a3c3670a8f5d47ce371ac5d143c560608c5
   FirebaseStorage: 93fe2f8190a01bfb2b2c4932df7d679744c4ef1d
+  FirebaseUI: 433550cb9e3d03ec7ee2c25f87493f76358d9b68
   GoogleAppMeasurement: db118eb61a97dd8c4f7014e368d3c335cbbcf80a
   GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5
   GoogleDataTransportCCTSupport: 202d7cdf9c4a7d81a2bb7f7e7e1ba6faa421b1f2
   GoogleMaps: 55da829c68aa931f3ae982b9e341cc2f3d89c587
+  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GoogleUtilities: 29bd0d8f850efbd28cff6d99e8b7da1f8d236bcf
   "gRPC-C++": 9dfe7b44821e7b3e44aacad2af29d2c21f7cde83
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
+  GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  ProgressHUD: e603e8b8622c47d8818b9fb38b3cfe9d3e7ca421
+  SDWebImage: 1245d058b7b8f59adef7a6da6bbafd4f1ab67041
 
-PODFILE CHECKSUM: d8c8dde67c5829e69bf811dde2d0e46720db3cb1
+PODFILE CHECKSUM: e7df056278e9cb9df8e6df23782c1023bfc1f218
 
 COCOAPODS: 1.8.4

@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 
+
 class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var imagePicker = UIImagePickerController()
@@ -24,11 +25,12 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerV
     @IBOutlet weak var emailUser: UITextField!
     @IBOutlet weak var passwordUser: UITextField!
     
+    
     @IBAction func finishRegister(_ sender: Any) {
         
-        let fullname = fullName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let password = passwordUser.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let emailuser = emailUser.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//        let fullname = fullName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//        let password = passwordUser.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//        let emailuser = emailUser.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         Auth.auth().createUser(withEmail: self.emailUser.text! , password: self.passwordUser.text!) { (user,error) in
             if user != nil {
             print("aviad")
@@ -36,20 +38,17 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerV
             if error != nil {
                 print(":(")
             }
+            guard let fullname = self.fullName.text else {return}
+            guard let email = self.emailUser.text else {return}
+            guard let password = self.passwordUser.text else {return}
+            let genderUser = self.gender.selectedSegmentIndex == 0 ? "Male" : "Female"
+                //set profile image
+          //  guard let profileImg = self.imageViewAvatar.image else {return}
+                //upload data
+         //   guard let uploadData : Data = profileImg.jpegData(compressionQuality: 0.3) else {return}
+            
             let db = Firestore.firestore()
-            db.collection("users").addDocument(data: ["name":fullname,"email":emailuser,"password":password])
-        }
-    }
- 
-    @IBAction func genderSelected(_ sender: Any)
-    {
-        if(gender.selectedSegmentIndex == 0)
-        {
-            print("Male")
-        }
-        if(gender.selectedSegmentIndex == 1)
-        {
-            print("Female")
+            db.collection("users").addDocument(data: ["name":fullname,"email":email,"password":password,"gender":genderUser])
         }
     }
     

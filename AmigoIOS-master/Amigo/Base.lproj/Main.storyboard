@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lWi-tn-DLN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -92,7 +92,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rlk-ap-PJ8">
-                                <rect key="frame" x="142" y="369" width="92" height="63"/>
+                                <rect key="frame" x="142" y="369" width="92" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="NotoSansMyanmar-Bold" family="Noto Sans Myanmar" pointSize="23"/>
                                 <state key="normal" title="Connect">
@@ -150,7 +150,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="i1C-Pf-gkT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="167" y="-405"/>
+            <point key="canvasLocation" x="165.59999999999999" y="-405.24737631184411"/>
         </scene>
         <!--Profile-->
         <scene sceneID="eBz-Gx-YPm">
@@ -458,7 +458,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="gP7-BT-b61">
             <objects>
-                <tabBarController id="lWi-tn-DLN" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabController" id="lWi-tn-DLN" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Xv9-RU-MLx"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CAG-cc-9eY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -671,7 +671,4 @@
         <image name="plane" width="600" height="600"/>
         <image name="plus.circle" catalog="system" width="64" height="60"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="PPQ-5s-f0H"/>
-    </inferredMetricsTieBreakers>
 </document>

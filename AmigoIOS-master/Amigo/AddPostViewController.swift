@@ -62,7 +62,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate,UI
     @IBAction func PostBtm(_ sender: Any) {
                 let recommend = textOfRecommend.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let db = Firestore.firestore()
-        db.collection("posts").addDocument(data: ["recommend":recommend])
+        db.collection("users").addDocument(data: ["recommend":recommend])
         
     }
     
