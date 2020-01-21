@@ -13,7 +13,6 @@ class User {
     var profileImageUrl : String?
     var name : String?
     var id : String?
-    var gender : String?
     var password : String?
     var lastUpdate : Double?
     
@@ -26,7 +25,6 @@ extension User{
         user.profileImageUrl = json["profileImageUrl"] as? String
         user.name = json["username"] as? String
         user.id = key
-        user.gender = json["gender"] as? String
         user.password = json["password"] as? String
         user.lastUpdate = json["lastUpdate"] as? Double
         return user
@@ -38,7 +36,6 @@ extension User{
         json["email"]               = user.email
         json["profileImageUrl"]     = user.profileImageUrl
         json["name"]            = user.name
-        json["gender"]            = user.gender
         json["password"]            = user.name
         json["lastUpdate"]          = user.lastUpdate
         return json

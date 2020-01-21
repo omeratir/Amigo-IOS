@@ -10,9 +10,15 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseStorage
+import ProgressHUD
 
+protocol RegiserDelegate{
+    func onComplete(success:Bool);
+}
 
 class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+   //  var delegate:RegiserDelegate?
     
     var imagePicker = UIImagePickerController()
 
@@ -26,42 +32,65 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerV
     @IBOutlet weak var passwordUser: UITextField!
     
     
-    @IBAction func finishRegister(_ sender: Any) {
-        
-//        let fullname = fullName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-//        let password = passwordUser.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-//        let emailuser = emailUser.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        Auth.auth().createUser(withEmail: self.emailUser.text! , password: self.passwordUser.text!) { (user,error) in
-            if user != nil {
-            print("aviad")
-            }
-            if error != nil {
-                print(":(")
-            }
-            guard let fullname = self.fullName.text else {return}
-            guard let email = self.emailUser.text else {return}
-            guard let password = self.passwordUser.text else {return}
-            let genderUser = self.gender.selectedSegmentIndex == 0 ? "Male" : "Female"
-                //set profile image
-          //  guard let profileImg = self.imageViewAvatar.image else {return}
-                //upload data
-         //   guard let uploadData : Data = profileImg.jpegData(compressionQuality: 0.3) else {return}
-            
-            let db = Firestore.firestore()
-            db.collection("users").addDocument(data: ["name":fullname,"email":email,"password":password,"gender":genderUser])
-        }
-    }
+    func onComplete(success: Bool) {
+         print("on Complete signInOut \(success)")
+                   if success == true {
+                       print("on Complete signInOut success")
+                       let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                       let signInVC = storyboard.instantiateViewController(withIdentifier: "TabController")
+                       self.present(signInVC, animated: true, completion: nil)
+                   }
+       }
     
-    @IBAction func loginConnect(_ sender: Any) {
-        Auth.auth().signIn(withEmail: self.emailUser.text! , password: self.passwordUser.text!) { (user,error) in
-                   if user != nil {
-                   print("aviad")
-                   }
-                   if error != nil {
-                       print(":(")
-                   }
+    @IBAction func finishRegister(_ sender: Any) {
+          print("sign up pressed")
+            //dismiss keyboard
+            self.view.endEditing(true)
+            ProgressHUD.show("Waiting...",interaction: false)
+            //case fields are empty
+            if(emailUser.text?.isEmpty ?? true || passwordUser.text?.isEmpty ?? true){
+            
+                // alert message "fill all fields"
+                ProgressHUD.showError("PLEASE fill all fields")
+                return
+            }
+            
+            //values for sign
+            guard let email = emailUser.text else {return}
+            guard let password = passwordUser.text else {return}
+            guard let username = fullName.text else {return}
+            //set profile image
+            guard let profileImg = self.imageViewAvatar.image else {return}
+            //upload data
+            guard let uploadData : Data = profileImg.jpegData(compressionQuality: 0.3) else {return}
+         let db = Firestore.firestore()
+        db.collection("users").addDocument(data: ["fullname": username,"email":email,"password":password])
+        AuthUsers.signUp(username: username, email: email, password: password, imageData: uploadData, onSuccess: {
+                
+                print("Seccessfuly created user and saved information to DB")
+                
+                ProgressHUD.showSuccess("Success")
+                print("Successfully signed user up" )
+             //   self.dismiss(animated: true, completion: {() in
+                self.onComplete(success: true);
+            //    })
+                
+            }) { (errorMsg) in
+                ProgressHUD.showError(errorMsg)
+                return
+            }
         }
-    }
+    
+//    @IBAction func loginConnect(_ sender: Any) {
+//        Auth.auth().signIn(withEmail: self.emailUser.text! , password: self.passwordUser.text!) { (user,error) in
+//                   if user != nil {
+//                   print("aviad")
+//                   }
+//                   if error != nil {
+//                       print(":(")
+//                   }
+//        }
+//    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -144,4 +173,10 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerV
         pickerData = ["Tel-Aviv", "Petah-Tiqwa","Rishon Lezion", "Tveria"]
     }
 
+}
+extension RegisterViewController : UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

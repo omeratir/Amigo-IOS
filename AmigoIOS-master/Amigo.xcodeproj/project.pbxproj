@@ -23,8 +23,11 @@
 		B226F74323C25D120064A4DD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B226F74223C25D120064A4DD /* CoreLocation.framework */; };
 		B22BE09423C9F42E0031672C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B22BE09323C9F42E0031672C /* GoogleService-Info.plist */; };
 		B28A49A123C6168A00DBAADD /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28A49A023C6168A00DBAADD /* Artwork.swift */; };
+		B2A3C58C23D608AB00C7FA4E /* UserPostsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3C58B23D608AB00C7FA4E /* UserPostsApi.swift */; };
+		B2A3C59223D7861D00C7FA4E /* TablePostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3C59123D7861D00C7FA4E /* TablePostTableViewController.swift */; };
 		B2BA16E523C51544005647FB /* InfoMarkerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BA16E423C51544005647FB /* InfoMarkerViewController.swift */; };
-		B2D3219323C8B95F008ECC3A /* SecondVcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D3219223C8B95F008ECC3A /* SecondVcViewController.swift */; };
+		B2BE390723D5BF0800C687C5 /* PostUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BE390623D5BF0800C687C5 /* PostUser.swift */; };
+		B2BE390923D5C02000C687C5 /* PostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BE390823D5C02000C687C5 /* PostApi.swift */; };
 		D0355B8023BA62AF00AD790F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0355B7F23BA62AF00AD790F /* AppDelegate.swift */; };
 		D0355B8223BA62AF00AD790F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0355B8123BA62AF00AD790F /* SceneDelegate.swift */; };
 		D0355B8423BA62AF00AD790F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0355B8323BA62AF00AD790F /* ViewController.swift */; };
@@ -74,8 +77,11 @@
 		B226F74223C25D120064A4DD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B22BE09323C9F42E0031672C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B28A49A023C6168A00DBAADD /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
+		B2A3C58B23D608AB00C7FA4E /* UserPostsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostsApi.swift; sourceTree = "<group>"; };
+		B2A3C59123D7861D00C7FA4E /* TablePostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablePostTableViewController.swift; sourceTree = "<group>"; };
 		B2BA16E423C51544005647FB /* InfoMarkerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMarkerViewController.swift; sourceTree = "<group>"; };
-		B2D3219223C8B95F008ECC3A /* SecondVcViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondVcViewController.swift; sourceTree = "<group>"; };
+		B2BE390623D5BF0800C687C5 /* PostUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUser.swift; sourceTree = "<group>"; };
+		B2BE390823D5C02000C687C5 /* PostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostApi.swift; sourceTree = "<group>"; };
 		D0355B7C23BA62AF00AD790F /* Amigo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amigo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0355B7F23BA62AF00AD790F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0355B8123BA62AF00AD790F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +154,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B2BE390523D5BEC400C687C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B225086323D376DB00E20314 /* User.swift */,
+				B2BE390623D5BF0800C687C5 /* PostUser.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		D0355B7323BA62AF00AD790F = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +188,7 @@
 		D0355B7E23BA62AF00AD790F /* Amigo */ = {
 			isa = PBXGroup;
 			children = (
+				B2BE390523D5BEC400C687C5 /* Model */,
 				B22BE09323C9F42E0031672C /* GoogleService-Info.plist */,
 				D0355B7F23BA62AF00AD790F /* AppDelegate.swift */,
 				D0355B8123BA62AF00AD790F /* SceneDelegate.swift */,
@@ -189,12 +205,13 @@
 				5BCBC95923C3A90E00F2D46E /* FeedViewController.swift */,
 				B2BA16E423C51544005647FB /* InfoMarkerViewController.swift */,
 				B28A49A023C6168A00DBAADD /* Artwork.swift */,
-				B2D3219223C8B95F008ECC3A /* SecondVcViewController.swift */,
 				B2108EDA23D250B9005F3B0D /* AddPostViewController.swift */,
 				B225085F23D372E800E20314 /* AuthUsers.swift */,
 				B225086123D376A800E20314 /* Api.swift */,
-				B225086323D376DB00E20314 /* User.swift */,
 				B225086523D3795500E20314 /* UserApi.swift */,
+				B2BE390823D5C02000C687C5 /* PostApi.swift */,
+				B2A3C58B23D608AB00C7FA4E /* UserPostsApi.swift */,
+				B2A3C59123D7861D00C7FA4E /* TablePostTableViewController.swift */,
 			);
 			path = Amigo;
 			sourceTree = "<group>";
@@ -499,17 +516,20 @@
 				B225086223D376A800E20314 /* Api.swift in Sources */,
 				B225086423D376DB00E20314 /* User.swift in Sources */,
 				D0355BB223BA722D00AD790F /* TabController.swift in Sources */,
+				B2BE390723D5BF0800C687C5 /* PostUser.swift in Sources */,
 				B2108EDB23D250B9005F3B0D /* AddPostViewController.swift in Sources */,
 				B225086623D3795500E20314 /* UserApi.swift in Sources */,
 				D0355B8023BA62AF00AD790F /* AppDelegate.swift in Sources */,
+				B2A3C59223D7861D00C7FA4E /* TablePostTableViewController.swift in Sources */,
 				B2BA16E523C51544005647FB /* InfoMarkerViewController.swift in Sources */,
+				B2A3C58C23D608AB00C7FA4E /* UserPostsApi.swift in Sources */,
 				5BCBC95623C39A1500F2D46E /* RegisterViewController.swift in Sources */,
 				5BCBC95423C3992300F2D46E /* LoginViewController.swift in Sources */,
 				D0355B8223BA62AF00AD790F /* SceneDelegate.swift in Sources */,
 				5BCBC95823C3A8D200F2D46E /* MyProfileViewController.swift in Sources */,
+				B2BE390923D5C02000C687C5 /* PostApi.swift in Sources */,
 				B226F74123C2550C0064A4DD /* MapViewController.swift in Sources */,
 				B225086023D372E800E20314 /* AuthUsers.swift in Sources */,
-				B2D3219323C8B95F008ECC3A /* SecondVcViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

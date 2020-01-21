@@ -9,12 +9,16 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-class AddPostViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+import ProgressHUD
+
+class AddPostViewController: UIViewController {
 
     @IBOutlet weak var textOfRecommend: UITextField!
     
+    
     @IBOutlet weak var imageView: UIImageView!
     
+    var selectedImage : UIImage?
     @IBAction func uploadPhoto(_ sender: Any) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -34,8 +38,6 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate,UI
             }
 
         }))
-        
-        
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: {(action:UIAlertAction) in
             imagePickerController.sourceType = .photoLibrary
             self.present(imagePickerController, animated: true, completion: nil)
@@ -46,41 +48,63 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate,UI
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
-       {
-           let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-           
-           imageView.image = image
-           picker.dismiss(animated: true, completion: nil)
-       }
-       
-       func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-           picker.dismiss(animated: true, completion: nil)
-       }
-    
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
+//       {
+//           let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+//
+//           imageView.image = image
+//           picker.dismiss(animated: true, completion: nil)
+//       }
+//
+//       func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//           picker.dismiss(animated: true, completion: nil)
+//       }
+//
     
     @IBAction func PostBtm(_ sender: Any) {
-                let recommend = textOfRecommend.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let db = Firestore.firestore()
-        db.collection("users").addDocument(data: ["recommend":recommend])
-        
+            print("post Button press")
+                view.endEditing(true)
+                ProgressHUD.show("waiting...",interaction: false)
+                if let profileImg = self.selectedImage, let imageData = profileImg.jpegData(compressionQuality: 0.1) {
+                    AuthUsers.uploadDataToServer(data: imageData, caption: self.textOfRecommend.text!) {
+                      //  self.clearData()
+                    //    self.tabBarController?.selectedIndex = 0
+                    }
+                    
+                } else{
+                    ProgressHUD.showError("Image can't be empty")
+                }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+     
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectPhoto))
+        tapGesture.numberOfTapsRequired = 1
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGesture)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func handleSelectPhoto(){
+        print("handle Select Photo")
+        let picker = UIImagePickerController()
+        picker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate //current vc
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
     }
-    */
-
 }
+
+ extension AddPostViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+     
+     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+         print("did finish picking media")
+             if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                 selectedImage = image
+                 imageView.image = image
+             }
+             dismiss(animated: true, completion: nil)
+     }
+ }
+
+

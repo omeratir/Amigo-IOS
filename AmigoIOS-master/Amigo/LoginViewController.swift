@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import ProgressHUD
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController,RegiserDelegate {
 
     @IBOutlet weak var email: UITextField!
     
@@ -23,7 +23,6 @@ class LoginViewController: UIViewController {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let signInVC = storyboard.instantiateViewController(withIdentifier: "TabController")
                         self.present(signInVC, animated: true, completion: nil)
-            //            self.dismiss(animated: true, completion: ())
                     }
         }
     

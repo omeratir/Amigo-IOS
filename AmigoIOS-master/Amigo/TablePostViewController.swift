@@ -1,15 +1,14 @@
 //
-//  TabController.swift
+//  TablePostViewController.swift
 //  Amigo
 //
-//  Created by Shiran Klein on 30/12/2019.
-//  Copyright © 2019 Shiran Klein. All rights reserved.
+//  Created by אביעד on 21/01/2020.
+//  Copyright © 2020 Shiran Klein. All rights reserved.
 //
 
 import UIKit
-import FirebaseDatabase
 
-class TabController: UITabBarController , UITabBarControllerDelegate {
+class TablePostViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
