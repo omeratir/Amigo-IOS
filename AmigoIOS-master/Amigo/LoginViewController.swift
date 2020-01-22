@@ -37,16 +37,7 @@ class LoginViewController: UIViewController,RegiserDelegate {
                          else {
                              ProgressHUD.showError("fill all fields")
                              return}
-              AuthUsers.signIn(email: email, password: password, onSuccess: {
-                     print("Successfully signed user in" )
-                     ProgressHUD.showSuccess("Success")
-                     self.onComplete(success: true)
-                     //self.dismiss(animated: true, completion: nil )
-                 }) { (errorMsg) in
-                     print(errorMsg!)
-                     ProgressHUD.showError(errorMsg!)
-                     return
-                 }
+
 
 //        Auth.auth().signIn(withEmail: self.email.text!, password: self.password.text!) { (user,error) in
 //                   if user != nil {

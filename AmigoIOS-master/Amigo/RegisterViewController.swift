@@ -16,7 +16,7 @@ protocol RegiserDelegate{
     func onComplete(success:Bool);
 }
 
-class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class RegisterViewController: UIViewController,UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //  var delegate:RegiserDelegate?
     
@@ -42,62 +42,76 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerV
         }
     }
     
-    @IBAction func finishRegister(_ sender: Any) {
-        print("sign up pressed")
-        //dismiss keyboard
-        self.view.endEditing(true)
-        ProgressHUD.show("Waiting...",interaction: false)
-        //case fields are empty
-        if(emailUser.text?.isEmpty ?? true || passwordUser.text?.isEmpty ?? true){
-            
-            // alert message "fill all fields"
-            ProgressHUD.showError("PLEASE fill all fields")
-            return
-        }
-        
-        //values for sign
-        guard let email = emailUser.text else {return}
-        guard let password = passwordUser.text else {return}
-        guard let username = fullName.text else {return}
-        //set profile image
-        guard let profileImg = self.imageViewAvatar.image else {return}
-        //upload data
-        guard let uploadData : Data = profileImg.jpegData(compressionQuality: 0.3) else {return}
-        let db = Firestore.firestore()
-        //db.collection("users").document(<#T##documentPath: String##String#>)
-        db.collection("users").addDocument(data: ["fullname": username,"email":email,"password":password])
-        
-        let store = Storage.storage()
-        let storeRef = store.reference()
-        let userProfilesRef = storeRef.child("email")
-        //let logoRef = storeRef.child("images.png")
-        // let userProfiles = logoRef.parent()?.child("profiles")
-        guard let ProfileImage = self.imageViewAvatar.image else {return}
-        //upload data
-        guard let UpTheData : Data = profileImg.jpegData(compressionQuality: 0.3) else {return}
-        let uploadUserProfileTask = userProfilesRef.child("\(email)").putData(UpTheData, metadata: nil) { (metadata, error) in
-            guard let metadata = metadata else {
-                print("Error occurred: \(error)")
-                return
+    @IBAction func register(_ sender: Any) {
+        Auth.auth().createUser(withEmail: emailUser.text!, password: passwordUser.text!){ authResult, error in
+            if error != nil {
+                print("uh-oh")
             }
-        }
-        print ("\(email)")
-        AuthUsers.signUp(username: username, email: email, password: password, imageData: uploadData, onSuccess: {
-            
-            print("Seccessfuly created user and saved information to DB")
-            
-            ProgressHUD.showSuccess("Success")
-            print("Successfully signed user up" )
-            //   self.dismiss(animated: true, completion: {() in
-            self.onComplete(success: true);
-            //    })
-            
-        }) { (errorMsg) in
-            ProgressHUD.showError(errorMsg)
-            return
+            Model.instance.saveImage(image: self.imageViewAvatar.image!){ (url) in
+                        if url != "" {
+                            Model.instance.register(fullname: self.fullName.text!, email: self.emailUser.text!, pwd: self.passwordUser.text!,url: "url") { (success) in
+                                if success {
+                                    print("aviad")
+                                }
+                    }
+                }
+                        else {
+                            print("aviadFail")
+                }
+    }
         }
     }
-    
+//
+//    @IBAction func finishRegister(_ sender: Any) {
+//        print("sign up pressed")
+//        //dismiss keyboard
+//        self.view.endEditing(true)
+//        ProgressHUD.show("Waiting...",interaction: false)
+//        //case fields are empty
+//        if(emailUser.text?.isEmpty ?? true || passwordUser.text?.isEmpty ?? true){
+//
+//            // alert message "fill all fields"
+//            ProgressHUD.showError("PLEASE fill all fields")
+//            return
+//        }
+//
+//        //values for sign
+//        guard let email = emailUser.text else {return}
+//        guard let password = passwordUser.text else {return}
+//        guard let fullname = fullName.text else {return}
+//        //set profile image
+//        guard let profileImg = self.imageViewAvatar.image else {return}
+//        //upload data
+//        guard let uploadData : Data = profileImg.jpegData(compressionQuality: 0.3) else {return}
+//        let db = Firestore.firestore()
+//        //db.collection("users").document(<#T##documentPath: String##String#>)
+//        db.collection("users").addDocument(data: ["fullname": fullname,"email":email,"password":password])
+//
+//        let store = Storage.storage()
+//        let storeRef = store.reference()
+//        let userProfilesRef = storeRef.child("email")
+//        //let logoRef = storeRef.child("images.png")
+//        // let userProfiles = logoRef.parent()?.child("profiles")
+//        guard let ProfileImage = self.imageViewAvatar.image else {return}
+//        //upload data
+//        guard let UpTheData : Data = profileImg.jpegData(compressionQuality: 0.3) else {return}
+//        let uploadUserProfileTask = userProfilesRef.child("\(email)").putData(UpTheData, metadata: nil) { (metadata, error) in
+//            guard let metadata = metadata else {
+//                print("Error occurred: \(error)")
+//                return
+//            }
+//        }
+//        print ("\(email)")
+//
+//            print("Seccessfuly created user and saved information to DB")
+//
+//            ProgressHUD.showSuccess("Success")
+//            print("Successfully signed user up" )
+//            //   self.dismiss(animated: true, completion: {() in
+//            self.onComplete(success: true);
+//
+//    }
+//
     //    @IBAction func loginConnect(_ sender: Any) {
     //        Auth.auth().signIn(withEmail: self.emailUser.text! , password: self.passwordUser.text!) { (user,error) in
     //                   if user != nil {
@@ -112,15 +126,8 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerV
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
-    }
-    
-    //Upload photo button
     @IBAction func uploadPhotoBtn(_ sender: Any)
     {
         let imagePickerController = UIImagePickerController()
@@ -168,7 +175,7 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerV
         picker.dismiss(animated: true, completion: nil)
     }
     
-    var pickerData: [String] = [String]()
+            
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -184,16 +191,8 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource,UIPickerV
         
         //Image Picker
         
-        // City Picker
-        self.pickerCity.delegate = self
-        self.pickerCity.dataSource = self
-        pickerData = ["Tel-Aviv", "Petah-Tiqwa","Rishon Lezion", "Tveria"]
     }
     
 }
-extension RegisterViewController : UITextFieldDelegate{
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-}
+
+

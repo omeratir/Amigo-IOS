@@ -386,9 +386,6 @@
                                 <state key="normal" title="Post">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="PostBtm:" destination="9gx-gd-fso" eventType="touchUpInside" id="VZJ-Vn-7Wo"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxT-e6-vQi">
                                 <rect key="frame" x="142" y="70" width="91" height="30"/>
@@ -555,7 +552,7 @@
                                                     <color key="titleShadowColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="finishRegister:" destination="Nmj-pg-wde" eventType="touchUpInside" id="doP-d4-Gfh"/>
+                                                    <action selector="register:" destination="Nmj-pg-wde" eventType="touchUpInside" id="B4G-Jv-V08"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMC-fP-Fld">
@@ -585,7 +582,7 @@
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="uploadPhotoBtn:" destination="Nmj-pg-wde" eventType="touchUpInside" id="pv2-gf-CC1"/>
+                                                    <action selector="uploadPhotoBtn:" destination="Nmj-pg-wde" eventType="touchUpInside" id="s71-nC-fmk"/>
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" semanticContentAttribute="spatial" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yOB-lt-rKY">
@@ -650,7 +647,6 @@
                         <outlet property="gender" destination="wgt-uo-hkW" id="kIS-u8-bCF"/>
                         <outlet property="imageViewAvatar" destination="jhR-y4-ZVQ" id="qZE-Ep-jfd"/>
                         <outlet property="passwordUser" destination="yOB-lt-rKY" id="8a8-eU-HAP"/>
-                        <outlet property="pickerCity" destination="rIw-oN-koG" id="a8g-FE-dbt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P1M-EY-1xw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

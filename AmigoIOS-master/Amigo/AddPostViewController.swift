@@ -65,15 +65,7 @@ class AddPostViewController: UIViewController {
             print("post Button press")
                 view.endEditing(true)
                 ProgressHUD.show("waiting...",interaction: false)
-                if let profileImg = self.selectedImage, let imageData = profileImg.jpegData(compressionQuality: 0.1) {
-                    AuthUsers.uploadDataToServer(data: imageData, caption: self.textOfRecommend.text!) {
-                      //  self.clearData()
-                    //    self.tabBarController?.selectedIndex = 0
-                    }
-                    
-                } else{
-                    ProgressHUD.showError("Image can't be empty")
-                }
+            
     }
     
     override func viewDidLoad() {
