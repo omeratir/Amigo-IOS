@@ -9,13 +9,14 @@
 import Foundation
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class FirebaseStorage {
     static func saveImage(image:UIImage, callback:@escaping (String)->Void){
         let storageRef = Storage.storage().reference(forURL:
             "gs://amigo-e1b90.appspot.com")
         let data = image.jpegData(compressionQuality: 0.5)
-        let imageRef = storageRef.child("imageName")
+        let imageRef = storageRef.child(Auth.auth().currentUser!.uid)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         imageRef.putData(data!, metadata: metadata) { (metadata, error) in
@@ -28,4 +29,6 @@ class FirebaseStorage {
             }
         }
     }
+    
+
 }

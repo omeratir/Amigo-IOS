@@ -159,6 +159,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Kingfisher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Amigo-AmigoUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>

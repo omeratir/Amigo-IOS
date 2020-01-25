@@ -16,7 +16,15 @@ protocol RegiserDelegate{
     func onComplete(success:Bool);
 }
 
-class RegisterViewController: UIViewController,UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class RegisterViewController: UIViewController,UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,LoginViewControllerDelegate {
+    func onLoginSuccess() {
+        
+    }
+    
+    func onLoginCancell() {
+        
+    }
+    
     
     //  var delegate:RegiserDelegate?
     
@@ -44,14 +52,22 @@ class RegisterViewController: UIViewController,UIPickerViewDelegate, UIImagePick
     
     @IBAction func register(_ sender: Any) {
         Auth.auth().createUser(withEmail: emailUser.text!, password: passwordUser.text!){ authResult, error in
-            if error != nil {
+            if let u = authResult {
                 print("uh-oh")
-            }
+            
             Model.instance.saveImage(image: self.imageViewAvatar.image!){ (url) in
                         if url != "" {
                             Model.instance.register(fullname: self.fullName.text!, email: self.emailUser.text!, pwd: self.passwordUser.text!,url: "url") { (success) in
                                 if success {
-                                    print("aviad")
+                                    let us = User(id:Auth.auth().currentUser!.uid);
+                                    us.email = self.emailUser.text!
+                                    us.ImagAvatr = url
+                                    us.fullname = self.fullName.text!
+                                    Model.instance.add(user: us)
+                                    print("hello")
+                                    let main = UIStoryboard(name:"Main", bundle: nil)
+                                    let home = main.instantiateViewController(identifier: "Home")
+                                    self.present(home, animated: true, completion: nil)
                                 }
                     }
                 }
@@ -60,8 +76,12 @@ class RegisterViewController: UIViewController,UIPickerViewDelegate, UIImagePick
                 }
     }
         }
+            else {
+                print("aviad")
+            }
     }
 //
+    }
 //    @IBAction func finishRegister(_ sender: Any) {
 //        print("sign up pressed")
 //        //dismiss keyboard

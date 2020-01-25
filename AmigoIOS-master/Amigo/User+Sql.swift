@@ -62,5 +62,7 @@ extension User{
     static func getLastUpdateDate()->Int64{
         return ModelSql.instance.getLastUpdateDate(name: "USERS")
     }
+    
+    
 
 }

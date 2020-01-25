@@ -10,8 +10,14 @@ import UIKit
 import FirebaseAuth
 import ProgressHUD
 
-class LoginViewController: UIViewController,RegiserDelegate {
+protocol LoginViewControllerDelegate {
+    func onLoginSuccess();
+    func onLoginCancell();
+}
 
+class LoginViewController: UIViewController,RegiserDelegate {
+    
+ var delegate:LoginViewControllerDelegate?
     @IBOutlet weak var email: UITextField!
     
     @IBOutlet weak var password: UITextField!
@@ -21,32 +27,32 @@ class LoginViewController: UIViewController,RegiserDelegate {
                     if success == true {
                         print("on Complete signInOut success")
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let signInVC = storyboard.instantiateViewController(withIdentifier: "TabController")
+                        let signInVC = storyboard.instantiateViewController(withIdentifier: "Home")
                         self.present(signInVC, animated: true, completion: nil)
                     }
         }
     
     
     @IBAction func Connect(_ sender: Any) {
-       ProgressHUD.show("Waiting...",interaction: false)
+      // ProgressHUD.show("Waiting...",interaction: false)
                  
-                 // properties
-                 guard
-                     let email = email.text,
-                     let password = password.text
-                         else {
-                             ProgressHUD.showError("fill all fields")
-                             return}
-
-
-//        Auth.auth().signIn(withEmail: self.email.text!, password: self.password.text!) { (user,error) in
-//                   if user != nil {
-//                   print("aviad")
-//                   }
-//                   if error != nil {
-//                       print(":(")
-//                   }
-//        }
+        Auth.auth().signIn(withEmail: email.text!, password: password.text!,completion: { (authResult,error) in
+            if ((authResult) != nil){
+                               let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                               let signInVC = storyboard.instantiateViewController(withIdentifier: "Home")
+                               self.present(signInVC, animated: true, completion: nil)
+                               //                self.navigationController?.popViewController(animated: true);
+                                if let delegate = self.delegate{
+                                   delegate.onLoginSuccess()
+                               }
+                           }
+             // self.onComplete(success: true)
+                       })
+  
+    
+//                         else {
+//                             ProgressHUD.showError("fill all fields")
+//                             return}
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,15 +70,8 @@ class LoginViewController: UIViewController,RegiserDelegate {
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    static func factory()->LoginViewController{
+         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "Login")
+     }
 
 }
