@@ -18,22 +18,68 @@ class MyProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                  
+             
+        //-------user's photo-------//
           let id = Auth.auth().currentUser!.uid
-//        let db = Database.database().reference().child("users").child(id).
-//        print("shiran")
-//        print(db)
          let storage = Storage.storage()
-        let avi = storage.reference().child(id).downloadURL(completion: { (url, error) in
+        let str = storage.reference().child(id).downloadURL(completion: { (url, error) in
             if error == nil {
                 print("aviad")
                 print(url)
                 self.ImageProfile.kf.setImage(with: url)
             }
         })
-}
-}
-
-
         
+        
+        //-------user's fullname-------//
+        var db : Firestore!
+             db = Firestore.firestore()
+            let uid = Auth.auth().currentUser?.uid
+        var name:String?
+        db.collection("users").getDocuments { (snapshot, err) in
+                       if let err = err {
+                           print("Error getting documents: \(err)")
+                       } else {
+                        for document in snapshot!.documents {
+                            let docId = document.documentID
+                            print("docid")
+                            print(docId)
+                            if(uid == docId){
+                            name = document.get("fullname") as! String
+                              print("guy")
+                            print(name)
+                            self.Name.text = name
+                            print("omer")
+                            print(name)
+                            }
+                         }
+                
+                       }
+                }
+         
+     }
+ 
+}
+//    func readArray(){
+//        var db : Firestore!
+//        db = Firestore.firestore()
+//         let uid = Auth.auth().currentUser?.uid
+//        db.collection("users").getDocuments { (snapshot, err) in
+//                  if let err = err {
+//                      print("Error getting documents: \(err)")
+//                  } else {
+//                      for document in snapshot!.documents {
+//                         let docId = document.documentID
+//                         let name = document.get("fullname") as! String
+//                         print("shiran")
+//                        print(name)
+//                        self.Name.text = name
+//                      }
+//                  }
+//           }
+//
+//}
+        
+
+
 

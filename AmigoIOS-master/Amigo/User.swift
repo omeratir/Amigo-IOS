@@ -19,4 +19,12 @@ class User {
     init(id:String){
         self.id = id
     }
+
+//        init(withSnapshot: DataSnapshot) {
+//         let dict = withSnapshot.value as! [String:AnyObject]
+//
+//        id = withSnapshot.key
+//        fullname = dict["fullname"] as! String
+//
+//    }
 }

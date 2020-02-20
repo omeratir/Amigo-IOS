@@ -21,6 +21,7 @@ class Model {
         modelFirebase.add(user:user);
     }
     
+    
 //    func getAllUsers(callback:@escaping ([User]?)->Void){
 //        
 //        //get the local last update date
@@ -45,7 +46,7 @@ class Model {
     func saveImage(image:UIImage, callback:@escaping (String)->Void) {
         FirebaseStorage.saveImage(image: image, callback: callback)
     }
-  
+    
     
     ////////////////// USER Authentication ///////////////
     var logedIn = false
