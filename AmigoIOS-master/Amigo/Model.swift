@@ -21,31 +21,40 @@ class Model {
         modelFirebase.add(user:user);
     }
     
+    func addPost(post:Post){
+           modelFirebase.addPost(post:post);
+       }
     
-//    func getAllUsers(callback:@escaping ([User]?)->Void){
-//        
-//        //get the local last update date
-//        let lud = User.getLastUpdateDate();
-//        
-//        //get the cloud updates since the local update date
-//       modelFirebase.getAllUsers(since:lud) { (data) in
-//            //insert update to the local db
-//            var lud:Int64 = 0;
-//            for user in data!{
-//                user.addToDb()
-//                if user.lastUpdate! > lud {lud = user.lastUpdate!}
-//            }
-//            //update the students local last update date
-//            User.setLastUpdate(lastUpdated: lud)
-//            // get the complete student list
-//            let finalData = User.getAllUsersFromDb()
-//            callback(finalData);
-//        }
-//    }
+    func getAllPostsRishon(callback:@escaping ([Post]?)->Void){
+        
+        //get the local last update date
+        let lud = Post.getLastUpdateDate();
+        
+        //get the cloud updates since the local update date
+        modelFirebase.getAllPostsRishon(since:lud) { (data) in
+            //insert update to the local db
+            var lud:Int64 = 0;
+            for post in data!{
+                post.addToDb()
+                if post.lastUpdate! > lud {lud = post.lastUpdate!}
+            }
+            //update the students local last update date
+            Post.setLastUpdate(lastUpdated: lud)
+            // get the complete student list
+            let finalData = Post.getAllPostsFromDb()
+            callback(finalData);
+        }
+    }
     
     func saveImage(image:UIImage, callback:@escaping (String)->Void) {
         FirebaseStorage.saveImage(image: image, callback: callback)
     }
+    
+    func savePost(placeLocation:String, userName:String, recText:String,url:String, callback:(Bool)->Void){
+          logedIn = true;
+          callback(true);
+          
+      }
     
     
     ////////////////// USER Authentication ///////////////
@@ -77,6 +86,9 @@ class ModelEvents{
     static let LoggingStateChangeEvent = EventNotificationBase(eventName: "com.Amigo.LoggingStateChangeEvent");
     
     static let CommentsDataEvent = StringEventNotificationBase<String>(eventName: "com.Amigo.CommentsDataEvent");
+    
+    static let PostDataEvent = EventNotificationBase(eventName: "com.Amigo.PostDataEvent");
+    
     private init(){}
 }
 

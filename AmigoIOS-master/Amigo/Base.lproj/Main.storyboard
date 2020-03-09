@@ -217,40 +217,39 @@
             </objects>
             <point key="canvasLocation" x="1405.5999999999999" y="1833.7331334332835"/>
         </scene>
-        <!--View Controller-->
+        <!--Post Info View Controller-->
         <scene sceneID="nWp-JY-KS6">
             <objects>
-                <viewController id="PjO-fO-BzZ" sceneMemberID="viewController">
+                <viewController id="PjO-fO-BzZ" customClass="PostInfoViewController" customModule="Amigo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IdY-gw-VTJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZmR-Bi-ynp">
-                                <rect key="frame" x="34" y="152" width="306" height="200"/>
+                                <rect key="frame" x="34" y="209" width="306" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gN4-DK-qRW">
-                                <rect key="frame" x="266" y="8" width="102" height="102"/>
+                                <rect key="frame" x="238" y="73" width="102" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="כאן תופיע ההמלצה" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bgu-OR-YtO">
-                                <rect key="frame" x="34" y="376" width="306" height="177"/>
+                                <rect key="frame" x="34" y="435" width="306" height="177"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="כאן יופיע כוכבים של דירוג - צריך לכתוב קוד " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81k-Yf-Ad4">
-                                <rect key="frame" x="34" y="568" width="306" height="55"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="שם המשתמש שכתב את ההמלצה" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6d-Do-wLg">
+                                <rect key="frame" x="34" y="8" width="224" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="שם המשתמש שכתב את ההמלצה" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6d-Do-wLg">
-                                <rect key="frame" x="34" y="8" width="224" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="שם משתמש" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEO-dx-Qys">
+                                <rect key="frame" x="137" y="83" width="100" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -260,10 +259,17 @@
                         <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="amg-WB-OPP"/>
                     </view>
+                    <navigationItem key="navigationItem" id="frT-ft-V7P"/>
+                    <connections>
+                        <outlet property="placeImage" destination="ZmR-Bi-ynp" id="5qW-Kq-rD9"/>
+                        <outlet property="recText" destination="bgu-OR-YtO" id="PwV-zh-vDh"/>
+                        <outlet property="userImage" destination="gN4-DK-qRW" id="BFu-cT-Tsd"/>
+                        <outlet property="usernameLabel" destination="XEO-dx-Qys" id="SsW-Xo-IRq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHd-JI-ZRl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1406" y="3409"/>
+            <point key="canvasLocation" x="2984.8000000000002" y="2630.7346326836582"/>
         </scene>
         <!--Second Vc View Controller-->
         <scene sceneID="ZNE-OZ-9Ni">
@@ -352,6 +358,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="recTitle" destination="0bk-CI-iOc" id="Kze-U6-ozD"/>
+                        <segue destination="PjO-fO-BzZ" kind="show" identifier="PostInfoSegue" id="9Ce-u5-GCf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="50e-mw-nKu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -404,12 +411,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHV-yK-u8k">
-                                <rect key="frame" x="171" y="584" width="33" height="32"/>
+                                <rect key="frame" x="155" y="594" width="64" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Post">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="PostBtn:" destination="9gx-gd-fso" eventType="touchUpInside" id="mg9-2p-CES"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxT-e6-vQi">
                                 <rect key="frame" x="142" y="70" width="91" height="30"/>
@@ -425,6 +435,12 @@
                                 <rect key="frame" x="87" y="94" width="200" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kqP-ol-J70">
+                                <rect key="frame" x="206" y="220" width="153" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -433,6 +449,8 @@
                     <navigationItem key="navigationItem" title="recommendation" id="y8U-VE-gXI"/>
                     <connections>
                         <outlet property="imageView" destination="xm6-yc-gCU" id="JI7-wq-yPj"/>
+                        <outlet property="placeText" destination="kqP-ol-J70" id="lVi-gT-EyP"/>
+                        <outlet property="recTitle" destination="y8U-VE-gXI" id="72X-Zk-Mhr"/>
                         <outlet property="textOfRecommend" destination="bhM-gZ-qMk" id="aFL-kw-11e"/>
                     </connections>
                 </viewController>

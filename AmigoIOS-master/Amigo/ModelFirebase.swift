@@ -24,16 +24,32 @@ class ModelFirebase{
                 ModelEvents.UserDataEvent.post();
             }
         }
+    }
+    
+    func addPost(post:Post){
+            let db = Firestore.firestore()
+    //        var ref: DocumentReference? = nil
+            let json = post.toJson();
+        db.collection("posts").document(post.title).setData(json){
+                err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                    ModelEvents.UserDataEvent.post();
+                }
+            }
+        }
     
     //TODO: implement since
-    func getAllUsers(since:Int64, callback: @escaping ([User]?)->Void){
+    func getAllPostsRishon(since:Int64, callback: @escaping ([Post]?)->Void){
         let db = Firestore.firestore()
-        db.collection("users").order(by: "lastUpdate").start(at: [Timestamp(seconds: since, nanoseconds: 0)]).getDocuments { (querySnapshot, err) in
+        db.collection("posts").order(by: "title").start(at: [Timestamp(seconds: since, nanoseconds: 0)]).getDocuments { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
                 callback(nil);
             } else {
-                var data = [User]();
+                var data = [Post]();
                 for document in querySnapshot!.documents {
                     if let ts = document.data()["lastUpdate"] as? Timestamp{
                         let tsDate = ts.dateValue();
@@ -42,7 +58,7 @@ class ModelFirebase{
                         print("\(tsDouble)");
 
                     }
-                    data.append(User(json: document.data()));
+                    data.append(Post(json: document.data()));
                 }
                 callback(data);
             }
@@ -51,4 +67,4 @@ class ModelFirebase{
         
         
 }
-}
+
