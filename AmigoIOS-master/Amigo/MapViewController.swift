@@ -7,9 +7,10 @@
 //
 
 import MapKit
-
+import Firebase
 extension MapViewController: MKMapViewDelegate {
   // 1
+ 
   func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
     // 2
     guard let annotation = annotation as? Artwork else { return nil }
@@ -33,9 +34,23 @@ extension MapViewController: MKMapViewDelegate {
     return view
   }
    
+    //press on pin and go to table post vc
     @objc func buttonAction(sender: AnyObject)
     {
         self.performSegue(withIdentifier: "MoveNext", sender: nil)
+    }
+    
+    //which pin did the user press and save it to db
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
+    {
+        if let annotationTitle = view.annotation?.title
+        {
+            var db : Firestore!
+             db = Firestore.firestore()
+            print("User tapped on annotation with title: \(annotationTitle!)")
+           db.collection("cities").document("city").setData(["title" : annotationTitle])
+          
+        }
     }
 }
 
@@ -44,8 +59,8 @@ extension MapViewController: MKMapViewDelegate {
 class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
-    
-    
+
+      var table = TablePostTableViewController()
     
     override func viewDidLoad() {
         
