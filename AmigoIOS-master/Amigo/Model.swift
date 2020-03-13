@@ -25,32 +25,39 @@ class Model {
            modelFirebase.addPost(post:post);
        }
     
-    func getAllPostsRishon(callback:@escaping ([Post]?)->Void){
-        
-        //get the local last update date
-        let lud = Post.getLastUpdateDate();
-        
-        //get the cloud updates since the local update date
-        modelFirebase.getAllPostsRishon(since:lud) { (data) in
-            //insert update to the local db
-            var lud:Int64 = 0;
-            for post in data!{
-                post.addToDb()
-                if post.lastUpdate! > lud {lud = post.lastUpdate!}
-            }
-            //update the students local last update date
-            Post.setLastUpdate(lastUpdated: lud)
-            // get the complete student list
-            let finalData = Post.getAllPostsFromDb()
-            callback(finalData);
-        }
-    }
+   func getAllPosts(callback:@escaping ([Post]?)->Void){
+           
+           //get the local last update date
+           let lud = Post.getLastUpdateDate();
+           
+           //get the cloud updates since the local update date
+           modelFirebase.getAllPosts(since:lud) { (data) in
+               //insert update to the local db
+               var lud:Int64 = 0;
+               for post in data!{
+                   post.addToDb()
+//                   if post.lastUpdate! > lud {lud = post.lastUpdate!}
+                print("kar")
+                print(  post.addToDb())
+               }
+               //update the students local last update date
+               Post.setLastUpdate(lastUpdated: lud)
+               // get the complete student list
+               let finalData = Post.getAllPostsFromDb()
+            print(finalData)
+               callback(finalData);
+           }
+       }
     
     func saveImage(image:UIImage, callback:@escaping (String)->Void) {
         FirebaseStorage.saveImage(image: image, callback: callback)
     }
     
-    func savePost(placeLocation:String, userName:String, recText:String,url:String, callback:(Bool)->Void){
+    func saveImagePost(image:UIImage, callback:@escaping (String)->Void) {
+           FirebaseStorage.saveImagePost(image: image, callback: callback)
+       }
+    
+    func savePost(title:String, placeLocation:String, userName:String, recText:String,url:String, callback:(Bool)->Void){
           logedIn = true;
           callback(true);
           

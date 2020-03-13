@@ -25,8 +25,8 @@ class PostInfoViewController: UIViewController {
         
         usernameLabel.text = post?.userName
         recText.text = post?.recText
-        userImage.image = UIImage(named: "user")
-        placeImage.image = UIImage(named: "place")
+        userImage.image = UIImage(named: "avatar")
+        placeImage.image = UIImage(named: "avatar")
         
         if post?.placeImage != ""{
             placeImage.kf.setImage(with: URL(string: post!.placeImage));

@@ -13,6 +13,8 @@ import ProgressHUD
 
 class AddPostViewController: UIViewController {
     
+    var name : String?
+    var city : String?
     
     @IBOutlet weak var recTitle: UINavigationItem!
     
@@ -20,11 +22,11 @@ class AddPostViewController: UIViewController {
     
     @IBOutlet weak var textOfRecommend: UITextField!
     
-    var name : String?
-    var city : String?
     @IBOutlet weak var imageView: UIImageView!
     
     var selectedImage : UIImage?
+    
+    //upload photo from libary/camara
     @IBAction func uploadPhoto(_ sender: Any) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -68,17 +70,20 @@ class AddPostViewController: UIViewController {
     //
     
     
+    //press on the post button and save the post to db
     @IBAction func PostBtn(_ sender: Any) {
         print("post Button press")
         view.endEditing(true)
         ProgressHUD.show("waiting...",interaction: false)
-        
-        Model.instance.saveImage(image: self.imageView.image!){ (url) in
+        var db : Firestore!
+        db = Firestore.firestore()
+        let idPost = db.collection("posts").document().documentID
+        Model.instance.saveImagePost(image: self.imageView.image!){ (url) in
             if url != "" {
-
-                Model.instance.savePost(placeLocation: self.placeText.text!, userName:self.name! , recText: self.textOfRecommend.text!, url: "url") { (success) in
+                Model.instance.savePost(title: self.city!, placeLocation: self.placeText.text!, userName:self.name! , recText: self.textOfRecommend.text!, url: "url") { (success) in
                     if success {
-                        let po = Post(title: self.city!);
+                        let po = Post(id: idPost);
+                        po.title = self.city!
                         po.userName = self.name!
                         po.placeImage = url
                         po.recText = self.textOfRecommend.text!
@@ -105,7 +110,7 @@ class AddPostViewController: UIViewController {
         var db : Firestore!
         db = Firestore.firestore()
         
-        //change the title of the page to the pin that pressed
+        //change the title of the page to the pin's title that pressed
         db.collection("cities").getDocuments { (snapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -119,7 +124,7 @@ class AddPostViewController: UIViewController {
         }
         
         
-        
+        //get the name of the user that write the post
         let uid = Auth.auth().currentUser?.uid
         db.collection("users").getDocuments { (snapshot, err) in
             if let err = err {

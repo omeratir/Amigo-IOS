@@ -24,7 +24,7 @@ class ModelSql{
             }
         }
         create();
-        User.create_table(database: database);
+        Post.create_table(database: database);
     }
     
     deinit {

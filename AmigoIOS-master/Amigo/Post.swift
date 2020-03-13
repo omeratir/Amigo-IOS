@@ -11,6 +11,7 @@ import Firebase
 
 class Post {
     
+    let id:String
     var title:String = ""
     var placeLocation:String = ""
     var placeImage:String = ""
@@ -18,7 +19,7 @@ class Post {
     var recText:String = ""
     var lastUpdate: Int64?
     
-    init(title:String){
-        self.title = title
+    init(id:String){
+        self.id = id
     }
 }

@@ -11,25 +11,26 @@ import Firebase
 
 extension Post{
     convenience init(json:[String:Any]){
-        let title = json["title"] as! String;
-        self.init(title:title)
-
-        placeImage = json["placeImage"] as! String;
-        placeLocation = json["placeLocation"] as! String;
-        userName = json["userName"] as! String;
-        recText = json["recText"] as! String;
+        let id = json["id"] as! String
+        self.init(id:id)
         let ts = json["lastUpdate"] as! Timestamp
         lastUpdate = ts.seconds
+        placeImage = json["placeImage"] as! String
+        placeLocation = json["placeLocation"] as! String
+        recText = json["recText"] as! String
+        title = json["title"] as! String
+        userName = json["userName"] as! String
     }
     
     func toJson() -> [String:Any] {
         var json = [String:Any]();
-        json["title"] = title
-        json["placeImage"] = placeImage
-        json["userName"] = userName
-        json["recText"] = recText
-        json["placeLocation"] = placeLocation
+        json["id"] = id
         json["lastUpdate"] = FieldValue.serverTimestamp()
+        json["placeImage"] = placeImage
+        json["placeLocation"] = placeLocation
+        json["recText"] = recText
+        json["title"] = title
+        json["userName"] = userName
         return json;
     }
     
