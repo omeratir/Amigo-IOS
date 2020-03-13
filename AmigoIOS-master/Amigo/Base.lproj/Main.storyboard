@@ -304,7 +304,7 @@
         <!--reco-->
         <scene sceneID="4sB-ez-Pmq">
             <objects>
-                <tableViewController id="JiZ-VJ-zJC" customClass="TablePostTableViewController" customModule="Amigo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TablePost" id="JiZ-VJ-zJC" customClass="TablePostTableViewController" customModule="Amigo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="108" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5sC-Kb-gLh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -433,6 +433,10 @@
                                     <action selector="PostBtn:" destination="9gx-gd-fso" eventType="touchUpInside" id="mg9-2p-CES"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="0Oa-eF-0dR">
+                                <rect key="frame" x="177" y="607" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -440,6 +444,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="recommendation" id="y8U-VE-gXI"/>
                     <connections>
+                        <outlet property="activity" destination="0Oa-eF-0dR" id="V8l-FN-Gud"/>
                         <outlet property="imageView" destination="xm6-yc-gCU" id="JI7-wq-yPj"/>
                         <outlet property="placeText" destination="kqP-ol-J70" id="lVi-gT-EyP"/>
                         <outlet property="recTitle" destination="y8U-VE-gXI" id="72X-Zk-Mhr"/>
@@ -453,7 +458,7 @@
         <!--Map-->
         <scene sceneID="atg-gm-UPk">
             <objects>
-                <viewController storyboardIdentifier="TablePost" id="4Uv-lK-QoT" customClass="MapViewController" customModule="Amigo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4Uv-lK-QoT" customClass="MapViewController" customModule="Amigo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dWN-Ma-zEt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

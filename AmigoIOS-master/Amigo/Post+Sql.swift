@@ -7,9 +7,12 @@
 //
 
 import Foundation
-
+import Firebase
 
 extension Post{
+    
+   static var city: String = ""
+    
     static func create_table(database: OpaquePointer?){
         var errormsg: UnsafeMutablePointer<Int8>? = nil
         let res = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS POSTIM (PS_ID TEXT PRIMARY KEY, TITLE TEXT, PLACELOCATION TEXT,PLACEIMAGE TEXT,USERNAME TEXT,RECTEXT TEXT)", nil, nil,&errormsg);
@@ -44,15 +47,31 @@ extension Post{
     }
     
     static func getAllPostsFromDb()->[Post]{
+        let db = Firestore.firestore()
+           
+           //change the title of the page to the pin that pressed
+           db.collection("cities").getDocuments { (snapshot, err) in
+               if let err = err {
+                   print("Error getting documents: \(err)")
+               } else {
+                   for document in snapshot!.documents {
+                    self.city = document.get("title") as! String
+                   }
+            }
+        }
+        print("avuvuvuv")
+        print(self.city)
         var sqlite3_stmt: OpaquePointer? = nil
         var data = [Post]()
         print("momo1")
         print(SQLITE_OK)
-        print(sqlite3_prepare_v2(ModelSql.instance.database,"SELECT * from POSTIM;",-1,&sqlite3_stmt,nil))
+        print(sqlite3_prepare_v2(ModelSql.instance.database,"SELECT * from POSTIM WHERE TITLE LIKE '%\(self.city)%';",-1,&sqlite3_stmt,nil))
          print("momo2")
-        if (sqlite3_prepare_v2(ModelSql.instance.database,"SELECT * from POSTIM;",-1,&sqlite3_stmt,nil)
+                
+        if (sqlite3_prepare_v2(ModelSql.instance.database,"SELECT * from POSTIM WHERE TITLE LIKE '%\(self.city)%';",-1,&sqlite3_stmt,nil)
             == SQLITE_OK){
             while(sqlite3_step(sqlite3_stmt) == SQLITE_ROW){
+                
                 let stId = String(cString:sqlite3_column_text(sqlite3_stmt,0)!)
                 let st = Post(id: stId);
                 st.title = String(cString:sqlite3_column_text(sqlite3_stmt,1)!)
@@ -63,9 +82,12 @@ extension Post{
                 data.append(st)
             }
         }
+        
+        
         sqlite3_finalize(sqlite3_stmt)
         return data
     }
+    
     
     static func setLastUpdate(lastUpdated:Int64){
         return ModelSql.instance.setLastUpdate(name: "POSTIM", lastUpdated: lastUpdated);

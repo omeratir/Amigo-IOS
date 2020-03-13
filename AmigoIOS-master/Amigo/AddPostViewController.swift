@@ -16,6 +16,8 @@ class AddPostViewController: UIViewController {
     var name : String?
     var city : String?
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    
     @IBOutlet weak var recTitle: UINavigationItem!
     
     @IBOutlet weak var placeText: UITextField!
@@ -72,9 +74,10 @@ class AddPostViewController: UIViewController {
     
     //press on the post button and save the post to db
     @IBAction func PostBtn(_ sender: Any) {
-        print("post Button press")
-        view.endEditing(true)
-        ProgressHUD.show("waiting...",interaction: false)
+        activity.isHidden = false;
+     //   print("post Button press")
+   //     view.endEditing(true)
+   //     ProgressHUD.show("waiting...",interaction: false)
         var db : Firestore!
         db = Firestore.firestore()
         let idPost = db.collection("posts").document().documentID
@@ -89,9 +92,10 @@ class AddPostViewController: UIViewController {
                         po.recText = self.textOfRecommend.text!
                         po.placeLocation = self.placeText.text!
                         Model.instance.addPost(post: po)
-                        let main = UIStoryboard(name:"Main", bundle: nil)
-                        let home = main.instantiateViewController(identifier: "Home")
-                        self.present(home, animated: true, completion: nil)
+//                        let main = UIStoryboard(name:"Main", bundle: nil)
+//                        let home = main.instantiateViewController(identifier: "TablePost")
+//                        self.present(home, animated: true, completion: nil)
+                        self.navigationController?.popViewController(animated: true);
                     }
                 }
                 
@@ -106,7 +110,7 @@ class AddPostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+         activity.isHidden = true;
         var db : Firestore!
         db = Firestore.firestore()
         

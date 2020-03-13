@@ -10,7 +10,9 @@ import Foundation
 import Firebase
 
 class ModelFirebase{
-
+    
+    var city : String?
+    
     func add(user:User){
         let db = Firestore.firestore()
         //        var ref: DocumentReference? = nil
@@ -129,7 +131,25 @@ class ModelFirebase{
                 callback(nil);
             } else {
                 var data = [Post]();
+                db.collection("cities").getDocuments { (snapshot, err) in
+                           if let err = err {
+                               print("Error getting documents: \(err)")
+                           } else {
+                               for documents in snapshot!.documents {
+                                self.city = documents.get("title") as? String
+                               }
+                            print("gabi")
+                            print(self.city)
+                           }
+                           
+                       
                 for document in querySnapshot!.documents {
+                    print(document.get("title") as! String)
+                    print("hila")
+                    print(self.city)
+                   
+                    if(document.get("title") as! String == self.city){
+                        
                     if let ts = document.data()["lastUpdate"] as? Timestamp{
                         let tsDate = ts.dateValue();
                         print("\(tsDate)");
@@ -144,9 +164,11 @@ class ModelFirebase{
                     print(data.append(Post(json: document.data())))
                   
                 }
+                }
                 callback(data);
                 print("shirshir")
                 
+            }
             }
         };
     }

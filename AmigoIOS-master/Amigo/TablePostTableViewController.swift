@@ -8,15 +8,15 @@
 
 import UIKit
 import Firebase
+
 class TablePostTableViewController: UITableViewController {
     
     @IBOutlet weak var recTitle: UINavigationItem!
-    
+    var flag = true
     var data = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         var db : Firestore!
         db = Firestore.firestore()
         
@@ -37,7 +37,12 @@ class TablePostTableViewController: UITableViewController {
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
-        
+        ModelEvents.RefreshDataEvent.observe {
+            if(self.flag){
+            self.reloadData()
+            self.flag = false
+        }
+    }
         ModelEvents.PostDataEvent.observe {
             self.refreshControl?.beginRefreshing()
             self.reloadData();
@@ -71,11 +76,12 @@ class TablePostTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
-    
+  
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:PostViewCell = tableView.dequeueReusableCell(withIdentifier: "PostViewCell", for: indexPath) as! PostViewCell
-        
+       
+        var city = self.recTitle.title
         let st = data[indexPath.row]
         cell.Name.text = st.userName
         print(cell.Name.text)
@@ -88,6 +94,7 @@ class TablePostTableViewController: UITableViewController {
             cell.ImageView.kf.setImage(with: URL(string: st.placeImage));
         }
         print("mormor")
+        ModelEvents.RefreshDataEvent.post()
         return cell
         
     }

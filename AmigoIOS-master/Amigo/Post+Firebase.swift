@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 
 extension Post{
+    
     convenience init(json:[String:Any]){
         let id = json["id"] as! String
         self.init(id:id)

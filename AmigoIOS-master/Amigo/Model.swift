@@ -95,15 +95,18 @@ class ModelEvents{
     static let CommentsDataEvent = StringEventNotificationBase<String>(eventName: "com.Amigo.CommentsDataEvent");
     
     static let PostDataEvent = EventNotificationBase(eventName: "com.Amigo.PostDataEvent");
-    
+    static let RefreshDataEvent = EventNotificationBase(eventName: "com.Amigo.RefreshDataEvent");
     private init(){}
 }
+
+
 
 class EventNotificationBase{
     let eventName:String;
     
     init(eventName:String){
         self.eventName = eventName;
+        
     }
     
     func observe(callback:@escaping ()->Void){
