@@ -20,13 +20,23 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
     func onLoginCancell() {
          self.tabBarController?.selectedIndex = 0;
     }
+    @IBOutlet weak var Login: UIButton!
     
-    
+    @IBOutlet weak var Logout: UIButton!
     @IBOutlet weak var ImageProfile: UIImageView!
     @IBOutlet weak var Name: UILabel!
     
+    override func viewWillAppear(_: Bool) {
+            super.viewWillAppear(true)
+
+        self.profile()
+    }
+    
       override func viewDidLoad() {
         super.viewDidLoad()
+     
+        self.profile()
+     // var refreshControl = UIRefreshControl()
         view.backgroundColor = UIColor.black
               let layer = CAGradientLayer()
               let color1 = UIColor(red:0.99, green: 0.48, blue: 0.48, alpha: 1.0)
@@ -35,52 +45,100 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
               layer.colors = [ color1.cgColor ,color2.cgColor]
               layer.frame = view.frame
               view.layer.insertSublayer(layer, at: 0)
-        
-        if (!Model.instance.isLoggedIn()){
-            let loginVc = LoginViewController.factory()
-            loginVc.delegate = self
-            show(loginVc, sender: self)
-        }
-        //-------user's photo-------//
-        if(Model.instance.logedIn == true){
-          let id = Auth.auth().currentUser!.uid
-         let storage = Storage.storage()
-        let str = storage.reference().child(id).downloadURL(completion: { (url, error) in
-            if error == nil {
-                print("aviad")
-                print(url)
-                self.ImageProfile.kf.setImage(with: url)
-            }
-        })
-
-
-        //-------user's fullname-------//
-        var db : Firestore!
-             db = Firestore.firestore()
-            let uid = Auth.auth().currentUser?.uid
-        var name:String?
-        db.collection("users").getDocuments { (snapshot, err) in
-                       if let err = err {
-                           print("Error getting documents: \(err)")
-                       } else {
-                        for document in snapshot!.documents {
-                            let docId = document.documentID
-                            if(uid == docId){
-                            name = document.get("fullname") as! String
-                            self.Name.text = name
-                            }
-                         }
-
-                       }
-                }
-
-     }
-        else{
-            self.Name.text = "Login to get name"
-        }
+//
+//        if (!Model.instance.isLoggedIn()){
+//             self.Logout.isHidden = true
+//            self.Login.isHidden = false
+////            let loginVc = LoginViewController.factory()
+////            loginVc.delegate = self
+////            show(loginVc, sender: self)
+//        }
+//        //-------user's photo-------//
+//        if(Model.instance.logedIn == true){
+//            self.Logout.isHidden = false
+//            self.Login.isHidden = true
+//          let id = Auth.auth().currentUser!.uid
+//         let storage = Storage.storage()
+//        let str = storage.reference().child(id).downloadURL(completion: { (url, error) in
+//            if error == nil {
+//                print("aviad")
+//                print(url)
+//                self.ImageProfile.kf.setImage(with: url)
+//            }
+//        })
+//
+//
+//        //-------user's fullname-------//
+//        var db : Firestore!
+//             db = Firestore.firestore()
+//            let uid = Auth.auth().currentUser?.uid
+//        var name:String?
+//        db.collection("users").getDocuments { (snapshot, err) in
+//                       if let err = err {
+//                           print("Error getting documents: \(err)")
+//                       } else {
+//                        for document in snapshot!.documents {
+//                            let docId = document.documentID
+//                            if(uid == docId){
+//                            name = document.get("fullname") as! String
+//                            self.Name.text = name
+//                            }
+//                         }
+//
+//                       }
+//                }
+//
+//     }
     
 }
 
+    func profile() {
+                if (!Model.instance.isLoggedIn()){
+                     self.Logout.isHidden = true
+                    self.Login.isHidden = false
+        //            let loginVc = LoginViewController.factory()
+        //            loginVc.delegate = self
+        //            show(loginVc, sender: self)
+                }
+                //-------user's photo-------//
+                if(Model.instance.logedIn == true){
+                    self.Logout.isHidden = false
+                    self.Login.isHidden = true
+                  let id = Auth.auth().currentUser!.uid
+                 let storage = Storage.storage()
+                let str = storage.reference().child(id).downloadURL(completion: { (url, error) in
+                    if error == nil {
+                        print("aviad")
+                        print(url)
+                        self.ImageProfile.kf.setImage(with: url)
+                    }
+                })
+
+
+                //-------user's fullname-------//
+                var db : Firestore!
+                     db = Firestore.firestore()
+                    let uid = Auth.auth().currentUser?.uid
+                var name:String?
+                db.collection("users").getDocuments { (snapshot, err) in
+                               if let err = err {
+                                   print("Error getting documents: \(err)")
+                               } else {
+                                for document in snapshot!.documents {
+                                    let docId = document.documentID
+                                    if(uid == docId){
+                                    name = document.get("fullname") as! String
+                                    self.Name.text = name
+                                    }
+                                 }
+
+                               }
+                        }
+
+             }
+    }
+    
+    
     @IBAction func LoginButtom(_ sender: Any) {
         let loginVc = LoginViewController.factory();
                                        loginVc.delegate = self
@@ -89,9 +147,13 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
     
     
     @IBAction func LogoutButtom(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: "Are you sure you'd like to logout?", preferredStyle: .alert)
+
+              // yes action
+              let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
         Model.instance.logOut()
-        self.Name.text = "Login to get name"
-        self.ImageProfile.image = UIImage(named: "avater")
+        //self.Name.text = "Login to get name"
+       // self.ImageProfile.image = UIImage(named: "avater")
         let firebaseAuth = Auth.auth()
        do {
          try firebaseAuth.signOut()
@@ -104,6 +166,11 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
          let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let signInVC = storyboard.instantiateViewController(withIdentifier: "Home")
             self.present(signInVC, animated: true, completion: nil)
+        }
+        alert.addAction(yesAction)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+                present(alert, animated: true, completion: nil)
+        
     }
-    
 }

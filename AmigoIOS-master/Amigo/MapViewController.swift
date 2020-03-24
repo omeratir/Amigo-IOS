@@ -10,7 +10,7 @@ import MapKit
 import Firebase
 extension MapViewController: MKMapViewDelegate {
   // 1
- 
+ //
   func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
     // 2
     guard let annotation = annotation as? Artwork else { return nil }

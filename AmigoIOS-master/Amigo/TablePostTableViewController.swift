@@ -15,6 +15,9 @@ class TablePostTableViewController: UITableViewController {
     var flag = true
     var data = [Post]()
     var postid = String()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,6 +55,21 @@ class TablePostTableViewController: UITableViewController {
         reloadData();
     }
     
+    
+    @IBAction func plusButtom(_ sender: Any) {
+            if(Model.instance.logedIn == true){
+      let storyBoard = UIStoryboard(name: "Main", bundle:nil)
+       let memberDetailsViewController = storyBoard.instantiateViewController(withIdentifier: "addPost") as! AddPostViewController
+       self.navigationController?.pushViewController(memberDetailsViewController, animated:true)
+        }
+            else {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                  let signInVC = storyboard.instantiateViewController(withIdentifier: "Login")
+                  self.present(signInVC, animated: true, completion: nil)
+        }
+    }
+    
+    
     @objc func reloadData(){
         Model.instance.getAllPosts{ (_data:[Post]?) in
             if (_data != nil) {
@@ -76,7 +94,7 @@ class TablePostTableViewController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
-        
+        self.reloadData()
     }
     
     
@@ -173,6 +191,7 @@ class TablePostTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
                present(alert, animated: true, completion: nil)
+       
             }
   
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -46,9 +46,10 @@ class LoginViewController: UIViewController,RegiserDelegate {
         Auth.auth().signIn(withEmail: email.text!, password: password.text!,completion: { (authResult,error) in
             if ((authResult) != nil){
                 Model.instance.logedIn = true
-                               let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                               let signInVC = storyboard.instantiateViewController(withIdentifier: "Home")
-                               self.present(signInVC, animated: true, completion: nil)
+//                               let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                               let signInVC = storyboard.instantiateViewController(withIdentifier: "Home")
+//                               self.present(signInVC, animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
                                //                self.navigationController?.popViewController(animated: true);
                                 if let delegate = self.delegate{
                                    delegate.onLoginSuccess()
