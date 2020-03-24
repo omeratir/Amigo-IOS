@@ -17,6 +17,8 @@ class Post {
     var placeImage:String = ""
     var userName:String = ""
     var recText:String = ""
+    var userId: String = ""
+    var postId: String  = ""
     var lastUpdate: Int64?
     
     init(id:String){

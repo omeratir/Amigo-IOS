@@ -11,15 +11,38 @@ import FirebaseAuth
 import Firebase
 import FirebaseStorage
 import Kingfisher
-class MyProfileViewController: UIViewController {
 
+class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
+    func onLoginSuccess() {
+        
+    }
+    
+    func onLoginCancell() {
+         self.tabBarController?.selectedIndex = 0;
+    }
+    
+    
     @IBOutlet weak var ImageProfile: UIImageView!
     @IBOutlet weak var Name: UILabel!
     
-    override func viewDidLoad() {
+      override func viewDidLoad() {
         super.viewDidLoad()
-             
+        view.backgroundColor = UIColor.black
+              let layer = CAGradientLayer()
+              let color1 = UIColor(red:0.99, green: 0.48, blue: 0.48, alpha: 1.0)
+              let color2 = UIColor(red:0.65, green: 0.76, blue: 1.00, alpha: 1.0)
+
+              layer.colors = [ color1.cgColor ,color2.cgColor]
+              layer.frame = view.frame
+              view.layer.insertSublayer(layer, at: 0)
+        
+        if (!Model.instance.isLoggedIn()){
+            let loginVc = LoginViewController.factory()
+            loginVc.delegate = self
+            show(loginVc, sender: self)
+        }
         //-------user's photo-------//
+        if(Model.instance.logedIn == true){
           let id = Auth.auth().currentUser!.uid
          let storage = Storage.storage()
         let str = storage.reference().child(id).downloadURL(completion: { (url, error) in
@@ -29,8 +52,8 @@ class MyProfileViewController: UIViewController {
                 self.ImageProfile.kf.setImage(with: url)
             }
         })
-        
-        
+
+
         //-------user's fullname-------//
         var db : Firestore!
              db = Firestore.firestore()
@@ -42,44 +65,45 @@ class MyProfileViewController: UIViewController {
                        } else {
                         for document in snapshot!.documents {
                             let docId = document.documentID
-                            print("docid")
-                            print(docId)
                             if(uid == docId){
                             name = document.get("fullname") as! String
-                              print("guy")
-                            print(name)
                             self.Name.text = name
-                            print("omer")
-                            print(name)
                             }
                          }
-                
+
                        }
                 }
-         
+
      }
- 
+        else{
+            self.Name.text = "Login to get name"
+        }
+    
 }
-//    func readArray(){
-//        var db : Firestore!
-//        db = Firestore.firestore()
-//         let uid = Auth.auth().currentUser?.uid
-//        db.collection("users").getDocuments { (snapshot, err) in
-//                  if let err = err {
-//                      print("Error getting documents: \(err)")
-//                  } else {
-//                      for document in snapshot!.documents {
-//                         let docId = document.documentID
-//                         let name = document.get("fullname") as! String
-//                         print("shiran")
-//                        print(name)
-//                        self.Name.text = name
-//                      }
-//                  }
-//           }
-//
-//}
-        
 
-
-
+    @IBAction func LoginButtom(_ sender: Any) {
+        let loginVc = LoginViewController.factory();
+                                       loginVc.delegate = self
+                                       show(loginVc, sender: self)
+    }
+    
+    
+    @IBAction func LogoutButtom(_ sender: Any) {
+        Model.instance.logOut()
+        self.Name.text = "Login to get name"
+        self.ImageProfile.image = UIImage(named: "avater")
+        let firebaseAuth = Auth.auth()
+       do {
+         try firebaseAuth.signOut()
+       } catch let signOutError as NSError {
+         print ("Error signing out: %@", signOutError)
+       }
+//        let loginVc = LoginViewController.factory();
+//                              loginVc.delegate = self
+//                              show(loginVc, sender: self)
+         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let signInVC = storyboard.instantiateViewController(withIdentifier: "Home")
+            self.present(signInVC, animated: true, completion: nil)
+    }
+    
+}

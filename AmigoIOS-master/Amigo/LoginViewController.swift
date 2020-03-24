@@ -22,6 +22,13 @@ class LoginViewController: UIViewController,RegiserDelegate {
     
     @IBOutlet weak var password: UITextField!
     
+    static func factory()->LoginViewController{
+          return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "Login")
+      }
+    @IBAction func CancelButtom(_ sender: Any) {
+         self.dismiss(animated: true, completion: nil)
+    }
+    
        func onComplete(success: Bool) {
           print("on Complete signInOut \(success)")
                     if success == true {
@@ -38,6 +45,7 @@ class LoginViewController: UIViewController,RegiserDelegate {
                  
         Auth.auth().signIn(withEmail: email.text!, password: password.text!,completion: { (authResult,error) in
             if ((authResult) != nil){
+                Model.instance.logedIn = true
                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
                                let signInVC = storyboard.instantiateViewController(withIdentifier: "Home")
                                self.present(signInVC, animated: true, completion: nil)
@@ -46,13 +54,8 @@ class LoginViewController: UIViewController,RegiserDelegate {
                                    delegate.onLoginSuccess()
                                }
                            }
-             // self.onComplete(success: true)
                        })
-  
-    
-//                         else {
-//                             ProgressHUD.showError("fill all fields")
-//                             return}
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,14 +67,23 @@ class LoginViewController: UIViewController,RegiserDelegate {
         layer.colors = [ color1.cgColor ,color2.cgColor]
         layer.frame = view.frame
         view.layer.insertSublayer(layer, at: 0)
-
+        
+        
+      self.navigationItem.hidesBackButton = true
+            let newBackButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.back(sender:)))
+            self.navigationItem.leftBarButtonItem = newBackButton
+               
         
     
         // Do any additional setup after loading the view.
     }
-    
-    static func factory()->LoginViewController{
-         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "Login")
-     }
 
+ @objc func back(sender: UIBarButtonItem) {
+       //        performSegue(withIdentifier: "cancelLoginSegue", sender: self)
+       self.navigationController?.popViewController(animated: true);
+
+       if let delegate = delegate{
+           delegate.onLoginCancell()
+       }
+   }
 }

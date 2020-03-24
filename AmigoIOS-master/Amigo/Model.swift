@@ -8,10 +8,10 @@
 
 import Foundation
 import UIKit
-
+import Firebase
 class Model {
     static let instance = Model()
-    
+     static var city: String = ""
      var modelFirebase:ModelFirebase = ModelFirebase()
     
     private init(){
@@ -25,6 +25,10 @@ class Model {
            modelFirebase.addPost(post:post);
        }
     
+    func deletePost(postId :String){
+        modelFirebase.deletePost(postId: postId);
+    }
+    
    func getAllPosts(callback:@escaping ([Post]?)->Void){
            
            //get the local last update date
@@ -37,8 +41,6 @@ class Model {
                for post in data!{
                    post.addToDb()
 //                   if post.lastUpdate! > lud {lud = post.lastUpdate!}
-                print("kar")
-                print(  post.addToDb())
                }
                //update the students local last update date
                Post.setLastUpdate(lastUpdated: lud)
@@ -48,6 +50,41 @@ class Model {
                callback(finalData);
            }
        }
+    
+    func deleteAPosts(postIds : String){
+               
+               //get the local last update date
+        let lud = Post.getLastUpdateDate();
+                                self.modelFirebase.getAllPosts(since:lud) { (data) in
+                                                 //insert update to the local db
+                                                // var lud:Int64 = 0;
+                                                 for post in data!{
+                                                  print(post.id)
+                                                  print(postIds)
+                                                  print("shushu")
+                                                  if(post.postId == postIds){
+                                                      post.deleteFromDb(postIds: post.postId)
+                                              
+                                  //                   if post.lastUpdate! > lud {lud = post.lastUpdate!}
+                                              
+                                             
+            let db = Firestore.firestore()
+                db.collection("posts").document(postIds).delete(){
+                          err in
+                          if let err = err {
+                              print("Error writing document: \(err)")
+                          } else {
+                            print("yyayyayayyay")
+                    }
+                }
+               //get the cloud updates since the local update date
+            }
+        }
+    }
+           }
+    
+    
+    
     
     func saveImage(image:UIImage, callback:@escaping (String)->Void) {
         FirebaseStorage.saveImage(image: image, callback: callback)

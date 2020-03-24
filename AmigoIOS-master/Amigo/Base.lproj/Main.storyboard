@@ -59,10 +59,10 @@
             </objects>
             <point key="canvasLocation" x="-1906" y="1834"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Login-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="Login" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Amigo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" title="Login" modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Amigo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,11 +138,20 @@
                                 <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gqf-3a-zzn">
+                                <rect key="frame" x="15" y="12" width="66" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="cancel"/>
+                                <connections>
+                                    <action selector="CancelButtom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tNP-PU-nmq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="XLP-fd-Fpy"/>
+                    <navigationItem key="navigationItem" title="Login" largeTitleDisplayMode="never" id="XLP-fd-Fpy" userLabel="Login"/>
                     <connections>
                         <outlet property="email" destination="59H-nX-xbl" id="mic-ii-VS2"/>
                         <outlet property="password" destination="wig-45-hPg" id="gVo-2w-ca2"/>
@@ -179,6 +188,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTv-ID-ok9">
+                                <rect key="frame" x="7" y="4" width="70" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="LogoutButtom:" destination="yNN-e7-UB8" eventType="touchUpInside" id="uhf-ul-iVC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Re1-RQ-MmP">
+                                <rect key="frame" x="309" y="2" width="56" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="LoginButtom:" destination="yNN-e7-UB8" eventType="touchUpInside" id="PBg-VZ-C2r"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.75065626622638915" green="0.82877909286395868" blue="0.84718036167512689" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="VrN-RM-ZdP"/>
@@ -233,7 +260,7 @@
                                 <rect key="frame" x="238" y="73" width="102" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="כאן תופיע ההמלצה" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bgu-OR-YtO">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="כאן תופיע ההמלצה" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="bgu-OR-YtO">
                                 <rect key="frame" x="34" y="435" width="306" height="177"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -271,36 +298,6 @@
             </objects>
             <point key="canvasLocation" x="2984.8000000000002" y="2630.7346326836582"/>
         </scene>
-        <!--Second Vc View Controller-->
-        <scene sceneID="ZNE-OZ-9Ni">
-            <objects>
-                <viewController storyboardIdentifier="SecondVc" id="awB-UL-PoQ" customClass="SecondVcViewController" customModule="Amigo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="o3g-d6-GSs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ED2-I1-r5F">
-                                <rect key="frame" x="9" y="45" width="356" height="612"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GIE-YT-jrx">
-                                <rect key="frame" x="37" y="0.0" width="253" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="NotoSansMyanmar-Bold" family="Noto Sans Myanmar" pointSize="17"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Add Your Recommendation" image="plus.circle" catalog="system"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="ZKE-aC-KG3"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="2Kh-Iz-I7M"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3jM-4g-x53" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3735" y="2912"/>
-        </scene>
         <!--reco-->
         <scene sceneID="4sB-ez-Pmq">
             <objects>
@@ -335,12 +332,21 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUA-m4-aSU">
+                                            <rect key="frame" x="42" y="70" width="39" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="מחיקה"/>
+                                            <connections>
+                                                <action selector="deleteButtom:" destination="JiZ-VJ-zJC" eventType="touchUpInside" id="W1W-7w-JIA"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="ImageView" destination="Sa5-eY-HD4" id="DEG-3k-kLQ"/>
                                     <outlet property="Name" destination="p7s-Ik-XlX" id="z1f-kc-VJN"/>
                                     <outlet property="PlaceLabel" destination="gYh-iu-UhJ" id="cbo-EA-aN8"/>
+                                    <outlet property="deletePost" destination="IUA-m4-aSU" id="SAf-KA-VFR"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -700,6 +706,5 @@
         <image name="map" catalog="system" width="64" height="56"/>
         <image name="person" catalog="system" width="64" height="58"/>
         <image name="plane" width="600" height="600"/>
-        <image name="plus.circle" catalog="system" width="64" height="60"/>
     </resources>
 </document>

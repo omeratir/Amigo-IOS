@@ -80,69 +80,8 @@ class RegisterViewController: UIViewController,UIPickerViewDelegate, UIImagePick
                 print("aviad")
             }
         }
-        //
     }
-    //    @IBAction func finishRegister(_ sender: Any) {
-    //        print("sign up pressed")
-    //        //dismiss keyboard
-    //        self.view.endEditing(true)
-    //        ProgressHUD.show("Waiting...",interaction: false)
-    //        //case fields are empty
-    //        if(emailUser.text?.isEmpty ?? true || passwordUser.text?.isEmpty ?? true){
-    //
-    //            // alert message "fill all fields"
-    //            ProgressHUD.showError("PLEASE fill all fields")
-    //            return
-    //        }
-    //
-    //        //values for sign
-    //        guard let email = emailUser.text else {return}
-    //        guard let password = passwordUser.text else {return}
-    //        guard let fullname = fullName.text else {return}
-    //        //set profile image
-    //        guard let profileImg = self.imageViewAvatar.image else {return}
-    //        //upload data
-    //        guard let uploadData : Data = profileImg.jpegData(compressionQuality: 0.3) else {return}
-    //        let db = Firestore.firestore()
-    //        //db.collection("users").document(<#T##documentPath: String##String#>)
-    //        db.collection("users").addDocument(data: ["fullname": fullname,"email":email,"password":password])
-    //
-    //        let store = Storage.storage()
-    //        let storeRef = store.reference()
-    //        let userProfilesRef = storeRef.child("email")
-    //        //let logoRef = storeRef.child("images.png")
-    //        // let userProfiles = logoRef.parent()?.child("profiles")
-    //        guard let ProfileImage = self.imageViewAvatar.image else {return}
-    //        //upload data
-    //        guard let UpTheData : Data = profileImg.jpegData(compressionQuality: 0.3) else {return}
-    //        let uploadUserProfileTask = userProfilesRef.child("\(email)").putData(UpTheData, metadata: nil) { (metadata, error) in
-    //            guard let metadata = metadata else {
-    //                print("Error occurred: \(error)")
-    //                return
-    //            }
-    //        }
-    //        print ("\(email)")
-    //
-    //            print("Seccessfuly created user and saved information to DB")
-    //
-    //            ProgressHUD.showSuccess("Success")
-    //            print("Successfully signed user up" )
-    //            //   self.dismiss(animated: true, completion: {() in
-    //            self.onComplete(success: true);
-    //
-    //    }
-    //
-    //    @IBAction func loginConnect(_ sender: Any) {
-    //        Auth.auth().signIn(withEmail: self.emailUser.text! , password: self.passwordUser.text!) { (user,error) in
-    //                   if user != nil {
-    //                   print("aviad")
-    //                   }
-    //                   if error != nil {
-    //                       print(":(")
-    //                   }
-    //        }
-    //    }
-    
+ 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

@@ -15,7 +15,7 @@ extension Post{
     
     static func create_table(database: OpaquePointer?){
         var errormsg: UnsafeMutablePointer<Int8>? = nil
-        let res = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS POSTIM (PS_ID TEXT PRIMARY KEY, TITLE TEXT, PLACELOCATION TEXT,PLACEIMAGE TEXT,USERNAME TEXT,RECTEXT TEXT)", nil, nil,&errormsg);
+        let res = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS POSTIMSSSSSABAB (PS_ID TEXT PRIMARY KEY, TITLE TEXT, PLACELOCATION TEXT,PLACEIMAGE TEXT,USERNAME TEXT,RECTEXT TEXT,USERID TEXT,POSTID TEXT)", nil, nil,&errormsg);
         if(res != 0){
             print("error creating table");
             return
@@ -24,13 +24,15 @@ extension Post{
     
     func addToDb(){
         var sqlite3_stmt: OpaquePointer? = nil
-        if (sqlite3_prepare_v2(ModelSql.instance.database,"INSERT OR REPLACE INTO POSTIM(PS_ID, TITLE, PLACELOCATION,PLACEIMAGE,USERNAME,RECTEXT) VALUES (?,?,?,?,?,?);",-1, &sqlite3_stmt,nil) == SQLITE_OK){
+        if (sqlite3_prepare_v2(ModelSql.instance.database,"INSERT OR REPLACE INTO POSTIMSSSSSABAB(PS_ID, TITLE, PLACELOCATION,PLACEIMAGE,USERNAME,RECTEXT,USERID,POSTID) VALUES (?,?,?,?,?,?,?,?);",-1, &sqlite3_stmt,nil) == SQLITE_OK){
             let id = self.id.cString(using: .utf8)
             let title = self.title.cString(using: .utf8)
             let placeLocation = self.placeLocation.cString(using: .utf8)
             let placeImage = self.placeImage.cString(using: .utf8)
             let userName = self.userName.cString(using: .utf8)
             let recText = self.recText.cString(using: .utf8)
+            let userId = self.userId.cString(using: .utf8)
+            let postId = self.postId.cString(using: .utf8)
             
             sqlite3_bind_text(sqlite3_stmt, 1, id,-1,nil);
             sqlite3_bind_text(sqlite3_stmt, 2, title,-1,nil);
@@ -38,6 +40,8 @@ extension Post{
              sqlite3_bind_text(sqlite3_stmt, 4, placeImage,-1,nil);
              sqlite3_bind_text(sqlite3_stmt, 5, userName,-1,nil);
              sqlite3_bind_text(sqlite3_stmt, 6, recText,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 7, userId,-1,nil);
+             sqlite3_bind_text(sqlite3_stmt, 8, postId,-1,nil);
             
             if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
                 print("new row added succefully")
@@ -59,27 +63,25 @@ extension Post{
                    }
             }
         }
-        print("avuvuvuv")
-        print(self.city)
+
         var sqlite3_stmt: OpaquePointer? = nil
         var data = [Post]()
-        print("momo1")
-        print(SQLITE_OK)
-        print(sqlite3_prepare_v2(ModelSql.instance.database,"SELECT * from POSTIM WHERE TITLE LIKE '%\(self.city)%';",-1,&sqlite3_stmt,nil))
-         print("momo2")
-                
-        if (sqlite3_prepare_v2(ModelSql.instance.database,"SELECT * from POSTIM WHERE TITLE LIKE '%\(self.city)%';",-1,&sqlite3_stmt,nil)
+ 
+        if (sqlite3_prepare_v2(ModelSql.instance.database,"SELECT * from POSTIMSSSSSABAB WHERE TITLE LIKE '%\(self.city)%';",-1,&sqlite3_stmt,nil)
             == SQLITE_OK){
             while(sqlite3_step(sqlite3_stmt) == SQLITE_ROW){
                 
-                let stId = String(cString:sqlite3_column_text(sqlite3_stmt,0)!)
-                let st = Post(id: stId);
-                st.title = String(cString:sqlite3_column_text(sqlite3_stmt,1)!)
-                st.placeLocation = String(cString:sqlite3_column_text(sqlite3_stmt,2)!)
-                st.placeImage = String(cString:sqlite3_column_text(sqlite3_stmt,3)!)
-                st.userName = String(cString:sqlite3_column_text(sqlite3_stmt,4)!)
-                st.recText = String(cString:sqlite3_column_text(sqlite3_stmt,5)!)
-                data.append(st)
+                let poId = String(cString:sqlite3_column_text(sqlite3_stmt,0)!)
+                let po = Post(id: poId);
+                po.title = String(cString:sqlite3_column_text(sqlite3_stmt,1)!)
+                po.placeLocation = String(cString:sqlite3_column_text(sqlite3_stmt,2)!)
+                po.placeImage = String(cString:sqlite3_column_text(sqlite3_stmt,3)!)
+                po.userName = String(cString:sqlite3_column_text(sqlite3_stmt,4)!)
+                po.recText = String(cString:sqlite3_column_text(sqlite3_stmt,5)!)
+                po.userId = String(cString:sqlite3_column_text(sqlite3_stmt,6)!)
+                po.postId = String(cString:sqlite3_column_text(sqlite3_stmt,7)!)
+                             
+                data.append(po)
             }
         }
         
@@ -89,12 +91,39 @@ extension Post{
     }
     
     
+    func deleteFromDb(postIds : String){
+        print(postIds)
+        print("herehere")
+         var sqlite3_stmt: OpaquePointer? = nil
+        if (sqlite3_prepare_v2(ModelSql.instance.database,"DELETE FROM POSTIMSSSSSABAB WHERE POSTID LIKE  '%\(postIds)%';",-1, &sqlite3_stmt,nil) == SQLITE_OK){
+             sqlite3_bind_text(sqlite3_stmt, 1, id,-1,nil);
+             sqlite3_bind_text(sqlite3_stmt, 2, title,-1,nil);
+             sqlite3_bind_text(sqlite3_stmt, 3, placeLocation,-1,nil);
+              sqlite3_bind_text(sqlite3_stmt, 4, placeImage,-1,nil);
+              sqlite3_bind_text(sqlite3_stmt, 5, userName,-1,nil);
+              sqlite3_bind_text(sqlite3_stmt, 6, recText,-1,nil);
+             sqlite3_bind_text(sqlite3_stmt, 7, userId,-1,nil);
+             sqlite3_bind_text(sqlite3_stmt, 8, postId,-1,nil);
+             
+             if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
+                  print("Successfully deleted row.")
+                   } else {
+                       print("Could not delete row.")
+                   }
+         }
+         sqlite3_finalize(sqlite3_stmt)
+     }
+    
+    
+    
+    
+    
     static func setLastUpdate(lastUpdated:Int64){
-        return ModelSql.instance.setLastUpdate(name: "POSTIM", lastUpdated: lastUpdated);
+        return ModelSql.instance.setLastUpdate(name: "POSTIMSSSSSABAB", lastUpdated: lastUpdated);
     }
     
     static func getLastUpdateDate()->Int64{
-        return ModelSql.instance.getLastUpdateDate(name: "POSTIM")
+        return ModelSql.instance.getLastUpdateDate(name: "POSTIMSSSSSABAB")
     }
 
 }

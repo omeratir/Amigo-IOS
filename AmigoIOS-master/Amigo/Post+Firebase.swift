@@ -21,6 +21,8 @@ extension Post{
         recText = json["recText"] as! String
         title = json["title"] as! String
         userName = json["userName"] as! String
+        userId = json["userId"] as! String
+        postId = json["postId"] as! String
     }
     
     func toJson() -> [String:Any] {
@@ -32,6 +34,8 @@ extension Post{
         json["recText"] = recText
         json["title"] = title
         json["userName"] = userName
+        json["userId"] = userId
+        json["postId"] = postId
         return json;
     }
     

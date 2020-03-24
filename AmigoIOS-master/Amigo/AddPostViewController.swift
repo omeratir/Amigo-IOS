@@ -91,16 +91,13 @@ class AddPostViewController: UIViewController {
                         po.placeImage = url
                         po.recText = self.textOfRecommend.text!
                         po.placeLocation = self.placeText.text!
+                        po.userId = Auth.auth().currentUser!.uid
+                        po.postId = idPost
                         Model.instance.addPost(post: po)
-//                        let main = UIStoryboard(name:"Main", bundle: nil)
-//                        let home = main.instantiateViewController(identifier: "TablePost")
-//                        self.present(home, animated: true, completion: nil)
                         self.navigationController?.popViewController(animated: true);
                     }
                 }
-                
-                
-                
+
             }
             
         }
@@ -110,10 +107,17 @@ class AddPostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.black
+              let layer = CAGradientLayer()
+              let color1 = UIColor(red:0.99, green: 0.48, blue: 0.48, alpha: 1.0)
+              let color2 = UIColor(red:0.65, green: 0.76, blue: 1.00, alpha: 1.0)
+
+              layer.colors = [ color1.cgColor ,color2.cgColor]
+              layer.frame = view.frame
+              view.layer.insertSublayer(layer, at: 0)
          activity.isHidden = true;
         var db : Firestore!
         db = Firestore.firestore()
-        
         //change the title of the page to the pin's title that pressed
         db.collection("cities").getDocuments { (snapshot, err) in
             if let err = err {
@@ -144,9 +148,6 @@ class AddPostViewController: UIViewController {
                 
             }
         }
-    
-                
-                
                 let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectPhoto))
                 tapGesture.numberOfTapsRequired = 1
                 imageView.isUserInteractionEnabled = true
