@@ -16,7 +16,7 @@ class PostInfoViewController: UIViewController {
     @IBOutlet weak var placeImage: UIImageView!
     @IBOutlet weak var recText: UITextView!
     
-    
+    //
     
   var post:Post?
     

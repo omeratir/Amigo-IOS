@@ -24,6 +24,21 @@ class ViewController: UIViewController{
         // Do any additional setup after loading the view.
     }
  
+    override func viewDidAppear(_ animated: Bool) {
 
+        super.viewDidAppear(animated)
+//        Model.instance.logedIn = false
+//        UserDefaults.standard.removeObject(forKey: "user_uid_key")
+        // Check if the user is logged in
+        if UserDefaults.standard.object(forKey: "user_uid_key") != nil {
+            // send them to a new view controller or do whatever you want
+            Model.instance.logedIn = true
+            print("lalalalalala")
+        }
+        else {
+            Model.instance.logedIn = false
+        }
+       
+    }
 }
 

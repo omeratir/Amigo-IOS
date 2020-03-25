@@ -54,9 +54,11 @@ class LoginViewController: UIViewController,RegiserDelegate {
                                 if let delegate = self.delegate{
                                    delegate.onLoginSuccess()
                                }
+                UserDefaults.standard.set(Auth.auth().currentUser!.uid, forKey: "user_uid_key")
+                UserDefaults.standard.synchronize()
                            }
                        })
-
+       
     }
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -114,10 +114,6 @@ extension Post{
          sqlite3_finalize(sqlite3_stmt)
      }
     
-    
-    
-    
-    
     static func setLastUpdate(lastUpdated:Int64){
         return ModelSql.instance.setLastUpdate(name: "POSTIMSSSSSABAB", lastUpdated: lastUpdated);
     }

@@ -270,11 +270,28 @@
                         <outlet property="recText" destination="bgu-OR-YtO" id="PwV-zh-vDh"/>
                         <outlet property="userImage" destination="gN4-DK-qRW" id="BFu-cT-Tsd"/>
                         <outlet property="usernameLabel" destination="XEO-dx-Qys" id="SsW-Xo-IRq"/>
+                        <segue destination="MdK-5A-5sr" kind="show" id="yvR-xc-k0L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHd-JI-ZRl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2984.8000000000002" y="2630.7346326836582"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Kgn-Ep-krA">
+            <objects>
+                <viewController id="MdK-5A-5sr" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IAm-90-sqI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="cY5-i8-NdF"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1mW-9h-auO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2xW-p1-Qzv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3760" y="2629"/>
         </scene>
         <!--reco-->
         <scene sceneID="4sB-ez-Pmq">

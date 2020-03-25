@@ -105,6 +105,8 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
                     self.Logout.isHidden = false
                     self.Login.isHidden = true
                   let id = Auth.auth().currentUser!.uid
+                    UserDefaults.standard.set(Auth.auth().currentUser!.uid, forKey: "user_uid_key")
+                                                UserDefaults.standard.synchronize()
                  let storage = Storage.storage()
                 let str = storage.reference().child(id).downloadURL(completion: { (url, error) in
                     if error == nil {
@@ -134,7 +136,7 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
 
                                }
                         }
-
+                   
              }
     }
     
@@ -151,7 +153,7 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
 
               // yes action
               let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
-        Model.instance.logOut()
+        Model.instance.logedIn = false
         //self.Name.text = "Login to get name"
        // self.ImageProfile.image = UIImage(named: "avater")
         let firebaseAuth = Auth.auth()
@@ -163,6 +165,7 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
 //        let loginVc = LoginViewController.factory();
 //                              loginVc.delegate = self
 //                              show(loginVc, sender: self)
+        UserDefaults.standard.removeObject(forKey: "user_uid_key")
          let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let signInVC = storyboard.instantiateViewController(withIdentifier: "Home")
             self.present(signInVC, animated: true, completion: nil)
