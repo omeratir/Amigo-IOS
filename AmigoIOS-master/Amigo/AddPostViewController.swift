@@ -131,7 +131,7 @@ class AddPostViewController: UIViewController {
             }
         }
         
-        
+    
         //get the name of the user that write the post
         let uid = Auth.auth().currentUser?.uid
         db.collection("users").getDocuments { (snapshot, err) in

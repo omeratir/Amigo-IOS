@@ -14,6 +14,7 @@ class Model {
      static var city: String = ""
      var modelFirebase:ModelFirebase = ModelFirebase()
     
+    var postID = ""
     private init(){
     }
     
@@ -59,23 +60,16 @@ class Model {
                                                  //insert update to the local db
                                                 // var lud:Int64 = 0;
                                                  for post in data!{
-                                                  print(post.id)
-                                                  print(postIds)
-                                                  print("shushu")
                                                   if(post.postId == postIds){
                                                       post.deleteFromDb(postIds: post.postId)
-                                              
-                                  //                   if post.lastUpdate! > lud {lud = post.lastUpdate!}
-                                              
-                                             
+                           
             let db = Firestore.firestore()
                 db.collection("posts").document(postIds).delete(){
                           err in
                           if let err = err {
                               print("Error writing document: \(err)")
-                          } else {
-                            print("yyayyayayyay")
-                    }
+                          }
+                     ModelEvents.PostDataEvent.post();
                 }
                //get the cloud updates since the local update date
             }

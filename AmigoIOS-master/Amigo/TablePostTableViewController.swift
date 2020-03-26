@@ -17,7 +17,6 @@ class TablePostTableViewController: UITableViewController {
     var postid = String()
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,7 +53,6 @@ class TablePostTableViewController: UITableViewController {
         self.refreshControl?.beginRefreshing()
         reloadData();
     }
-    
     
     @IBAction func plusButtom(_ sender: Any) {
             if(Model.instance.logedIn == true){
@@ -145,7 +143,8 @@ class TablePostTableViewController: UITableViewController {
             let vc:PostInfoViewController = segue.destination as! PostInfoViewController
             vc.post = selected
         }
-    }
+            
+        }
         else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
                  let signInVC = storyboard.instantiateViewController(withIdentifier: "Login")

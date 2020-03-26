@@ -264,34 +264,92 @@
                         <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="amg-WB-OPP"/>
                     </view>
-                    <navigationItem key="navigationItem" id="frT-ft-V7P"/>
+                    <navigationItem key="navigationItem" id="frT-ft-V7P">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="pencil" catalog="system" id="Qeg-74-jw7">
+                            <connections>
+                                <segue destination="MdK-5A-5sr" kind="show" id="8SZ-0T-uPS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="placeImage" destination="ZmR-Bi-ynp" id="5qW-Kq-rD9"/>
+                        <outlet property="postEdit" destination="Qeg-74-jw7" id="g8W-6T-i8N"/>
                         <outlet property="recText" destination="bgu-OR-YtO" id="PwV-zh-vDh"/>
                         <outlet property="userImage" destination="gN4-DK-qRW" id="BFu-cT-Tsd"/>
                         <outlet property="usernameLabel" destination="XEO-dx-Qys" id="SsW-Xo-IRq"/>
-                        <segue destination="MdK-5A-5sr" kind="show" id="yvR-xc-k0L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHd-JI-ZRl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2984.8000000000002" y="2630.7346326836582"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Post View Controller-->
         <scene sceneID="Kgn-Ep-krA">
             <objects>
-                <viewController id="MdK-5A-5sr" sceneMemberID="viewController">
+                <viewController id="MdK-5A-5sr" customClass="EditPostViewController" customModule="Amigo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IAm-90-sqI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="plane" translatesAutoresizingMaskIntoConstraints="NO" id="4sn-Lx-dfF">
+                                <rect key="frame" x="114" y="135" width="200" height="137"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONA-X2-Bj8">
+                                <rect key="frame" x="169" y="97" width="91" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="upload photo">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadPhoto:" destination="MdK-5A-5sr" eventType="touchUpInside" id="Bke-6N-2gY"/>
+                                    <action selector="uploadPhoto:" destination="9gx-gd-fso" eventType="touchUpInside" id="RdO-9w-TVW"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tvg-Sq-3M8">
+                                <rect key="frame" x="169" y="280" width="153" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="bezel" placeholder="כתוב כאן את ההמלצה שלך" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fPw-Uk-IQT">
+                                <rect key="frame" x="16" y="362" width="343" height="203"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="0.74777178700000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lev-w5-6Ex">
+                                <rect key="frame" x="155" y="594" width="64" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Post">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="PodtEditButtom:" destination="MdK-5A-5sr" eventType="touchUpInside" id="BW5-Ba-0ow"/>
+                                    <action selector="PostBtn:" destination="9gx-gd-fso" eventType="touchUpInside" id="Pl5-Mo-Aw6"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="fCk-e6-U87">
+                                <rect key="frame" x="148" y="563" width="67" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="cY5-i8-NdF"/>
                     </view>
                     <navigationItem key="navigationItem" id="1mW-9h-auO"/>
+                    <connections>
+                        <outlet property="activity" destination="fCk-e6-U87" id="YJy-1k-Vuc"/>
+                        <outlet property="imageView" destination="4sn-Lx-dfF" id="nud-qL-Cf3"/>
+                        <outlet property="placeText" destination="Tvg-Sq-3M8" id="dnS-Hg-gxu"/>
+                        <outlet property="textOfRecommend" destination="fPw-Uk-IQT" id="gdP-UD-BLs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2xW-p1-Qzv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3760" y="2629"/>
+            <point key="canvasLocation" x="3759.1999999999998" y="2628.9355322338834"/>
         </scene>
         <!--reco-->
         <scene sceneID="4sB-ez-Pmq">
@@ -455,7 +513,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iky-iu-EJz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2985" y="3364"/>
+            <point key="canvasLocation" x="2984.8000000000002" y="3363.8680659670167"/>
         </scene>
         <!--Map-->
         <scene sceneID="atg-gm-UPk">
@@ -719,6 +777,7 @@
         <image name="folder" catalog="system" width="64" height="46"/>
         <image name="house" catalog="system" width="64" height="54"/>
         <image name="map" catalog="system" width="64" height="56"/>
+        <image name="pencil" catalog="system" width="64" height="56"/>
         <image name="person" catalog="system" width="64" height="58"/>
         <image name="plane" width="600" height="600"/>
     </resources>

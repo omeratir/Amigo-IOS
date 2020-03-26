@@ -50,6 +50,42 @@ extension Post{
         sqlite3_finalize(sqlite3_stmt)
     }
     
+    
+    func UpdateDb(){
+        var sqlite3_stmt: OpaquePointer? = nil
+        
+        print(Model.instance.postID)
+        print("good3")
+        if (sqlite3_prepare_v2(ModelSql.instance.database,"INSERT OR REPLACE INTO POSTIMSSSSSABAB (TITLE, PLACELOCATION,PLACEIMAGE,USERNAME,RECTEXT,USERID,POSTID) VALUES (?,?,?,?,?,?,?);",-1, &sqlite3_stmt,nil) == SQLITE_OK){
+          //  let id = self.id.cString(using: .utf8)
+            let title = self.title.cString(using: .utf8)
+            let placeLocation = self.placeLocation.cString(using: .utf8)
+            let placeImage = self.placeImage.cString(using: .utf8)
+            let userName = self.userName.cString(using: .utf8)
+            let recText = self.recText.cString(using: .utf8)
+            let userId = self.userId.cString(using: .utf8)
+            let postId = self.postId.cString(using: .utf8)
+            
+           // sqlite3_bind_text(sqlite3_stmt, 1, id,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 2, title,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 3, placeLocation,-1,nil);
+             sqlite3_bind_text(sqlite3_stmt, 4, placeImage,-1,nil);
+             sqlite3_bind_text(sqlite3_stmt, 5, userName,-1,nil);
+             sqlite3_bind_text(sqlite3_stmt, 6, recText,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 7, userId,-1,nil);
+             sqlite3_bind_text(sqlite3_stmt, 8, postId,-1,nil);
+            print("good")
+            if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
+                print("new row added succefully")
+                print("good2")
+            }
+        }
+        sqlite3_finalize(sqlite3_stmt)
+    }
+
+    
+    
+    
     static func getAllPostsFromDb()->[Post]{
         let db = Firestore.firestore()
            
