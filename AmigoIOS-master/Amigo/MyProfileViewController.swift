@@ -12,6 +12,7 @@ import Firebase
 import FirebaseStorage
 import Kingfisher
 
+
 class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
     func onLoginSuccess() {
         
@@ -22,20 +23,26 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
     }
     @IBOutlet weak var Login: UIButton!
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var Logout: UIButton!
     @IBOutlet weak var ImageProfile: UIImageView!
     @IBOutlet weak var Name: UILabel!
     
     override func viewWillAppear(_: Bool) {
             super.viewWillAppear(true)
-
+   
         self.profile()
     }
     
       override func viewDidLoad() {
         super.viewDidLoad()
-     
+        self.activity.isHidden = true
         self.profile()
+       ImageProfile.layer.borderWidth = 1
+         ImageProfile.layer.masksToBounds = false
+         ImageProfile.layer.borderColor = UIColor.black.cgColor
+         ImageProfile.layer.cornerRadius = ImageProfile.frame.height/2
+         ImageProfile.clipsToBounds = true
      // var refreshControl = UIRefreshControl()
         view.backgroundColor = UIColor.black
               let layer = CAGradientLayer()
@@ -45,78 +52,35 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
               layer.colors = [ color1.cgColor ,color2.cgColor]
               layer.frame = view.frame
               view.layer.insertSublayer(layer, at: 0)
-//
-//        if (!Model.instance.isLoggedIn()){
-//             self.Logout.isHidden = true
-//            self.Login.isHidden = false
-////            let loginVc = LoginViewController.factory()
-////            loginVc.delegate = self
-////            show(loginVc, sender: self)
-//        }
-//        //-------user's photo-------//
-//        if(Model.instance.logedIn == true){
-//            self.Logout.isHidden = false
-//            self.Login.isHidden = true
-//          let id = Auth.auth().currentUser!.uid
-//         let storage = Storage.storage()
-//        let str = storage.reference().child(id).downloadURL(completion: { (url, error) in
-//            if error == nil {
-//                print("aviad")
-//                print(url)
-//                self.ImageProfile.kf.setImage(with: url)
-//            }
-//        })
-//
-//
-//        //-------user's fullname-------//
-//        var db : Firestore!
-//             db = Firestore.firestore()
-//            let uid = Auth.auth().currentUser?.uid
-//        var name:String?
-//        db.collection("users").getDocuments { (snapshot, err) in
-//                       if let err = err {
-//                           print("Error getting documents: \(err)")
-//                       } else {
-//                        for document in snapshot!.documents {
-//                            let docId = document.documentID
-//                            if(uid == docId){
-//                            name = document.get("fullname") as! String
-//                            self.Name.text = name
-//                            }
-//                         }
-//
-//                       }
-//                }
-//
-//     }
+
     
 }
 
     func profile() {
+         self.activity.isHidden = false
                 if (!Model.instance.isLoggedIn()){
                      self.Logout.isHidden = true
                     self.Login.isHidden = false
         //            let loginVc = LoginViewController.factory()
         //            loginVc.delegate = self
         //            show(loginVc, sender: self)
+                    self.activity.isHidden = true
                 }
                 //-------user's photo-------//
                 if(Model.instance.logedIn == true){
                     self.Logout.isHidden = false
                     self.Login.isHidden = true
+                   
                   let id = Auth.auth().currentUser!.uid
                     UserDefaults.standard.set(Auth.auth().currentUser!.uid, forKey: "user_uid_key")
                                                 UserDefaults.standard.synchronize()
                  let storage = Storage.storage()
                 let str = storage.reference().child(id).downloadURL(completion: { (url, error) in
                     if error == nil {
-                        print("aviad")
-                        print(url)
-                        self.ImageProfile.kf.setImage(with: url)
+ 
+                self.ImageProfile.kf.setImage(with: url)
                     }
                 })
-
-
                 //-------user's fullname-------//
                 var db : Firestore!
                      db = Firestore.firestore()
@@ -131,6 +95,7 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
                                     if(uid == docId){
                                     name = document.get("fullname") as! String
                                     self.Name.text = name
+                                        
                                     }
                                  }
 
@@ -138,6 +103,7 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
                         }
                    
              }
+         self.activity.isHidden = true
     }
     
     

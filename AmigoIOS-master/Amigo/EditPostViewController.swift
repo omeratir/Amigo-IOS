@@ -59,6 +59,7 @@ class EditPostViewController: UIViewController {
     
     
     @IBAction func PodtEditButtom(_ sender: Any) {
+        activity.isHidden = false
        let db : Firestore!
         db = Firestore.firestore()
         db.collection("posts").getDocuments { (snapshot, err) in
@@ -70,7 +71,6 @@ class EditPostViewController: UIViewController {
                     if(self.postEditID == docId){
                         self.city = document.get("title") as! String
                         self.name = document.get("userName") as! String
-                        
        Model.instance.saveImagePost(image: self.imageView.image!){ (url) in
            if url != "" {
             Model.instance.savePost(title: self.city, placeLocation: self.placeText.text!, userName:self.name, recText: self.textOfRecommend.text!, url: "url") { (success) in
@@ -85,12 +85,11 @@ class EditPostViewController: UIViewController {
                        po.placeLocation = self.placeText.text!
                        po.userId = Auth.auth().currentUser!.uid
                        po.postId = docId
-                    
                        Model.instance.addPost(post: po)
                        //po.addToDb()
                         //self.post?.deleteFromDb(postIds: docId)
                       // po.UpdateDb()
-                       self.navigationController?.popViewController(animated: true);
+                       self.navigationController?.popToRootViewController(animated: true)
                    }
                }
 
@@ -116,7 +115,7 @@ class EditPostViewController: UIViewController {
                      layer.colors = [ color1.cgColor ,color2.cgColor]
                      layer.frame = view.frame
                      view.layer.insertSublayer(layer, at: 0)
-                activity.isHidden = true;
+                activity.isHidden = false;
         // Do any additional setup after loading the view.
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectPhoto))
@@ -145,7 +144,7 @@ class EditPostViewController: UIViewController {
                     }
                     
                  }
-
+                self.activity.isHidden = true;
             }
         }
     }

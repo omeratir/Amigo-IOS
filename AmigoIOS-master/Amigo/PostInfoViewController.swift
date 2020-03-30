@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
+import Kingfisher
 class PostInfoViewController: UIViewController {
 
     @IBOutlet weak var userImage: UIImageView!
@@ -16,7 +18,7 @@ class PostInfoViewController: UIViewController {
     @IBOutlet weak var recText: UITextView!
     
     @IBOutlet weak var postEdit: UIBarButtonItem!
-    
+    var id = Auth.auth().currentUser?.providerID
     
   var post:Post?
     override func viewWillAppear(_: Bool) {
@@ -27,6 +29,11 @@ class PostInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         postEdit.isEnabled = false
+        userImage.layer.borderWidth = 1
+                userImage.layer.masksToBounds = false
+                userImage.layer.borderColor = UIColor.black.cgColor
+                userImage.layer.cornerRadius = userImage.frame.height/2
+                userImage.clipsToBounds = true
         view.backgroundColor = UIColor.black
                    let layer = CAGradientLayer()
                    let color1 = UIColor(red:0.99, green: 0.48, blue: 0.48, alpha: 1.0)
@@ -50,6 +57,7 @@ class PostInfoViewController: UIViewController {
     }
     
     func reloadPost() {
+        
         usernameLabel.text = post?.userName
         recText.text = post?.recText
         userImage.image = UIImage(named: "avatar")
@@ -62,6 +70,16 @@ class PostInfoViewController: UIViewController {
         if(post?.userId == Auth.auth().currentUser?.uid){
           postEdit.isEnabled = true
         }
+        let storage = Storage.storage()
+        print(Auth.auth().currentUser!.uid)
+        print("dordor")
+        let str = storage.reference().child(post!.userId).downloadURL(completion: { (url, error) in
+                       if error == nil {
+                           print("aviad")
+                           print(url)
+                           self.userImage.kf.setImage(with: url)
+                       }
+                   })
     }
     /*
     // MARK: - Navigation

@@ -19,7 +19,7 @@ class TablePostTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     
         var db : Firestore!
         db = Firestore.firestore()
         
@@ -109,6 +109,8 @@ class TablePostTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:PostViewCell = tableView.dequeueReusableCell(withIdentifier: "PostViewCell", for: indexPath) as! PostViewCell
+        
+        cell.contentView.backgroundColor = UIColor.init(displayP3Red: 0.80, green: 0.62, blue: 0.7, alpha: 1.0)
         var city = self.recTitle.title
         let st = data[indexPath.row]
         cell.Name.text = st.userName
@@ -173,20 +175,16 @@ class TablePostTableViewController: UITableViewController {
                             print(self.selected?.postId)
                             print("shiooo")
                             if(self.selected?.postId == self.postid){
+                                self.deletePost(postId: self.selected!.postId)
                                 break;
                             }
                         }
                     }
         
                 }
-            if(self.selected?.postId == self.postid) {
-                    print("hellooo")
-                self.deletePost(postId: self.selected!.postId)
-              
-                }
+
         }
         alert.addAction(yesAction)
-        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
                present(alert, animated: true, completion: nil)
@@ -204,7 +202,7 @@ class TablePostTableViewController: UITableViewController {
                      self.present(signInVC, animated: true, completion: nil)
             }
     }
-    
+   
     
     @IBAction func backFromCancelLogin(segue:UIStoryboardSegue){
         

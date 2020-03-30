@@ -22,6 +22,7 @@ class LoginViewController: UIViewController,RegiserDelegate {
     
     @IBOutlet weak var password: UITextField!
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     static func factory()->LoginViewController{
           return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "Login")
       }
@@ -41,27 +42,41 @@ class LoginViewController: UIViewController,RegiserDelegate {
     
     
     @IBAction func Connect(_ sender: Any) {
+        self.activity.isHidden = false
       // ProgressHUD.show("Waiting...",interaction: false)
                  
         Auth.auth().signIn(withEmail: email.text!, password: password.text!,completion: { (authResult,error) in
             if ((authResult) != nil){
+                //self.activity.isHidden = false
                 Model.instance.logedIn = true
 //                               let storyboard = UIStoryboard(name: "Main", bundle: nil)
 //                               let signInVC = storyboard.instantiateViewController(withIdentifier: "Home")
 //                               self.present(signInVC, animated: true, completion: nil)
+                self.activity.isHidden = true
                 self.dismiss(animated: true, completion: nil)
                                //                self.navigationController?.popViewController(animated: true);
                                 if let delegate = self.delegate{
                                    delegate.onLoginSuccess()
                                }
+                //Model.instance.logedIn = true
                 UserDefaults.standard.set(Auth.auth().currentUser!.uid, forKey: "user_uid_key")
                 UserDefaults.standard.synchronize()
                            }
+            else{
+                self.activity.isHidden = true
+                          let alert = UIAlertController(title: "Incorrect Username or Password", message: "Try Again!", preferredStyle: .alert)
+                          alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                          NSLog("The \"OK\" alert occured.")
+                          }))
+                          self.present(alert, animated: true, completion: nil)
+
+                      }
                        })
        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.activity.isHidden = true
         view.backgroundColor = UIColor.black
         let layer = CAGradientLayer()
         let color1 = UIColor(red:0.99, green: 0.48, blue: 0.48, alpha: 1.0)
