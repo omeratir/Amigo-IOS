@@ -69,8 +69,8 @@ class Model {
                           if let err = err {
                               print("Error writing document: \(err)")
                           }
-                     ModelEvents.PostDataEvent.post();
                 }
+                                                    break;
                //get the cloud updates since the local update date
             }
         }

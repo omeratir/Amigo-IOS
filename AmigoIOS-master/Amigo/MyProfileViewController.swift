@@ -36,6 +36,7 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
     
       override func viewDidLoad() {
         super.viewDidLoad()
+        //Model.instance.logedIn = false
         self.activity.isHidden = true
         self.profile()
        ImageProfile.layer.borderWidth = 1

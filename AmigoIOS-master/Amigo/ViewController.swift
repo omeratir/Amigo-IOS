@@ -12,6 +12,7 @@ class ViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Model.instance.logedIn = false
         view.backgroundColor = UIColor.black
         let layer = CAGradientLayer()
         let color1 = UIColor(red:0.99, green: 0.48, blue: 0.48, alpha: 1.0)

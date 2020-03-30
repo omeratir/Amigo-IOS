@@ -432,18 +432,18 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUA-m4-aSU">
-                                            <rect key="frame" x="298" y="43" width="39" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="מחיקה"/>
-                                            <connections>
-                                                <action selector="deleteButtom:" destination="JiZ-VJ-zJC" eventType="touchUpInside" id="W1W-7w-JIA"/>
-                                            </connections>
-                                        </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avater" translatesAutoresizingMaskIntoConstraints="NO" id="Sa5-eY-HD4">
                                             <rect key="frame" x="20" y="7" width="95" height="94"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUA-m4-aSU">
+                                            <rect key="frame" x="320" y="42" width="30" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" backgroundImage="trash" catalog="system"/>
+                                            <connections>
+                                                <action selector="deleteButtom:" destination="JiZ-VJ-zJC" eventType="touchUpInside" id="W1W-7w-JIA"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -596,6 +596,17 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Fm6-G8-10d">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MeP-tZ-KP4">
+                                <rect key="frame" x="288" y="525" width="71" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <state key="normal" image="location.fill" catalog="system">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="refLocation:" destination="4Uv-lK-QoT" eventType="touchUpInside" id="kUu-3i-ZLl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Fm6-G8-10d" firstAttribute="top" secondItem="XBl-la-8Tw" secondAttribute="top" id="DLi-jF-BIH"/>
@@ -616,7 +627,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tcE-CR-uGv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1510" y="1746"/>
+            <point key="canvasLocation" x="1509.5999999999999" y="1745.577211394303"/>
         </scene>
         <!--Tab Controller-->
         <scene sceneID="gP7-BT-b61">
@@ -807,11 +818,13 @@
         <image name="avater" width="112.5" height="112.5"/>
         <image name="envelope.fill" catalog="system" width="64" height="46"/>
         <image name="house" catalog="system" width="64" height="54"/>
+        <image name="location.fill" catalog="system" width="64" height="56"/>
         <image name="lock.fill" catalog="system" width="64" height="64"/>
         <image name="map" catalog="system" width="64" height="56"/>
         <image name="pencil" catalog="system" width="64" height="56"/>
         <image name="person" catalog="system" width="64" height="58"/>
         <image name="person.fill" catalog="system" width="64" height="60"/>
         <image name="plane" width="600" height="600"/>
+        <image name="trash" catalog="system" width="60" height="64"/>
     </resources>
 </document>

@@ -16,6 +16,19 @@ class TablePostTableViewController: UITableViewController {
     var data = [Post]()
     var postid = String()
     
+    func runTimer(){
+        let timer = Timer(fire: Date(), interval: 10.0, repeats: true, block: { (Timer) in
+            self.reloadData()
+            DispatchQueue.main.async {
+                self.reloadData()
+
+            }
+        })
+
+        RunLoop.current.add(timer, forMode: .default)
+        self.tableView.reloadData()
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +65,7 @@ class TablePostTableViewController: UITableViewController {
         }
         self.refreshControl?.beginRefreshing()
         reloadData();
+        self.runTimer()
     }
     
     @IBAction func plusButtom(_ sender: Any) {

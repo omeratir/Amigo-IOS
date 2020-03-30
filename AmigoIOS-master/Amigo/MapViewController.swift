@@ -57,15 +57,14 @@ extension MapViewController: MKMapViewDelegate {
 
 
 class MapViewController: UIViewController {
-
     @IBOutlet weak var mapView: MKMapView!
 
       var table = TablePostTableViewController()
     
     override func viewDidLoad() {
-        
-        
         super.viewDidLoad()
+        
+        mapView.showsUserLocation = true
         //where we start
         let initialLocation = CLLocation(latitude: 31.961020, longitude: 34.801620)
         centerMapOnLocation(location: initialLocation)
@@ -80,6 +79,30 @@ class MapViewController: UIViewController {
       }
     }
     
+    
+    
+    ////////////////
+    func locationManager(manager: CLLocationManager, locations: [CLLocation]) {
+        let location = locations.last
+        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+
+        mapView!.setRegion(region, animated: true)
+        mapView!.setCenter(mapView!.userLocation.coordinate, animated: true)
+
+
+    }
+//
+    
+    @IBAction func refLocation(_ sender: Any) {
+//        let viewRegion = MKCoordinateRegion(center: mapView!.userLocation.coordinate, latitudinalMeters: 2000, longitudinalMeters: 2000)
+//                   mapView.setRegion(viewRegion, animated: false)
+        mapView!.setCenter(mapView!.userLocation.coordinate, animated: true)
+    }
+    
+    
+    
+    ////////////////////
     override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       checkLocationAuthorizationStatus()
