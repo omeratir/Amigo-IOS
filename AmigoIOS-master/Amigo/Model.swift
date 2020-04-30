@@ -13,7 +13,7 @@ class Model {
     static let instance = Model()
      static var city: String = ""
      var modelFirebase:ModelFirebase = ModelFirebase()
-    
+    var deleter = ""
     var postID = ""
     private init(){
     }
@@ -31,7 +31,7 @@ class Model {
     }
     
    func getAllPosts(callback:@escaping ([Post]?)->Void){
-           
+    var flag = true;
            //get the local last update date
            let lud = Post.getLastUpdateDate();
            
@@ -41,8 +41,28 @@ class Model {
                var lud:Int64 = 0;
                for post in data!{
                    post.addToDb()
+                if(flag == true){
+                var db : Firestore!
+                        db = Firestore.firestore()
+                        
+                        //change the title of the page to the pin that pressed
+                        var city:String?
+                        db.collection("deleter").getDocuments { (snapshot, err) in
+                            if let err = err {
+                                print("Error getting documents: \(err)")
+                            } else {
+                                for document in snapshot!.documents {
+                                   self.deleter = document.get("idPost") as! String
+                                    post.deleteFromDb(postIds: self.deleter)
+                                }
+                            }
+                            
+                        }
+                    flag = false
 //                   if post.lastUpdate! > lud {lud = post.lastUpdate!}
                }
+            }
+            
                //update the students local last update date
                Post.setLastUpdate(lastUpdated: lud)
                // get the complete student list

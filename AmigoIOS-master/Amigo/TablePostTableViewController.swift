@@ -15,7 +15,7 @@ class TablePostTableViewController: UITableViewController {
     var flag = true
     var data = [Post]()
     var postid = String()
-    
+  
     func runTimer(){
         let timer = Timer(fire: Date(), interval: 10.0, repeats: true, block: { (Timer) in
             self.reloadData()
@@ -177,26 +177,32 @@ class TablePostTableViewController: UITableViewController {
         let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
         let buttonPosition:CGPoint = (sender as AnyObject).convert(CGPoint.zero, to:self.tableView)
           let indexPath = self.tableView.indexPathForRow(at: buttonPosition)
+           
             self.selected = self.data[indexPath!.row]
              let db = Firestore.firestore()
                 db.collection("posts").getDocuments { (snapshot, err) in
                     if let err = err {
                         print("Error getting documents: \(err)")
                     } else {
+                        
                         for document in snapshot!.documents {
                             self.postid = document.get("postId") as! String
                             print(self.postid)
                             print(self.selected?.postId)
                             print("shiooo")
                             if(self.selected?.postId == self.postid){
+                                 db.collection("deleter").document("Post").setData(["idPost" : self.selected!.postId])
                                 self.deletePost(postId: self.selected!.postId)
+                                  
                                 break;
                             }
                         }
+                        
+                        
                     }
-        
+      
                 }
-
+            
         }
         alert.addAction(yesAction)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

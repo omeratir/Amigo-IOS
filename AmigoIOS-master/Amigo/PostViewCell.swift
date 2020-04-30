@@ -11,7 +11,6 @@ import Firebase
 
 class PostViewCell: UITableViewCell {
 
-    @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var Name: UILabel!
     @IBOutlet weak var ImageView: UIImageView!
     @IBOutlet weak var PlaceLabel: UILabel!

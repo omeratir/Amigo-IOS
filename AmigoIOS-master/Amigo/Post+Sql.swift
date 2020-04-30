@@ -15,7 +15,7 @@ extension Post{
     
     static func create_table(database: OpaquePointer?){
         var errormsg: UnsafeMutablePointer<Int8>? = nil
-        let res = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS POSTIMSSSSSABAB (PS_ID TEXT PRIMARY KEY, TITLE TEXT, PLACELOCATION TEXT,PLACEIMAGE TEXT,USERNAME TEXT,RECTEXT TEXT,USERID TEXT,POSTID TEXT)", nil, nil,&errormsg);
+        let res = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS aviadr (PS_ID TEXT PRIMARY KEY, TITLE TEXT, PLACELOCATION TEXT,PLACEIMAGE TEXT,USERNAME TEXT,RECTEXT TEXT,USERID TEXT,POSTID TEXT)", nil, nil,&errormsg);
         if(res != 0){
             print("error creating table");
             return
@@ -24,7 +24,7 @@ extension Post{
     
     func addToDb(){
         var sqlite3_stmt: OpaquePointer? = nil
-        if (sqlite3_prepare_v2(ModelSql.instance.database,"INSERT OR REPLACE INTO POSTIMSSSSSABAB(PS_ID, TITLE, PLACELOCATION,PLACEIMAGE,USERNAME,RECTEXT,USERID,POSTID) VALUES (?,?,?,?,?,?,?,?);",-1, &sqlite3_stmt,nil) == SQLITE_OK){
+        if (sqlite3_prepare_v2(ModelSql.instance.database,"INSERT OR REPLACE INTO aviadr (PS_ID, TITLE, PLACELOCATION,PLACEIMAGE,USERNAME,RECTEXT,USERID,POSTID) VALUES (?,?,?,?,?,?,?,?);",-1, &sqlite3_stmt,nil) == SQLITE_OK){
             let id = self.id.cString(using: .utf8)
             let title = self.title.cString(using: .utf8)
             let placeLocation = self.placeLocation.cString(using: .utf8)
@@ -56,7 +56,7 @@ extension Post{
         
         print(Model.instance.postID)
         print("good3")
-        if (sqlite3_prepare_v2(ModelSql.instance.database,"INSERT OR REPLACE INTO POSTIMSSSSSABAB (TITLE, PLACELOCATION,PLACEIMAGE,USERNAME,RECTEXT,USERID,POSTID) VALUES (?,?,?,?,?,?,?);",-1, &sqlite3_stmt,nil) == SQLITE_OK){
+        if (sqlite3_prepare_v2(ModelSql.instance.database,"INSERT OR REPLACE INTO aviadr (TITLE, PLACELOCATION,PLACEIMAGE,USERNAME,RECTEXT,USERID,POSTID) VALUES (?,?,?,?,?,?,?);",-1, &sqlite3_stmt,nil) == SQLITE_OK){
           //  let id = self.id.cString(using: .utf8)
             let title = self.title.cString(using: .utf8)
             let placeLocation = self.placeLocation.cString(using: .utf8)
@@ -103,7 +103,7 @@ extension Post{
         var sqlite3_stmt: OpaquePointer? = nil
         var data = [Post]()
  
-        if (sqlite3_prepare_v2(ModelSql.instance.database,"SELECT * from POSTIMSSSSSABAB WHERE TITLE LIKE '%\(self.city)%';",-1,&sqlite3_stmt,nil)
+        if (sqlite3_prepare_v2(ModelSql.instance.database,"SELECT * from aviadr WHERE TITLE LIKE '%\(self.city)%';",-1,&sqlite3_stmt,nil)
             == SQLITE_OK){
             while(sqlite3_step(sqlite3_stmt) == SQLITE_ROW){
                 
@@ -131,7 +131,7 @@ extension Post{
         print(postIds)
         print("herehere")
          var sqlite3_stmt: OpaquePointer? = nil
-        if (sqlite3_prepare_v2(ModelSql.instance.database,"DELETE FROM POSTIMSSSSSABAB WHERE POSTID LIKE  '%\(postIds)%';",-1, &sqlite3_stmt,nil) == SQLITE_OK){
+        if (sqlite3_prepare_v2(ModelSql.instance.database,"DELETE FROM aviadr WHERE POSTID LIKE  '%\(postIds)%';",-1, &sqlite3_stmt,nil) == SQLITE_OK){
              sqlite3_bind_text(sqlite3_stmt, 1, id,-1,nil);
              sqlite3_bind_text(sqlite3_stmt, 2, title,-1,nil);
              sqlite3_bind_text(sqlite3_stmt, 3, placeLocation,-1,nil);
@@ -151,11 +151,11 @@ extension Post{
      }
     
     static func setLastUpdate(lastUpdated:Int64){
-        return ModelSql.instance.setLastUpdate(name: "POSTIMSSSSSABAB", lastUpdated: lastUpdated);
+        return ModelSql.instance.setLastUpdate(name: "aviadr", lastUpdated: lastUpdated);
     }
     
     static func getLastUpdateDate()->Int64{
-        return ModelSql.instance.getLastUpdateDate(name: "POSTIMSSSSSABAB")
+        return ModelSql.instance.getLastUpdateDate(name: "aviadr")
     }
 
 }
