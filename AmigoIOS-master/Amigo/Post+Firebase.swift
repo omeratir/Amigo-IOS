@@ -14,8 +14,6 @@ extension Post{
     convenience init(json:[String:Any]){
         let id = json["id"] as! String
         self.init(id:id)
-       // let ts = json["lastUpdate"] as! Timestamp
-       // lastUpdate = ts.seconds
         placeImage = json["placeImage"] as! String
         placeLocation = json["placeLocation"] as! String
         recText = json["recText"] as! String

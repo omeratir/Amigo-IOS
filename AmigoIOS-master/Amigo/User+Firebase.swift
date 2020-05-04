@@ -12,8 +12,8 @@ import Firebase
 extension User{
     convenience init(json:[String:Any]){
         let id = json["id"] as! String;
-     self.init(id:id)
-
+        self.init(id:id)
+        
         fullname = json["fullname"] as! String;
         ImagAvatr = json["avatar"] as! String;
         email = json["email"] as! String;

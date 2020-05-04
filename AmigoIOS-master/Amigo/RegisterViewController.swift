@@ -18,25 +18,16 @@ protocol RegiserDelegate{
 
 class RegisterViewController: UIViewController,UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,LoginViewControllerDelegate {
     func onLoginSuccess() {
-        
     }
     
     func onLoginCancell() {
-        
     }
-    
-    
-    //  var delegate:RegiserDelegate?
     
     var imagePicker = UIImagePickerController()
     
     @IBOutlet weak var imageViewAvatar: UIImageView!
-    
-    @IBOutlet weak var pickerCity: UIPickerView!
-    
     @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var fullName: UITextField!
-    @IBOutlet weak var gender: UISegmentedControl!
     @IBOutlet weak var emailUser: UITextField!
     @IBOutlet weak var passwordUser: UITextField!
     
@@ -55,23 +46,20 @@ class RegisterViewController: UIViewController,UIPickerViewDelegate, UIImagePick
         self.activity.isHidden = false
         Auth.auth().createUser(withEmail: emailUser.text!, password: passwordUser.text!){ authResult, error in
             if let u = authResult {
-                print("uh-oh")
-               
                 Model.instance.saveImage(image: self.imageViewAvatar.image!){ (url) in
                     if url != "" {
                         Model.instance.register(fullname: self.fullName.text!, email: self.emailUser.text!, pwd: self.passwordUser.text!,url: "url") { (success) in
                             if success {
-                                
                                 let us = User(id:Auth.auth().currentUser!.uid);
                                 us.email = self.emailUser.text!
                                 us.ImagAvatr = url
                                 us.fullname = self.fullName.text!
                                 Model.instance.add(user: us)
-                                print("hello")
+                                us.addUserToDb()
                                 Model.instance.logedIn = true
                                 UserDefaults.standard.set(Auth.auth().currentUser!.uid, forKey: "user_uid_key")
-                                               UserDefaults.standard.synchronize()
-                                 self.activity.isHidden = true
+                                UserDefaults.standard.synchronize()
+                                self.activity.isHidden = true
                                 let main = UIStoryboard(name:"Main", bundle: nil)
                                 let home = main.instantiateViewController(identifier: "Home")
                                 self.present(home, animated: true, completion: nil)
@@ -79,22 +67,22 @@ class RegisterViewController: UIViewController,UIPickerViewDelegate, UIImagePick
                         }
                     }
                     else {
-                        print("aviadFail")
+                        print("Fail")
                     }
                 }
             }
             else {
-                   self.activity.isHidden = true
-                           let alert = UIAlertController(title: "Have Problem With Email or Password", message: "Try Again!", preferredStyle: .alert)
-                                                   alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-                                                   NSLog("The \"OK\" alert occured.")
-                                                   }))
-                                                   self.present(alert, animated: true, completion: nil)
-
+                self.activity.isHidden = true
+                let alert = UIAlertController(title: "Have Problem With Email or Password", message: "Try Again!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                    NSLog("The \"OK\" alert occured.")
+                }))
+                self.present(alert, animated: true, completion: nil)
+                
             }
         }
     }
- 
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -151,12 +139,12 @@ class RegisterViewController: UIViewController,UIPickerViewDelegate, UIImagePick
     override func viewDidLoad()
     {
         super.viewDidLoad()
-    self.activity.isHidden = true
+        self.activity.isHidden = true
         imageViewAvatar.layer.borderWidth = 1
-                imageViewAvatar.layer.masksToBounds = false
-                imageViewAvatar.layer.borderColor = UIColor.black.cgColor
-                imageViewAvatar.layer.cornerRadius = imageViewAvatar.frame.height/2
-                imageViewAvatar.clipsToBounds = true
+        imageViewAvatar.layer.masksToBounds = false
+        imageViewAvatar.layer.borderColor = UIColor.black.cgColor
+        imageViewAvatar.layer.cornerRadius = imageViewAvatar.frame.height/2
+        imageViewAvatar.clipsToBounds = true
         view.backgroundColor = UIColor.black
         let layer = CAGradientLayer()
         let color1 = UIColor(red:0.99, green: 0.48, blue: 0.48, alpha: 1.0)

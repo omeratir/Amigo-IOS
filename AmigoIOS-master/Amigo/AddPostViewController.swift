@@ -17,13 +17,9 @@ class AddPostViewController: UIViewController {
     var city : String?
     
     @IBOutlet weak var activity: UIActivityIndicatorView!
-    
     @IBOutlet weak var recTitle: UINavigationItem!
-    
     @IBOutlet weak var placeText: UITextField!
-    
     @IBOutlet weak var textOfRecommend: UITextField!
-    
     @IBOutlet weak var imageView: UIImageView!
     
     var selectedImage : UIImage?
@@ -58,26 +54,11 @@ class AddPostViewController: UIViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    //    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
-    //       {
-    //           let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-    //
-    //           imageView.image = image
-    //           picker.dismiss(animated: true, completion: nil)
-    //       }
-    //
-    //       func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-    //           picker.dismiss(animated: true, completion: nil)
-    //       }
-    //
     
     
     //press on the post button and save the post to db
     @IBAction func PostBtn(_ sender: Any) {
         activity.isHidden = false;
-     //   print("post Button press")
-   //     view.endEditing(true)
-   //     ProgressHUD.show("waiting...",interaction: false)
         var db : Firestore!
         db = Firestore.firestore()
         let idPost = db.collection("posts").document().documentID
@@ -97,7 +78,7 @@ class AddPostViewController: UIViewController {
                         self.navigationController?.popViewController(animated: true);
                     }
                 }
-
+                
             }
             
         }
@@ -108,14 +89,14 @@ class AddPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black
-              let layer = CAGradientLayer()
-              let color1 = UIColor(red:0.99, green: 0.48, blue: 0.48, alpha: 1.0)
-              let color2 = UIColor(red:0.65, green: 0.76, blue: 1.00, alpha: 1.0)
-
-              layer.colors = [ color1.cgColor ,color2.cgColor]
-              layer.frame = view.frame
-              view.layer.insertSublayer(layer, at: 0)
-         activity.isHidden = true;
+        let layer = CAGradientLayer()
+        let color1 = UIColor(red:0.99, green: 0.48, blue: 0.48, alpha: 1.0)
+        let color2 = UIColor(red:0.65, green: 0.76, blue: 1.00, alpha: 1.0)
+        
+        layer.colors = [ color1.cgColor ,color2.cgColor]
+        layer.frame = view.frame
+        view.layer.insertSublayer(layer, at: 0)
+        activity.isHidden = true;
         var db : Firestore!
         db = Firestore.firestore()
         //change the title of the page to the pin's title that pressed
@@ -131,7 +112,7 @@ class AddPostViewController: UIViewController {
             }
         }
         
-    
+        
         //get the name of the user that write the post
         let uid = Auth.auth().currentUser?.uid
         db.collection("users").getDocuments { (snapshot, err) in
@@ -148,32 +129,32 @@ class AddPostViewController: UIViewController {
                 
             }
         }
-                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectPhoto))
-                tapGesture.numberOfTapsRequired = 1
-                imageView.isUserInteractionEnabled = true
-                imageView.addGestureRecognizer(tapGesture)
-            }
-            
-            @objc func handleSelectPhoto(){
-                print("handle Select Photo")
-                let picker = UIImagePickerController()
-                picker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate //current vc
-                picker.sourceType = .photoLibrary
-                picker.allowsEditing = true
-                present(picker, animated: true, completion: nil)
-            }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectPhoto))
+        tapGesture.numberOfTapsRequired = 1
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func handleSelectPhoto(){
+        print("handle Select Photo")
+        let picker = UIImagePickerController()
+        picker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate //current vc
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+    }
+}
+
+extension AddPostViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("did finish picking media")
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            selectedImage = image
+            imageView.image = image
         }
-        
-        extension AddPostViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-            
-            func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-                print("did finish picking media")
-                if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                    selectedImage = image
-                    imageView.image = image
-                }
-                dismiss(animated: true, completion: nil)
-            }
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 

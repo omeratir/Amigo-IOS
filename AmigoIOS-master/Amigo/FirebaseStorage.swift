@@ -30,7 +30,7 @@ class FirebaseStorage {
         }
     }
     
- 
+    
     static func saveImagePost(image:UIImage, callback:@escaping (String)->Void){
         let storageRef = Storage.storage().reference(forURL:
             "gs://amigo-e1b90.appspot.com")
@@ -50,5 +50,5 @@ class FirebaseStorage {
             }
         }
     }
-
+    
 }

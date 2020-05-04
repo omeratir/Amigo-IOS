@@ -15,7 +15,6 @@ class ModelFirebase{
     
     func add(user:User){
         let db = Firestore.firestore()
-        //        var ref: DocumentReference? = nil
         let json = user.toJson();
         db.collection("users").document(user.id).setData(json){
             err in
@@ -70,43 +69,43 @@ class ModelFirebase{
             } else {
                 var data = [Post]();
                 db.collection("cities").getDocuments { (snapshot, err) in
-                           if let err = err {
-                               print("Error getting documents: \(err)")
-                           } else {
-                               for documents in snapshot!.documents {
-                                self.city = documents.get("title") as? String
-                               }
-                            print("gabi")
-                            print(self.city)
-                           }
-                           
-                       
-                for document in querySnapshot!.documents {
-                    print(document.get("title") as! String)
-                    print("hila")
-                    print(self.city)
-                   
-                    if(document.get("title") as! String == self.city){
-                        
-                    if let ts = document.data()["lastUpdate"] as? Timestamp{
-                        let tsDate = ts.dateValue();
-                        print("\(tsDate)");
-                        let tsDouble = tsDate.timeIntervalSince1970;
-                        print("\(tsDouble)");
-
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        for documents in snapshot!.documents {
+                            self.city = documents.get("title") as? String
+                        }
+                        print("gabi")
+                        print(self.city)
                     }
-                    print(document.data())
-                
-                    data.append(Post(json: document.data()));
-                    print("kobi")
-                    print(data.append(Post(json: document.data())))
-                  
+                    
+                    
+                    for document in querySnapshot!.documents {
+                        print(document.get("title") as! String)
+                        print("hila")
+                        print(self.city)
+                        
+                        if(document.get("title") as! String == self.city){
+                            
+                            if let ts = document.data()["lastUpdate"] as? Timestamp{
+                                let tsDate = ts.dateValue();
+                                print("\(tsDate)");
+                                let tsDouble = tsDate.timeIntervalSince1970;
+                                print("\(tsDouble)");
+                                
+                            }
+                            print(document.data())
+                            
+                            data.append(Post(json: document.data()));
+                            print("kobi")
+                            print(data.append(Post(json: document.data())))
+                            
+                        }
+                    }
+                    callback(data);
+                    print("shirshir")
+                    
                 }
-                }
-                callback(data);
-                print("shirshir")
-                
-            }
             }
         };
     }

@@ -17,62 +17,54 @@ protocol LoginViewControllerDelegate {
 
 class LoginViewController: UIViewController,RegiserDelegate {
     
- var delegate:LoginViewControllerDelegate?
+    var delegate:LoginViewControllerDelegate?
     @IBOutlet weak var email: UITextField!
-    
     @IBOutlet weak var password: UITextField!
-    
     @IBOutlet weak var activity: UIActivityIndicatorView!
+    
     static func factory()->LoginViewController{
-          return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "Login")
-      }
-    @IBAction func CancelButtom(_ sender: Any) {
-         self.dismiss(animated: true, completion: nil)
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "Login")
     }
     
-       func onComplete(success: Bool) {
-          print("on Complete signInOut \(success)")
-                    if success == true {
-                        print("on Complete signInOut success")
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let signInVC = storyboard.instantiateViewController(withIdentifier: "Home")
-                        self.present(signInVC, animated: true, completion: nil)
-                    }
+    @IBAction func CancelButtom(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func onComplete(success: Bool) {
+        print("on Complete signInOut \(success)")
+        if success == true {
+            print("on Complete signInOut success")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let signInVC = storyboard.instantiateViewController(withIdentifier: "Home")
+            self.present(signInVC, animated: true, completion: nil)
         }
+    }
     
     
     @IBAction func Connect(_ sender: Any) {
         self.activity.isHidden = false
-      // ProgressHUD.show("Waiting...",interaction: false)
-                 
         Auth.auth().signIn(withEmail: email.text!, password: password.text!,completion: { (authResult,error) in
             if ((authResult) != nil){
-                //self.activity.isHidden = false
                 Model.instance.logedIn = true
-//                               let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                               let signInVC = storyboard.instantiateViewController(withIdentifier: "Home")
-//                               self.present(signInVC, animated: true, completion: nil)
                 self.activity.isHidden = true
                 self.dismiss(animated: true, completion: nil)
-                               //                self.navigationController?.popViewController(animated: true);
-                                if let delegate = self.delegate{
-                                   delegate.onLoginSuccess()
-                               }
-                //Model.instance.logedIn = true
+                if let delegate = self.delegate{
+                    delegate.onLoginSuccess()
+                }
                 UserDefaults.standard.set(Auth.auth().currentUser!.uid, forKey: "user_uid_key")
                 UserDefaults.standard.synchronize()
-                           }
+            }
             else{
                 self.activity.isHidden = true
-                          let alert = UIAlertController(title: "Incorrect Username or Password", message: "Try Again!", preferredStyle: .alert)
-                          alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-                          NSLog("The \"OK\" alert occured.")
-                          }))
-                          self.present(alert, animated: true, completion: nil)
-
-                      }
-                       })
-       
+                let alert = UIAlertController(title: "Incorrect Username or Password", message: "Try Again!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                    NSLog("The \"OK\" alert occured.")
+                }))
+                self.present(alert, animated: true, completion: nil)
+                
+            }
+        })
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,27 +73,24 @@ class LoginViewController: UIViewController,RegiserDelegate {
         let layer = CAGradientLayer()
         let color1 = UIColor(red:0.99, green: 0.48, blue: 0.48, alpha: 1.0)
         let color2 = UIColor(red:0.65, green: 0.76, blue: 1.00, alpha: 1.0)
-
+        
         layer.colors = [ color1.cgColor ,color2.cgColor]
         layer.frame = view.frame
         view.layer.insertSublayer(layer, at: 0)
         
         
-      self.navigationItem.hidesBackButton = true
-            let newBackButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.back(sender:)))
-            self.navigationItem.leftBarButtonItem = newBackButton
-               
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
         
-    
-        // Do any additional setup after loading the view.
+        
     }
-
- @objc func back(sender: UIBarButtonItem) {
-       //        performSegue(withIdentifier: "cancelLoginSegue", sender: self)
-       self.navigationController?.popViewController(animated: true);
-
-       if let delegate = delegate{
-           delegate.onLoginCancell()
-       }
-   }
+    
+    @objc func back(sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true);
+        
+        if let delegate = delegate{
+            delegate.onLoginCancell()
+        }
+    }
 }

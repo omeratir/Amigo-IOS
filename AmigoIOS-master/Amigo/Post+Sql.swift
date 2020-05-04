@@ -11,7 +11,7 @@ import Firebase
 
 extension Post{
     
-   static var city: String = ""
+    static var city: String = ""
     
     static func create_table(database: OpaquePointer?){
         var errormsg: UnsafeMutablePointer<Int8>? = nil
@@ -37,11 +37,11 @@ extension Post{
             sqlite3_bind_text(sqlite3_stmt, 1, id,-1,nil);
             sqlite3_bind_text(sqlite3_stmt, 2, title,-1,nil);
             sqlite3_bind_text(sqlite3_stmt, 3, placeLocation,-1,nil);
-             sqlite3_bind_text(sqlite3_stmt, 4, placeImage,-1,nil);
-             sqlite3_bind_text(sqlite3_stmt, 5, userName,-1,nil);
-             sqlite3_bind_text(sqlite3_stmt, 6, recText,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 4, placeImage,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 5, userName,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 6, recText,-1,nil);
             sqlite3_bind_text(sqlite3_stmt, 7, userId,-1,nil);
-             sqlite3_bind_text(sqlite3_stmt, 8, postId,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 8, postId,-1,nil);
             
             if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
                 print("new row added succefully")
@@ -57,7 +57,7 @@ extension Post{
         print(Model.instance.postID)
         print("good3")
         if (sqlite3_prepare_v2(ModelSql.instance.database,"INSERT OR REPLACE INTO aviadr (TITLE, PLACELOCATION,PLACEIMAGE,USERNAME,RECTEXT,USERID,POSTID) VALUES (?,?,?,?,?,?,?);",-1, &sqlite3_stmt,nil) == SQLITE_OK){
-          //  let id = self.id.cString(using: .utf8)
+            //  let id = self.id.cString(using: .utf8)
             let title = self.title.cString(using: .utf8)
             let placeLocation = self.placeLocation.cString(using: .utf8)
             let placeImage = self.placeImage.cString(using: .utf8)
@@ -66,14 +66,14 @@ extension Post{
             let userId = self.userId.cString(using: .utf8)
             let postId = self.postId.cString(using: .utf8)
             
-           // sqlite3_bind_text(sqlite3_stmt, 1, id,-1,nil);
+            // sqlite3_bind_text(sqlite3_stmt, 1, id,-1,nil);
             sqlite3_bind_text(sqlite3_stmt, 2, title,-1,nil);
             sqlite3_bind_text(sqlite3_stmt, 3, placeLocation,-1,nil);
-             sqlite3_bind_text(sqlite3_stmt, 4, placeImage,-1,nil);
-             sqlite3_bind_text(sqlite3_stmt, 5, userName,-1,nil);
-             sqlite3_bind_text(sqlite3_stmt, 6, recText,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 4, placeImage,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 5, userName,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 6, recText,-1,nil);
             sqlite3_bind_text(sqlite3_stmt, 7, userId,-1,nil);
-             sqlite3_bind_text(sqlite3_stmt, 8, postId,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 8, postId,-1,nil);
             print("good")
             if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
                 print("new row added succefully")
@@ -82,27 +82,27 @@ extension Post{
         }
         sqlite3_finalize(sqlite3_stmt)
     }
-
+    
     
     
     
     static func getAllPostsFromDb()->[Post]{
         let db = Firestore.firestore()
-           
-           //change the title of the page to the pin that pressed
-           db.collection("cities").getDocuments { (snapshot, err) in
-               if let err = err {
-                   print("Error getting documents: \(err)")
-               } else {
-                   for document in snapshot!.documents {
+        
+        //change the title of the page to the pin that pressed
+        db.collection("cities").getDocuments { (snapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in snapshot!.documents {
                     self.city = document.get("title") as! String
-                   }
+                }
             }
         }
-
+        
         var sqlite3_stmt: OpaquePointer? = nil
         var data = [Post]()
- 
+        
         if (sqlite3_prepare_v2(ModelSql.instance.database,"SELECT * from aviadr WHERE TITLE LIKE '%\(self.city)%';",-1,&sqlite3_stmt,nil)
             == SQLITE_OK){
             while(sqlite3_step(sqlite3_stmt) == SQLITE_ROW){
@@ -116,7 +116,7 @@ extension Post{
                 po.recText = String(cString:sqlite3_column_text(sqlite3_stmt,5)!)
                 po.userId = String(cString:sqlite3_column_text(sqlite3_stmt,6)!)
                 po.postId = String(cString:sqlite3_column_text(sqlite3_stmt,7)!)
-                             
+                
                 data.append(po)
             }
         }
@@ -130,25 +130,25 @@ extension Post{
     func deleteFromDb(postIds : String){
         print(postIds)
         print("herehere")
-         var sqlite3_stmt: OpaquePointer? = nil
+        var sqlite3_stmt: OpaquePointer? = nil
         if (sqlite3_prepare_v2(ModelSql.instance.database,"DELETE FROM aviadr WHERE POSTID LIKE  '%\(postIds)%';",-1, &sqlite3_stmt,nil) == SQLITE_OK){
-             sqlite3_bind_text(sqlite3_stmt, 1, id,-1,nil);
-             sqlite3_bind_text(sqlite3_stmt, 2, title,-1,nil);
-             sqlite3_bind_text(sqlite3_stmt, 3, placeLocation,-1,nil);
-              sqlite3_bind_text(sqlite3_stmt, 4, placeImage,-1,nil);
-              sqlite3_bind_text(sqlite3_stmt, 5, userName,-1,nil);
-              sqlite3_bind_text(sqlite3_stmt, 6, recText,-1,nil);
-             sqlite3_bind_text(sqlite3_stmt, 7, userId,-1,nil);
-             sqlite3_bind_text(sqlite3_stmt, 8, postId,-1,nil);
-             
-             if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
-                  print("Successfully deleted row.")
-                   } else {
-                       print("Could not delete row.")
-                   }
-         }
-         sqlite3_finalize(sqlite3_stmt)
-     }
+            sqlite3_bind_text(sqlite3_stmt, 1, id,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 2, title,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 3, placeLocation,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 4, placeImage,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 5, userName,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 6, recText,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 7, userId,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 8, postId,-1,nil);
+            
+            if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
+                print("Successfully deleted row.")
+            } else {
+                print("Could not delete row.")
+            }
+        }
+        sqlite3_finalize(sqlite3_stmt)
+    }
     
     static func setLastUpdate(lastUpdated:Int64){
         return ModelSql.instance.setLastUpdate(name: "aviadr", lastUpdated: lastUpdated);
@@ -157,5 +157,5 @@ extension Post{
     static func getLastUpdateDate()->Int64{
         return ModelSql.instance.getLastUpdateDate(name: "aviadr")
     }
-
+    
 }

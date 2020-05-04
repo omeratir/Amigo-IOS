@@ -11,8 +11,8 @@ import UIKit
 import Firebase
 class Model {
     static let instance = Model()
-     static var city: String = ""
-     var modelFirebase:ModelFirebase = ModelFirebase()
+    static var city: String = ""
+    var modelFirebase:ModelFirebase = ModelFirebase()
     var deleter = ""
     var postID = ""
     private init(){
@@ -23,79 +23,75 @@ class Model {
     }
     
     func addPost(post:Post){
-           modelFirebase.addPost(post:post);
-       }
+        modelFirebase.addPost(post:post);
+    }
     
     func deletePost(postId :String){
         modelFirebase.deletePost(postId: postId);
     }
     
-   func getAllPosts(callback:@escaping ([Post]?)->Void){
-    var flag = true;
-           //get the local last update date
-           let lud = Post.getLastUpdateDate();
-           
-           //get the cloud updates since the local update date
-           modelFirebase.getAllPosts(since:lud) { (data) in
-               //insert update to the local db
-               var lud:Int64 = 0;
-               for post in data!{
-                   post.addToDb()
+    func getAllPosts(callback:@escaping ([Post]?)->Void){
+        var flag = true;
+        //get the local last update date
+        let lud = Post.getLastUpdateDate();
+        
+        //get the cloud updates since the local update date
+        modelFirebase.getAllPosts(since:lud) { (data) in
+            //insert update to the local db
+            var lud:Int64 = 0;
+            for post in data!{
+                post.addToDb()
                 if(flag == true){
-                var db : Firestore!
-                        db = Firestore.firestore()
-                        
-                        //change the title of the page to the pin that pressed
-                        var city:String?
-                        db.collection("deleter").getDocuments { (snapshot, err) in
-                            if let err = err {
-                                print("Error getting documents: \(err)")
-                            } else {
-                                for document in snapshot!.documents {
-                                   self.deleter = document.get("idPost") as! String
-                                    post.deleteFromDb(postIds: self.deleter)
-                                }
+                    var db : Firestore!
+                    db = Firestore.firestore()
+                    
+                    //delete post
+                    var city:String?
+                    db.collection("deleter").getDocuments { (snapshot, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        } else {
+                            for document in snapshot!.documents {
+                                self.deleter = document.get("idPost") as! String
+                                post.deleteFromDb(postIds: self.deleter)
                             }
-                            
                         }
+                        
+                    }
                     flag = false
-//                   if post.lastUpdate! > lud {lud = post.lastUpdate!}
-               }
+                }
             }
             
-               //update the students local last update date
-               Post.setLastUpdate(lastUpdated: lud)
-               // get the complete student list
-               let finalData = Post.getAllPostsFromDb()
+            //update the students local last update date
+            Post.setLastUpdate(lastUpdated: lud)
+            // get the complete student list
+            let finalData = Post.getAllPostsFromDb()
             print(finalData)
-               callback(finalData);
-           }
-       }
+            callback(finalData);
+        }
+    }
     
     func deleteAPosts(postIds : String){
-               
-               //get the local last update date
+        
+        //get the local last update date
         let lud = Post.getLastUpdateDate();
-                                self.modelFirebase.getAllPosts(since:lud) { (data) in
-                                                 //insert update to the local db
-                                                // var lud:Int64 = 0;
-                                                 for post in data!{
-                                                  if(post.postId == postIds){
-                                                      post.deleteFromDb(postIds: post.postId)
-                           
-            let db = Firestore.firestore()
-                db.collection("posts").document(postIds).delete(){
-                          err in
-                          if let err = err {
-                              print("Error writing document: \(err)")
-                          }
+        self.modelFirebase.getAllPosts(since:lud) { (data) in
+            for post in data!{
+                if(post.postId == postIds){
+                    post.deleteFromDb(postIds: post.postId)
+                    
+                    let db = Firestore.firestore()
+                    db.collection("posts").document(postIds).delete(){
+                        err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        }
+                    }
+                    break;
                 }
-                                                    break;
-               //get the cloud updates since the local update date
             }
         }
     }
-           }
     
     
     
@@ -105,14 +101,14 @@ class Model {
     }
     
     func saveImagePost(image:UIImage, callback:@escaping (String)->Void) {
-           FirebaseStorage.saveImagePost(image: image, callback: callback)
-       }
+        FirebaseStorage.saveImagePost(image: image, callback: callback)
+    }
     
     func savePost(title:String, placeLocation:String, userName:String, recText:String,url:String, callback:(Bool)->Void){
-          logedIn = true;
-          callback(true);
-          
-      }
+        logedIn = true;
+        callback(true);
+        
+    }
     
     
     ////////////////// USER Authentication ///////////////
@@ -137,7 +133,7 @@ class Model {
         callback(true);
         
     }
-
+    
 }
 class ModelEvents{
     static let UserDataEvent = EventNotificationBase(eventName: "com.Amigo.UserDataEvent");

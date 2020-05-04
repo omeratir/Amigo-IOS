@@ -10,29 +10,30 @@ import UIKit
 import Firebase
 
 class TablePostTableViewController: UITableViewController {
-    
+    var loadingView: UIView = UIView()
+    var container: UIView = UIView()
     @IBOutlet weak var recTitle: UINavigationItem!
     var flag = true
     var data = [Post]()
     var postid = String()
-  
+    
     func runTimer(){
-        let timer = Timer(fire: Date(), interval: 10.0, repeats: true, block: { (Timer) in
+        let timer = Timer(fire: Date(), interval: 5.0, repeats: true, block: { (Timer) in
             self.reloadData()
             DispatchQueue.main.async {
                 self.reloadData()
-
+                
             }
         })
-
+        
         RunLoop.current.add(timer, forMode: .default)
         self.tableView.reloadData()
-
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        
         var db : Firestore!
         db = Firestore.firestore()
         
@@ -55,10 +56,10 @@ class TablePostTableViewController: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
         ModelEvents.RefreshDataEvent.observe {
             if(self.flag){
-            self.reloadData()
-            self.flag = false
+                self.reloadData()
+                self.flag = false
+            }
         }
-    }
         ModelEvents.PostDataEvent.observe {
             self.refreshControl?.beginRefreshing()
             self.reloadData();
@@ -69,15 +70,15 @@ class TablePostTableViewController: UITableViewController {
     }
     
     @IBAction func plusButtom(_ sender: Any) {
-            if(Model.instance.logedIn == true){
-      let storyBoard = UIStoryboard(name: "Main", bundle:nil)
-       let memberDetailsViewController = storyBoard.instantiateViewController(withIdentifier: "addPost") as! AddPostViewController
-       self.navigationController?.pushViewController(memberDetailsViewController, animated:true)
+        if(Model.instance.logedIn == true){
+            let storyBoard = UIStoryboard(name: "Main", bundle:nil)
+            let memberDetailsViewController = storyBoard.instantiateViewController(withIdentifier: "addPost") as! AddPostViewController
+            self.navigationController?.pushViewController(memberDetailsViewController, animated:true)
         }
-            else {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                  let signInVC = storyboard.instantiateViewController(withIdentifier: "Login")
-                  self.present(signInVC, animated: true, completion: nil)
+        else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let signInVC = storyboard.instantiateViewController(withIdentifier: "Login")
+            self.present(signInVC, animated: true, completion: nil)
         }
     }
     
@@ -90,19 +91,12 @@ class TablePostTableViewController: UITableViewController {
             }
             self.refreshControl?.endRefreshing()
         }
-//        Model.instance.deleteAPosts{ (_data:[Post]?) in
-//                 if (_data != nil) {
-//                     self.data = _data!;
-//                     self.tableView.reloadData();
-//                    Model.instance.deletePost()
-//                 }
-//                 self.refreshControl?.endRefreshing()
-//             }
+        
     }
     func deletePost(postId: String){
         print("get in to here")
         Model.instance.deleteAPosts(postIds: postId)
-     //   Model.instance.deletePost(postId: postId)
+        //   Model.instance.deletePost(postId: postId)
     }
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
@@ -119,7 +113,7 @@ class TablePostTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
-  
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:PostViewCell = tableView.dequeueReusableCell(withIdentifier: "PostViewCell", for: indexPath) as! PostViewCell
@@ -128,23 +122,17 @@ class TablePostTableViewController: UITableViewController {
         var city = self.recTitle.title
         let st = data[indexPath.row]
         cell.Name.text = st.userName
-        print(cell.Name.text)
-        print("shosho")
         cell.PlaceLabel.text = st.placeLocation
-        print(cell.PlaceLabel.text)
-              print("shosho2")
         cell.ImageView.image = UIImage(named: "avatar")
         if st.placeImage != ""{
             cell.ImageView.kf.setImage(with: URL(string: st.placeImage));
         }
-       // cell.deletePost.isEnabled = false
         cell.deletePost.isHidden = true
         if(Model.instance.logedIn==true){
-        if(st.userId == Auth.auth().currentUser!.uid){
-            cell.deletePost.isHidden = false
+            if(st.userId == Auth.auth().currentUser!.uid){
+                cell.deletePost.isHidden = false
+            }
         }
-    }
-        print("mormor")
         ModelEvents.RefreshDataEvent.post()
         return cell
         
@@ -155,74 +143,70 @@ class TablePostTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(Model.instance.logedIn == true){
-        if (segue.identifier == "PostInfoSegue"){
-            let vc:PostInfoViewController = segue.destination as! PostInfoViewController
-            vc.post = selected
-        }
+            if (segue.identifier == "PostInfoSegue"){
+                let vc:PostInfoViewController = segue.destination as! PostInfoViewController
+                vc.post = selected
+            }
             
         }
         else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                 let signInVC = storyboard.instantiateViewController(withIdentifier: "Login")
-                 self.present(signInVC, animated: true, completion: nil)
+            let signInVC = storyboard.instantiateViewController(withIdentifier: "Login")
+            self.present(signInVC, animated: true, completion: nil)
         }
     }
     
-      var selected:Post?
+    var selected:Post?
     @IBAction func deleteButtom(_ sender: Any) {
-
-        let alert = UIAlertController(title: nil, message: "Are you sure you'd like to delete this cell", preferredStyle: .alert)
-
+        
+        let alert = UIAlertController(title: nil, message: "Are you sure you'd like to delete this post", preferredStyle: .alert)
+        
         // yes action
         let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
-        let buttonPosition:CGPoint = (sender as AnyObject).convert(CGPoint.zero, to:self.tableView)
-          let indexPath = self.tableView.indexPathForRow(at: buttonPosition)
-           
+            let buttonPosition:CGPoint = (sender as AnyObject).convert(CGPoint.zero, to:self.tableView)
+            let indexPath = self.tableView.indexPathForRow(at: buttonPosition)
             self.selected = self.data[indexPath!.row]
-             let db = Firestore.firestore()
-                db.collection("posts").getDocuments { (snapshot, err) in
-                    if let err = err {
-                        print("Error getting documents: \(err)")
-                    } else {
-                        
-                        for document in snapshot!.documents {
-                            self.postid = document.get("postId") as! String
-                            print(self.postid)
-                            print(self.selected?.postId)
-                            print("shiooo")
-                            if(self.selected?.postId == self.postid){
-                                 db.collection("deleter").document("Post").setData(["idPost" : self.selected!.postId])
-                                self.deletePost(postId: self.selected!.postId)
-                                  
-                                break;
-                            }
+            let db = Firestore.firestore()
+            db.collection("posts").getDocuments { (snapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    
+                    for document in snapshot!.documents {
+                        self.postid = document.get("postId") as! String
+                        if(self.selected?.postId == self.postid){
+                            db.collection("deleter").document("Post").setData(["idPost" : self.selected!.postId])
+                            self.deletePost(postId: self.selected!.postId)
+                            break;
+                            
                         }
-                        
-                        
                     }
-      
+                    
+                    
                 }
+                
+            }
             
         }
         alert.addAction(yesAction)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
-               present(alert, animated: true, completion: nil)
-       
-            }
-  
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           if(Model.instance.logedIn == true){
-        selected = data[indexPath.row]
-        performSegue(withIdentifier: "PostInfoSegue", sender: self)
+        if(Model.instance.logedIn == true){
+            selected = data[indexPath.row]
+            performSegue(withIdentifier: "PostInfoSegue", sender: self)
         }
         else {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                     let signInVC = storyboard.instantiateViewController(withIdentifier: "Login")
-                     self.present(signInVC, animated: true, completion: nil)
-            }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let signInVC = storyboard.instantiateViewController(withIdentifier: "Login")
+            self.present(signInVC, animated: true, completion: nil)
+        }
     }
-   
+    
     
     @IBAction func backFromCancelLogin(segue:UIStoryboardSegue){
         

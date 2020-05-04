@@ -14,8 +14,6 @@
 		5BCBC95823C3A8D200F2D46E /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBC95723C3A8D200F2D46E /* MyProfileViewController.swift */; };
 		61D0452F87C82C9C1F03B443 /* Pods_Amigo_AmigoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4F62623AA96C75D73B0A88 /* Pods_Amigo_AmigoUITests.framework */; };
 		B2108EDB23D250B9005F3B0D /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2108EDA23D250B9005F3B0D /* AddPostViewController.swift */; };
-		B221A063242A9EA30066C8F4 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B221A062242A9EA30066C8F4 /* FeedTableViewController.swift */; };
-		B221A067242AAF8F0066C8F4 /* UserPostViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B221A066242AAF8F0066C8F4 /* UserPostViewCell.swift */; };
 		B221A069242BC1580066C8F4 /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B221A068242BC1580066C8F4 /* EditPostViewController.swift */; };
 		B225086423D376DB00E20314 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225086323D376DB00E20314 /* User.swift */; };
 		B226F74123C2550C0064A4DD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B226F74023C2550C0064A4DD /* MapViewController.swift */; };
@@ -35,8 +33,6 @@
 		B2B4428823D8B237005742AF /* User+Sql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4428723D8B237005742AF /* User+Sql.swift */; };
 		B2B4428A23D8B2DA005742AF /* User+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4428923D8B2DA005742AF /* User+Firebase.swift */; };
 		B2B4428C23D8B755005742AF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B4428B23D8B72D005742AF /* libsqlite3.0.tbd */; };
-		B2BA16E523C51544005647FB /* InfoMarkerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BA16E423C51544005647FB /* InfoMarkerViewController.swift */; };
-		B2BE390723D5BF0800C687C5 /* PostUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BE390623D5BF0800C687C5 /* PostUser.swift */; };
 		D0355B8023BA62AF00AD790F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0355B7F23BA62AF00AD790F /* AppDelegate.swift */; };
 		D0355B8223BA62AF00AD790F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0355B8123BA62AF00AD790F /* SceneDelegate.swift */; };
 		D0355B8423BA62AF00AD790F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0355B8323BA62AF00AD790F /* ViewController.swift */; };
@@ -77,8 +73,6 @@
 		AC3765FF859605726AD13CB0 /* Pods_Amigo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Amigo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD82AFCEBCD74B153272E4A3 /* Pods-AmigoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmigoTests.debug.xcconfig"; path = "Target Support Files/Pods-AmigoTests/Pods-AmigoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B2108EDA23D250B9005F3B0D /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
-		B221A062242A9EA30066C8F4 /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
-		B221A066242AAF8F0066C8F4 /* UserPostViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostViewCell.swift; sourceTree = "<group>"; };
 		B221A068242BC1580066C8F4 /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
 		B225086323D376DB00E20314 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B226F74023C2550C0064A4DD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -99,8 +93,6 @@
 		B2B4428923D8B2DA005742AF /* User+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Firebase.swift"; sourceTree = "<group>"; };
 		B2B4428B23D8B72D005742AF /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		B2B4428D23D8B7A5005742AF /* Amigo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Amigo-Bridging-Header.h"; sourceTree = "<group>"; };
-		B2BA16E423C51544005647FB /* InfoMarkerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMarkerViewController.swift; sourceTree = "<group>"; };
-		B2BE390623D5BF0800C687C5 /* PostUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUser.swift; sourceTree = "<group>"; };
 		D0355B7C23BA62AF00AD790F /* Amigo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amigo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0355B7F23BA62AF00AD790F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0355B8123BA62AF00AD790F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -175,11 +167,41 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B2030B8D246089BF004A379E /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				B226F74023C2550C0064A4DD /* MapViewController.swift */,
+				B28A49A023C6168A00DBAADD /* Artwork.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		B2030B8E24608A3F004A379E /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				5BCBC95523C39A1500F2D46E /* RegisterViewController.swift */,
+				5BCBC95323C3992300F2D46E /* LoginViewController.swift */,
+				5BCBC95723C3A8D200F2D46E /* MyProfileViewController.swift */,
+			);
+			name = Users;
+			sourceTree = "<group>";
+		};
+		B2030B8F24608AA4004A379E /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				B2606FBD24159E26003354A0 /* PostViewCell.swift */,
+				B2606FC52416AEC5003354A0 /* PostInfoViewController.swift */,
+				B2A3C59123D7861D00C7FA4E /* TablePostTableViewController.swift */,
+				B221A068242BC1580066C8F4 /* EditPostViewController.swift */,
+				B2108EDA23D250B9005F3B0D /* AddPostViewController.swift */,
+			);
+			name = Posts;
+			sourceTree = "<group>";
+		};
 		B2BE390523D5BEC400C687C5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				B225086323D376DB00E20314 /* User.swift */,
-				B2BE390623D5BF0800C687C5 /* PostUser.swift */,
 				B2B4427F23D8B046005742AF /* Model.swift */,
 				B2B4428123D8B15E005742AF /* ModelSql.swift */,
 				B2B4428323D8B197005742AF /* ModelFirebase.swift */,
@@ -218,6 +240,9 @@
 		D0355B7E23BA62AF00AD790F /* Amigo */ = {
 			isa = PBXGroup;
 			children = (
+				B2030B8F24608AA4004A379E /* Posts */,
+				B2030B8E24608A3F004A379E /* Users */,
+				B2030B8D246089BF004A379E /* Map */,
 				B2BE390523D5BEC400C687C5 /* Model */,
 				B22BE09323C9F42E0031672C /* GoogleService-Info.plist */,
 				D0355B7F23BA62AF00AD790F /* AppDelegate.swift */,
@@ -228,20 +253,7 @@
 				D0355B8A23BA62B100AD790F /* LaunchScreen.storyboard */,
 				D0355B8D23BA62B100AD790F /* Info.plist */,
 				D0355BB123BA722D00AD790F /* TabController.swift */,
-				B226F74023C2550C0064A4DD /* MapViewController.swift */,
-				5BCBC95323C3992300F2D46E /* LoginViewController.swift */,
-				5BCBC95523C39A1500F2D46E /* RegisterViewController.swift */,
-				5BCBC95723C3A8D200F2D46E /* MyProfileViewController.swift */,
-				B2BA16E423C51544005647FB /* InfoMarkerViewController.swift */,
-				B28A49A023C6168A00DBAADD /* Artwork.swift */,
-				B2108EDA23D250B9005F3B0D /* AddPostViewController.swift */,
-				B2A3C59123D7861D00C7FA4E /* TablePostTableViewController.swift */,
-				B221A062242A9EA30066C8F4 /* FeedTableViewController.swift */,
 				B2B4428D23D8B7A5005742AF /* Amigo-Bridging-Header.h */,
-				B221A066242AAF8F0066C8F4 /* UserPostViewCell.swift */,
-				B2606FBD24159E26003354A0 /* PostViewCell.swift */,
-				B2606FC52416AEC5003354A0 /* PostInfoViewController.swift */,
-				B221A068242BC1580066C8F4 /* EditPostViewController.swift */,
 			);
 			path = Amigo;
 			sourceTree = "<group>";
@@ -544,12 +556,10 @@
 				B2B4428023D8B046005742AF /* Model.swift in Sources */,
 				D0355B8423BA62AF00AD790F /* ViewController.swift in Sources */,
 				B28A49A123C6168A00DBAADD /* Artwork.swift in Sources */,
-				B221A063242A9EA30066C8F4 /* FeedTableViewController.swift in Sources */,
 				B225086423D376DB00E20314 /* User.swift in Sources */,
 				B2606FC82416B82E003354A0 /* Post+Firebase.swift in Sources */,
 				B2B4428823D8B237005742AF /* User+Sql.swift in Sources */,
 				D0355BB223BA722D00AD790F /* TabController.swift in Sources */,
-				B2BE390723D5BF0800C687C5 /* PostUser.swift in Sources */,
 				B2B4428223D8B15E005742AF /* ModelSql.swift in Sources */,
 				B2108EDB23D250B9005F3B0D /* AddPostViewController.swift in Sources */,
 				B2606FC224164A05003354A0 /* Post+Sql.swift in Sources */,
@@ -557,7 +567,6 @@
 				D0355B8023BA62AF00AD790F /* AppDelegate.swift in Sources */,
 				B2606FC0241648ED003354A0 /* Post.swift in Sources */,
 				B2A3C59223D7861D00C7FA4E /* TablePostTableViewController.swift in Sources */,
-				B2BA16E523C51544005647FB /* InfoMarkerViewController.swift in Sources */,
 				B2606FC62416AEC5003354A0 /* PostInfoViewController.swift in Sources */,
 				B2606FBE24159E27003354A0 /* PostViewCell.swift in Sources */,
 				5BCBC95623C39A1500F2D46E /* RegisterViewController.swift in Sources */,
@@ -566,7 +575,6 @@
 				B221A069242BC1580066C8F4 /* EditPostViewController.swift in Sources */,
 				D0355B8223BA62AF00AD790F /* SceneDelegate.swift in Sources */,
 				5BCBC95823C3A8D200F2D46E /* MyProfileViewController.swift in Sources */,
-				B221A067242AAF8F0066C8F4 /* UserPostViewCell.swift in Sources */,
 				B226F74123C2550C0064A4DD /* MapViewController.swift in Sources */,
 				B2B4428623D8B213005742AF /* FirebaseStorage.swift in Sources */,
 			);
