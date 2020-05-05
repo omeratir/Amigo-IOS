@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-import ProgressHUD
 
 class AddPostViewController: UIViewController {
     

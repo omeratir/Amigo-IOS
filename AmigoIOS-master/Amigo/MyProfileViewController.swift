@@ -12,7 +12,6 @@ import Firebase
 import FirebaseStorage
 import Kingfisher
 
-
 class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
     func onLoginSuccess() {
     }
@@ -20,10 +19,14 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
     func onLoginCancell() {
         self.tabBarController?.selectedIndex = 0;
     }
+    
     @IBOutlet weak var Login: UIButton!
     @IBOutlet weak var Logout: UIButton!
     @IBOutlet weak var ImageProfile: UIImageView!
     @IBOutlet weak var Name: UILabel!
+   
+       
+    
     
     override func viewWillAppear(_: Bool) {
         super.viewWillAppear(true)
@@ -47,8 +50,6 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
         layer.colors = [ color1.cgColor ,color2.cgColor]
         layer.frame = view.frame
         view.layer.insertSublayer(layer, at: 0)
-        
-        
     }
     
     func profile() {
@@ -130,4 +131,62 @@ class MyProfileViewController: UIViewController, LoginViewControllerDelegate {
         present(alert, animated: true, completion: nil)
         
     }
+    
+    
+    @IBAction func UplodaPhoto(_ sender: Any) {
+          let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            
+            let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+            
+            actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action:UIAlertAction) in
+                
+                if(UIImagePickerController.isSourceTypeAvailable(.camera))
+                {
+                    imagePickerController.sourceType = .camera
+                    self.present(imagePickerController, animated: true, completion: nil)
+                }
+                else
+                {
+                    print("Camera not available")
+                }
+                
+            }))
+            actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: {(action:UIAlertAction) in
+                imagePickerController.sourceType = .photoLibrary
+                self.present(imagePickerController, animated: true, completion: nil)
+            }))
+            
+            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+            self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    
+ @objc func handleSelectPhoto(){
+     print("handle Select Photo")
+     let picker = UIImagePickerController()
+    picker.delegate = self as! UIImagePickerControllerDelegate & UINavigationControllerDelegate //current vc
+     picker.sourceType = .photoLibrary
+     picker.allowsEditing = true
+     present(picker, animated: true, completion: nil)
+ }
+}
+extension MyProfileViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("did finish picking media")
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            Model.instance.saveImage(image: image){ (url) in
+                                      if url != "" {
+                                        self.ImageProfile.image = image
+                        }
+                                      else {
+                                        print("fail to change photo")
+                        }
+                }
+        
+    }
+        dismiss(animated: true, completion: nil)
+}
 }

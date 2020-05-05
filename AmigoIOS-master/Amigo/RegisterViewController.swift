@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseStorage
-import ProgressHUD
 
 protocol RegiserDelegate{
     func onComplete(success:Bool);
