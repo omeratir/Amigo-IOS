@@ -122,29 +122,29 @@ class MapViewController: UIViewController {
                             discipline: "Haifa",
                             coordinate: CLLocationCoordinate2D(latitude: 32.794044, longitude: 34.989571))
         
-        let superland = Artwork(title: "Superland",
-                                locationName: "Rishon Lezion",
-                                discipline: "haifa",
-                                coordinate: CLLocationCoordinate2D(latitude: 31.97860, longitude: 34.744534))
+        let telaviv = Artwork(title: "Tel-Aviv",
+                                locationName: "Tel-Aviv",
+                                discipline: "Tel-Aviv",
+                                coordinate: CLLocationCoordinate2D(latitude: 32.085300, longitude: 34.781769))
         
-        let portOfTelAviv = Artwork(title: "Port of Tel-Aviv",
-                                    locationName: "Tel Aviv",
-                                    discipline: "Tel Aviv",
-                                    coordinate: CLLocationCoordinate2D(latitude: 32.101421, longitude: 34.775711))
+        let eilat = Artwork(title: "Eilat",
+                                    locationName: "Eilat",
+                                    discipline: "Eilat",
+                                    coordinate: CLLocationCoordinate2D(latitude: 29.557669, longitude: 34.951923))
         
-        let lunaPark = Artwork(title: "Luna Park",
-                               locationName: "Tel Aviv",
-                               discipline: "Tel Aviv",
-                               coordinate: CLLocationCoordinate2D(latitude: 32.083910, longitude: 34.798939))
+        let bersheva = Artwork(title: "Ber-Sheva",
+                               locationName: "Ber-Sheva",
+                               discipline: "Ber-Sheva",
+                               coordinate: CLLocationCoordinate2D(latitude: 31.243870, longitude: 34.793990))
         
         
         
         
         mapView.addAnnotation(rishonLezion)
         mapView.addAnnotation(haifa)
-        mapView.addAnnotation(superland)
-        mapView.addAnnotation(portOfTelAviv)
-        mapView.addAnnotation(lunaPark)
+        mapView.addAnnotation(telaviv)
+        mapView.addAnnotation(eilat)
+        mapView.addAnnotation(bersheva)
         
         
         
